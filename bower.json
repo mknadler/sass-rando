@@ -1,0 +1,24 @@
+{
+  "name": "randomize.scss",
+  "version": "1.0.0",
+  "homepage": "https://github.com/mknadler/randomize.scss",
+  "authors": [
+    "mknadler <miriam.k.nadler@gmail.com>"
+  ],
+  "description": "Sass randomization functions and mixins",
+  "main": "_randomize.scss",
+  "keywords": [
+    "Sass",
+    "random",
+    "randomization"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    ".gitignore"
+  ]
+}
