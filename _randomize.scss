@@ -1,0 +1,86 @@
+// Randomize.SCSS
+// https://github.com/mknadler/randomize.scss
+
+////// random-between
+// Given two positive integers, returns a random integer inside of that range
+// Example
+// random-between(4, 7);
+// => 4, 5, 6 or 7
+@function random-between( $min, $max ) {
+  @if($min < 0) or ($max < 0) {
+  	@error "$min and $max must both be positive integers";
+  }
+  @if ($min > $max) {
+  	$old_min: $min; 
+  	$min: $max;
+  	$max: $old_min;
+  }
+  @if ($min % 1 != 0) or ($max % 1 != 0){
+  	@warn "random-between has rounded your values to the nearest integer";
+  	$min: round($min);
+  	$max: round($max);
+  }
+  @return ($min - 1) + random(($max - $min) + 1);
+}
+
+////// random-hex
+// Returns a random hexadecimal color code
+// Example
+// color: random-hex();
+@function random-hex(){
+  $rgb: '';
+  $i: 6;
+  @while $i > 0 {
+    $hex-unit: random(16) - 1;
+    $letters: A, B, C, D, E, F;
+    @if $hex-unit > 9 { 
+      $hex-unit: nth($letters, ($hex-unit - 9));
+    };
+    $rgb: str-insert($rgb, ("" + $hex-unit), 0);
+    $i: $i - 1;
+  }
+  @return unquote("#"+"#{$rgb}");
+}
+
+////// random-value
+// Returns a random value from a list of values
+// Example:
+// $timing-functions: ease, ease-in, ease-out, ease-in-out, linear
+// transition: 3s random-value($timing-functions);
+@function random-value( $value-list ){
+  $value-to-find: random(length($value-list));
+  @return nth($value-list, $value-to-find);
+}
+
+////// random-rgba
+// Returns a random RGBa value.
+// Can optionally pass in a list of multipliers or an opacity value. 
+// Example:
+// color: random-rgba();
+// background: random-rgba((1, 4, 2));
+// background: random-rgba((.3, .2, 1), .7);
+//
+// The multiplier works because Sass clamps color values to a max of 255;
+// If you pass a multiplier of 5 for red, it will calculate
+// random (255*5) => random(1275), which means a roughly 80% chance
+// of getting a red value of 255.
+@function random-rgba($multiplier:(1, 1, 1), $opacity:false){
+  @each $val in $multiplier {
+  	@if $val < 0 or $val == 0 {
+  		@error "RGBa multipliers must be positive";
+  	}
+  };
+  $r: round(255 * nth($multiplier, 1));
+  $g: round(255 * nth($multiplier, 2));
+  $b: round(255 * nth($multiplier, 3));
+  @if type-of($opacity) == number {
+    @if $opacity < 0 or $opacity > 1 {
+      @warn "opacity should be a number between 0 and 1";
+      $opacity: 1; 
+    }
+      @return rgba(random($r),random($g),random($b), $opacity);
+  }
+  @else {
+  	@return rgba(random($r),random($g),random($b), random());
+  }
+}
