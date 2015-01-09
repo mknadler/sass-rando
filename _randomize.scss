@@ -58,3 +58,15 @@
   $value-to-find: random(length($value-list));
   @return nth($value-list, $value-to-find);
 }
+
+@function shuffle($list){
+  $list-length: length($list);
+  @while($list-length > 0){
+    $rand: random($list-length);
+    $temp: nth($list, $rand);
+    $list: set-nth($list, $rand, nth($list, $list-length));
+    $list: set-nth($list, $list-length, $temp);
+    $list-length: $list-length - 1;
+  }
+  @return $list;
+}

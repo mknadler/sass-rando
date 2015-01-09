@@ -48,4 +48,11 @@ Example usage:
 <code>$timing-functions: ease, ease-in, ease-in-out, linear;
 transition: 3s random-value($timing-functions);</code>
 
+###shuffle
+`shuffle($list);`
 
+Given a list, returns that same list, shuffled Fisher-Yates style.
+
+Example usage:
+
+`margin: shuffle(40px 40px 80px 90px)`
