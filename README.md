@@ -10,6 +10,7 @@ More will be added soon; in the meantime, please feel free to request specific f
 Given a required `$min` and `$max`,  returns a random number inside of that range, inclusive of both `$min` and `$max`.
 
 Example usage:
+
 `line-height: random-between(2, 3);`
 
 
@@ -19,6 +20,7 @@ Example usage:
 Returns a random hex color.
 
 Example usage:
+
 `border: 1px solid random-hex();`
 
 ###random-rgba
@@ -35,11 +37,14 @@ The multiplier works because Sass clamps color values to a max of 255; if you pa
 For grayscale, keep all values very low.
 
 Example usage:
+
 `background: random-rgba((.3,.2,1), .7)`;
 
 ###random-value 
 Given a list of values, returns one of those values.
+
 Example usage:
+
 <code>$timing-functions: ease, ease-in, ease-in-out, linear;
 transition: 3s random-value($timing-functions);</code>
 
