@@ -8,17 +8,17 @@
 // => 4, 5, 6 or 7
 @function random-between( $min, $max ) {
   @if($min < 0) or ($max < 0) {
-  	@error "$min and $max must both be positive integers";
+    @error "$min and $max must both be positive integers";
   }
   @if ($min > $max) {
-  	$old_min: $min; 
-  	$min: $max;
-  	$max: $old_min;
+    $old_min: $min; 
+    $min: $max;
+    $max: $old_min;
   }
   @if ($min % 1 != 0) or ($max % 1 != 0){
-  	@warn "random-between has rounded your values to the nearest integer";
-  	$min: round($min);
-  	$max: round($max);
+    @warn "random-between has rounded your values to the nearest integer";
+    $min: round($min);
+    $max: round($max);
   }
   @return ($min - 1) + random(($max - $min) + 1);
 }
@@ -35,7 +35,7 @@
     $letters: A, B, C, D, E, F;
     @if $hex-unit > 9 { 
       $hex-unit: nth($letters, ($hex-unit - 9));
-    };
+    }
     $rgb: str-insert($rgb, ("" + $hex-unit), 0);
     $i: $i - 1;
   }
@@ -66,10 +66,10 @@
 // of getting a red value of 255.
 @function random-rgba($multiplier:(1, 1, 1), $opacity:false){
   @each $val in $multiplier {
-  	@if $val < 0 or $val == 0 {
-  		@error "RGBa multipliers must be positive";
-  	}
-  };
+    @if $val < 0 or $val == 0 {
+      @error "RGBa multipliers must be positive";
+    }
+  }
   $r: round(255 * nth($multiplier, 1));
   $g: round(255 * nth($multiplier, 2));
   $b: round(255 * nth($multiplier, 3));
@@ -78,9 +78,9 @@
       @warn "opacity should be a number between 0 and 1";
       $opacity: 1; 
     }
-      @return rgba(random($r),random($g),random($b), $opacity);
+    @return rgba(random($r),random($g),random($b), $opacity);
   }
   @else {
-  	@return rgba(random($r),random($g),random($b), random());
+    @return rgba(random($r),random($g),random($b), random());
   }
 }
