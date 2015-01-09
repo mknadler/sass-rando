@@ -70,3 +70,37 @@
   }
   @return $list;
 }
+
+@mixin random-animate($num-elements, $element-name, $animation-name, $prop-to-animate, $function-name, $steps:7) {
+  @while $num-elements > 0 {
+    &:nth-child(#{$num-elements}) {
+      @-webkit-keyframes #{$animation-name}-#{$num-elements} {
+        $step-list: ();
+          $steps-to-add: $steps;
+          @while $steps-to-add > 0 {
+            $step-list: join(floor(($steps-to-add - 1) * (100 / ($steps - 1))), $step-list);
+            $steps-to-add: $steps-to-add - 1;
+          }
+        $steps-length: length($step-list);
+        @for $i from 1 through $steps-length {
+          #{nth($step-list, $i)}% { #{$prop-to-animate}: call(#{$function-name}); }
+        }
+      };
+      @keyframes #{$animation-name}-#{$num-elements} {
+        $step-list: ();
+          $steps-to-add: $steps;
+          @while $steps-to-add > 0 {
+            $step-list: join(floor(($steps-to-add - 1) * (100 / ($steps - 1))), $step-list);
+            $steps-to-add: $steps-to-add - 1;
+          }
+        $steps-length: length($step-list);
+        @for $i from 1 through $steps-length {
+          #{nth($step-list, $i)}% { #{$prop-to-animate}: call(#{$function-name}); }
+        }
+      };
+      -webkit-animation: #{$animation-name}-#{$num-elements} 3s ease infinite alternate;
+      animation: #{$animation-name}-#{$num-elements} 3s ease infinite alternate; 
+     };
+        $num-elements: $num-elements - 1;
+    };
+  }

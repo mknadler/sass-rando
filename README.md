@@ -56,3 +56,14 @@ Given a list, returns that same list, shuffled Fisher-Yates style.
 Example usage:
 
 `margin: shuffle(40px 40px 80px 90px)`
+
+###random-animate
+`@include random-animate($num-elements, $element-name, $animation-name, $prop-to-animate, $function-name, $steps);`
+
+For a given number of nth-children of a certain element, creates a keyframe and animation for each element which takes advantage of one of the other functions in the library.
+
+`$animation-name` is only important to prevent naming conflicts, if you happen to be randomly animating more than one type of element on a page.
+
+Example usage: 
+
+`div { @include random-animate(20, div, colorize, background, random-hex); }`
