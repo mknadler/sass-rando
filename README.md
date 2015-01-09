@@ -66,3 +66,12 @@ For a given number of nth-children of a certain element, creates a keyframe and 
 
 Example usage: 
 `div { @include random-animate(20, colorize, background, random-hex, 4s ease-out infinite alternate, 4); }`
+This would create 20 keyframes and animations for each div:nth-child between 1 and 20, each animating between four different colors.
+
+###random-iterate
+`@include random-iterate($number-of-items, $property, $function);`
+
+Given a number of elements, a function, and a property, applies that function for that property for each of those elements, using nth-child.
+
+Example usage, given 10 divs:
+`div { @include random-iterate(10, background, random-hex); }`

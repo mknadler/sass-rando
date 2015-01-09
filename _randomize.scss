@@ -104,3 +104,12 @@
     $num-elements: $num-elements - 1;
   };
 }
+
+@mixin random-iterate($number-of-items, $property, $function){
+  @while $number-of-items > 0 {
+    &:nth-child(#{$number-of-items}){
+      #{$property}: call(#{$function});
+    }
+    $number-of-items: $number-of-items - 1;
+  }
+}
