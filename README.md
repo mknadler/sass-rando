@@ -7,13 +7,19 @@ More will be added soon; in the meantime, please feel free to request specific f
 Upcoming changes: add unit support to random-between (so that a call of `random-between(10px, 20px)` will work & output in pixels), add warnings/errors to @random-animate and @random-iterate, add options to @random-animate besides nth-child (nth-of-type; manual list of elements), look into configuration objects as an alternative to having `($so, $so, $so, $so, $so, $so)` many parameters.
 
 ###random-between
-`random-between( $min, $max );`
+`random-between( $min, $max, $decimal:false );`
 
 Given a required `$min` and `$max`,  returns a random number inside of that range, inclusive of both `$min` and `$max`.
 
-Example usage:
+You can use either a unitless number for $min and $max, like 4 or 931, or numbers with units, like 4px or 10%. If you are using numbers with units, the units must match.
+
+By default, the returned value is in integers. If you want the returned value to be in decimals, pass `true` or `decimal` as a third parameter.
+
+Example usages:
 
 `line-height: random-between(2, 3);`
+
+`font-size: random-between(20px, 34px, decimal);`
 
 
 ###random-hex

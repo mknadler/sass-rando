@@ -1,7 +1,7 @@
 // Randomize.scss
 // https://github.com/mknadler/randomize.scss
 
-@function random-between( $min, $max ){
+@function random-between( $min, $max, $decimal: false){
   @if ($min < 0) or ($max < 0) {
     @error "$min and $max must both be positive integers";
   }
@@ -10,13 +10,19 @@
     $min: $max;
     $max: $old_min;
   }
-  @if ($min % 1 != 0) or ($max % 1 != 0){
-    @warn "random-between has rounded your values to the nearest integer";
-    $min: round($min);
-    $max: round($max);
+  @if $decimal == true or $decimal == decimal {
+    @return random() * ($max - $min);
   }
-  @return ($min - 1) + random(($max - $min) + 1);
+  @else {
+    @if ($min % 1 != 0) or ($max % 1 != 0){
+      @warn "random-between has rounded your values to the nearest integer";
+      $min: round($min);
+      $max: round($max);
+    }
+    @return ($min - 1) + random(($max - $min) + 1);
+  }
 }
+
 
 @function random-hex(){
   $rgb: '';
