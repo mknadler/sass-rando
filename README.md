@@ -4,9 +4,17 @@ A small collection of functions and mixins to help you make the most out of Sass
 
 What can you do with it? [Here are](http://codepen.io/mknadler/pen/QwdQBx) [some examples](http://codepen.io/mknadler/pen/rajpJp).
 
-More will be added soon; in the meantime, please feel free to request specific features, make a PR, or (especially!) let me know if anything's buggy.
+More will be added soon; in the meantime, please feel free to request specific features, make a PR, or [get in touch](https://twitter.com/antimytheme).
 
 Upcoming changes: add unit support to random-between (so that a call of `random-between(10px, 20px)` will work & output in pixels), add warnings/errors to @random-animate and @random-iterate, add options to @random-animate besides nth-child (nth-of-type; manual list of elements), look into configuration objects as an alternative to having `($so, $so, $so, $so, $so, $so)` many parameters.
+
+## How To Use
+
+First, install it, either via `bower install randomize.scss`, `git clone`, or simply copy-and-pasting. I won't judge.
+
+Second, keep in mind that while the functions are all independent, the mixins depend on the functions; it's currently safe to just take a single function from this out-of-context, but the mixins will break if you try to use them without the functions.
+
+Third, check out the documentation below if you run into any problems; if something still isn't working right, please let me know.
 
 ###random-between
 `random-between( $min, $max, $decimal:false );`
