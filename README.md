@@ -4,6 +4,8 @@ A small collection of functions and mixins to help you make the most out of Sass
 
 More will be added soon; in the meantime, please feel free to request specific features, make a PR, or (especially!) let me know if anything's buggy.
 
+Upcoming changes: add unit support to random-between (so that a call of `random-between(10px, 20px)` will work & output in pixels), add warnings/errors to @random-animate and @random-iterate, add options to @random-animate besides nth-child (nth-of-type; manual list of elements), look into configuration objects as an alternative to having `($so, $so, $so, $so, $so, $so)` many parameters.
+
 ###random-between
 `random-between( $min, $max );`
 
