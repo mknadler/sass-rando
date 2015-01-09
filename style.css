@@ -1,0 +1,950 @@
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section,
+summary {
+  display: block; }
+
+audio,
+canvas,
+video {
+  display: inline-block; }
+
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+[hidden], template {
+  display: none; }
+
+html {
+  background: #fff;
+  color: #000;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%; }
+
+html,
+button,
+input,
+select,
+textarea {
+  font-family: sans-serif; }
+
+body {
+  margin: 0; }
+
+a {
+  background: transparent; }
+  a:focus {
+    outline: thin dotted; }
+  a:hover, a:active {
+    outline: 0; }
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+h2 {
+  font-size: 1.5em;
+  margin: 0.83em 0; }
+
+h3 {
+  font-size: 1.17em;
+  margin: 1em 0; }
+
+h4 {
+  font-size: 1em;
+  margin: 1.33em 0; }
+
+h5 {
+  font-size: 0.83em;
+  margin: 1.67em 0; }
+
+h6 {
+  font-size: 0.75em;
+  margin: 2.33em 0; }
+
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+b,
+strong {
+  font-weight: bold; }
+
+dfn {
+  font-style: italic; }
+
+mark {
+  background: #ff0;
+  color: #000; }
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  font-size: 1em; }
+
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word; }
+
+q {
+  quotes: "\201C" "\201D" "\2018" "\2019"; }
+
+q:before, q:after {
+  content: '';
+  content: none; }
+
+small {
+  font-size: 80%; }
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sup {
+  top: -0.5em; }
+
+sub {
+  bottom: -0.25em; }
+
+img {
+  border: 0; }
+
+svg:not(:root) {
+  overflow: hidden; }
+
+figure {
+  margin: 0; }
+
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em; }
+
+legend {
+  border: 0;
+  padding: 0;
+  white-space: normal; }
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
+  vertical-align: baseline; }
+
+button, input {
+  line-height: normal; }
+
+button,
+select {
+  text-transform: none; }
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer; }
+
+button[disabled],
+input[disabled] {
+  cursor: default; }
+
+button::-moz-focus-inner, input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+textarea {
+  overflow: auto;
+  vertical-align: top; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box; }
+  input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none; }
+input[type="checkbox"], input[type="radio"] {
+  box-sizing: border-box;
+  padding: 0; }
+
+html, body {
+  width: 100%;
+  height: 100%; }
+
+* {
+  box-sizing: border-box; }
+
+section {
+  width: 50%;
+  height: 100%;
+  margin: 0 auto;
+  float: left;
+  position: relative; }
+
+h1 {
+  position: absolute;
+  margin: 0 auto;
+  top: 5rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  height: 40px;
+  width: 320px;
+  z-index: 3;
+  text-align: center;
+  background: white; }
+
+.text-container {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: block;
+  width: 500px;
+  height: 200px;
+  z-index: 3;
+  text-align: center;
+  background: white; }
+  .text-container p {
+    text-align: center; }
+  .text-container a {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    background: white;
+    border: 1px solid gray;
+    margin-top: .5rem;
+    padding: .75rem; }
+    .text-container a:hover {
+      color: #6D1833; }
+    .text-container a:active {
+      color: white;
+      border: none;
+      background: #F84B27; }
+
+.shape-container {
+  position: absolute;
+  margin: 5rem auto 0 auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  height: 320px;
+  width: 320px;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg); }
+
+div {
+  width: 80px;
+  height: 80px;
+  float: left; }
+
+.corner-tl {
+  border-top-left-radius: 50%; }
+
+.corner-tr {
+  border-top-right-radius: 50%; }
+
+.corner-bl {
+  border-bottom-left-radius: 50%; }
+
+.corner-br {
+  border-bottom-right-radius: 50%; }
+
+div.a {
+  -webkit-animation: anim-a 5s ease-in-out infinite alternate;
+  animation: anim-a 3s ease infinite alternate; }
+@-webkit-keyframes anim-a {
+  0% {
+    background: rgba(91, 39, 217, 0.44312); }
+  33% {
+    background: rgba(40, 85, 3, 0.39026); }
+  66% {
+    background: rgba(42, 136, 71, 0.2962); }
+  100% {
+    background: rgba(234, 10, 233, 0.7445); } }
+@keyframes anim-a {
+  0% {
+    background: rgba(193, 144, 213, 0.11394); }
+  33% {
+    background: rgba(216, 141, 225, 0.47331); }
+  66% {
+    background: rgba(171, 130, 238, 0.42081); }
+  100% {
+    background: rgba(250, 64, 48, 0.08903); } }
+  div.a:hover {
+    -webkit-animation: anim-h-a 3s ease infinite alternate;
+    animation: anim-h-a 4s ease-in infinite alternate; }
+@-webkit-keyframes anim-h-a {
+  0% {
+    background: rgba(174, 243, 14, 0.74175); }
+  33% {
+    background: rgba(154, 180, 55, 0.56873); }
+  66% {
+    background: rgba(164, 45, 123, 0.92757); }
+  100% {
+    background: rgba(1, 108, 191, 0.68353); } }
+@keyframes anim-a {
+  0% {
+    background: rgba(26, 44, 183, 0.30766); }
+  33% {
+    background: rgba(128, 103, 175, 0.39322); }
+  66% {
+    background: rgba(130, 220, 56, 0.09022); }
+  100% {
+    background: rgba(3, 179, 179, 0.4386); } }
+div.b {
+  -webkit-animation: anim-b 4s linear infinite alternate;
+  animation: anim-b 5s ease infinite alternate; }
+@-webkit-keyframes anim-b {
+  0% {
+    background: rgba(142, 4, 161, 0.57091); }
+  33% {
+    background: rgba(100, 251, 153, 0.80041); }
+  66% {
+    background: rgba(207, 104, 172, 0.60628); }
+  100% {
+    background: rgba(107, 76, 94, 0.32422); } }
+@keyframes anim-b {
+  0% {
+    background: rgba(148, 239, 63, 0.97306); }
+  33% {
+    background: rgba(45, 164, 102, 0.26309); }
+  66% {
+    background: rgba(54, 188, 252, 0.69572); }
+  100% {
+    background: rgba(241, 160, 145, 0.17514); } }
+  div.b:hover {
+    -webkit-animation: anim-h-b 5s ease-out infinite alternate;
+    animation: anim-h-b 3s ease-in-out infinite alternate; }
+@-webkit-keyframes anim-h-b {
+  0% {
+    background: rgba(99, 152, 253, 0.6323); }
+  33% {
+    background: rgba(178, 12, 186, 0.04542); }
+  66% {
+    background: rgba(255, 86, 212, 0.64027); }
+  100% {
+    background: rgba(251, 173, 207, 0.59298); } }
+@keyframes anim-b {
+  0% {
+    background: rgba(72, 213, 212, 0.89352); }
+  33% {
+    background: rgba(73, 224, 91, 0.7647); }
+  66% {
+    background: rgba(4, 3, 86, 0.70412); }
+  100% {
+    background: rgba(113, 8, 250, 0.91349); } }
+div.c {
+  -webkit-animation: anim-c 7s linear infinite alternate;
+  animation: anim-c 4s linear infinite alternate; }
+@-webkit-keyframes anim-c {
+  0% {
+    background: rgba(234, 42, 212, 0.14762); }
+  33% {
+    background: rgba(62, 166, 227, 0.95793); }
+  66% {
+    background: rgba(42, 171, 80, 0.21886); }
+  100% {
+    background: rgba(169, 214, 196, 0.27401); } }
+@keyframes anim-c {
+  0% {
+    background: rgba(97, 8, 200, 0.28687); }
+  33% {
+    background: rgba(231, 190, 238, 0.80697); }
+  66% {
+    background: rgba(91, 77, 28, 0.85197); }
+  100% {
+    background: rgba(144, 232, 63, 0.18817); } }
+  div.c:hover {
+    -webkit-animation: anim-h-c 5s ease infinite alternate;
+    animation: anim-h-c 5s linear infinite alternate; }
+@-webkit-keyframes anim-h-c {
+  0% {
+    background: rgba(1, 130, 254, 0.66671); }
+  33% {
+    background: rgba(14, 251, 175, 0.5573); }
+  66% {
+    background: rgba(30, 180, 197, 0.65705); }
+  100% {
+    background: rgba(100, 213, 202, 0.77233); } }
+@keyframes anim-c {
+  0% {
+    background: rgba(16, 35, 102, 0.73479); }
+  33% {
+    background: rgba(71, 190, 23, 0.51018); }
+  66% {
+    background: rgba(136, 163, 80, 0.54373); }
+  100% {
+    background: rgba(65, 247, 126, 0.53973); } }
+div.d {
+  -webkit-animation: anim-d 6s ease infinite alternate;
+  animation: anim-d 6s ease-out infinite alternate; }
+@-webkit-keyframes anim-d {
+  0% {
+    background: rgba(124, 111, 124, 0.10173); }
+  33% {
+    background: rgba(206, 163, 226, 0.19982); }
+  66% {
+    background: rgba(218, 197, 8, 0.15779); }
+  100% {
+    background: rgba(112, 19, 226, 0.04943); } }
+@keyframes anim-d {
+  0% {
+    background: rgba(158, 87, 63, 0.26779); }
+  33% {
+    background: rgba(179, 180, 90, 0.06422); }
+  66% {
+    background: rgba(3, 119, 222, 0.86717); }
+  100% {
+    background: rgba(116, 150, 228, 0.28878); } }
+  div.d:hover {
+    -webkit-animation: anim-h-d 3s ease-in infinite alternate;
+    animation: anim-h-d 5s ease infinite alternate; }
+@-webkit-keyframes anim-h-d {
+  0% {
+    background: rgba(62, 219, 19, 0.31061); }
+  33% {
+    background: rgba(227, 106, 41, 0.48442); }
+  66% {
+    background: rgba(39, 16, 127, 0.72569); }
+  100% {
+    background: rgba(75, 148, 70, 0.18579); } }
+@keyframes anim-d {
+  0% {
+    background: rgba(142, 14, 59, 0.11101); }
+  33% {
+    background: rgba(114, 154, 111, 0.61904); }
+  66% {
+    background: rgba(15, 66, 25, 0.66746); }
+  100% {
+    background: rgba(140, 156, 192, 0.67294); } }
+div.e {
+  -webkit-animation: anim-e 5s linear infinite alternate;
+  animation: anim-e 5s ease-in-out infinite alternate; }
+@-webkit-keyframes anim-e {
+  0% {
+    background: rgba(239, 142, 20, 0.81233); }
+  33% {
+    background: rgba(187, 157, 2, 0.74711); }
+  66% {
+    background: rgba(248, 254, 29, 0.08872); }
+  100% {
+    background: rgba(14, 136, 236, 0.68162); } }
+@keyframes anim-e {
+  0% {
+    background: rgba(254, 11, 163, 0.2272); }
+  33% {
+    background: rgba(46, 43, 13, 0.07812); }
+  66% {
+    background: rgba(125, 40, 41, 0.46939); }
+  100% {
+    background: rgba(30, 253, 165, 0.85471); } }
+  div.e:hover {
+    -webkit-animation: anim-h-e 5s ease infinite alternate;
+    animation: anim-h-e 2s ease-in infinite alternate; }
+@-webkit-keyframes anim-h-e {
+  0% {
+    background: rgba(14, 29, 73, 0.27044); }
+  33% {
+    background: rgba(62, 127, 52, 0.01554); }
+  66% {
+    background: rgba(29, 108, 41, 0.22185); }
+  100% {
+    background: rgba(168, 199, 95, 0.19121); } }
+@keyframes anim-e {
+  0% {
+    background: rgba(54, 83, 219, 0.45041); }
+  33% {
+    background: rgba(20, 205, 31, 0.14108); }
+  66% {
+    background: rgba(2, 169, 146, 0.58786); }
+  100% {
+    background: rgba(111, 170, 246, 0.37918); } }
+div.f {
+  -webkit-animation: anim-f 4s ease infinite alternate;
+  animation: anim-f 7s ease infinite alternate; }
+@-webkit-keyframes anim-f {
+  0% {
+    background: rgba(232, 184, 179, 0.28748); }
+  33% {
+    background: rgba(174, 42, 136, 0.93659); }
+  66% {
+    background: rgba(150, 254, 153, 0.54639); }
+  100% {
+    background: rgba(179, 112, 162, 0.79952); } }
+@keyframes anim-f {
+  0% {
+    background: rgba(181, 52, 209, 0.0353); }
+  33% {
+    background: rgba(200, 188, 191, 0.49931); }
+  66% {
+    background: rgba(24, 126, 176, 0.70231); }
+  100% {
+    background: rgba(47, 51, 97, 0.98254); } }
+  div.f:hover {
+    -webkit-animation: anim-h-f 2s linear infinite alternate;
+    animation: anim-h-f 3s ease-in-out infinite alternate; }
+@-webkit-keyframes anim-h-f {
+  0% {
+    background: rgba(224, 255, 102, 0.16115); }
+  33% {
+    background: rgba(147, 40, 132, 0.87465); }
+  66% {
+    background: rgba(63, 56, 3, 0.36729); }
+  100% {
+    background: rgba(98, 7, 127, 0.11025); } }
+@keyframes anim-f {
+  0% {
+    background: rgba(44, 160, 125, 0.21012); }
+  33% {
+    background: rgba(227, 63, 227, 0.94778); }
+  66% {
+    background: rgba(89, 26, 137, 0.40145); }
+  100% {
+    background: rgba(120, 44, 80, 0.65639); } }
+div.g {
+  -webkit-animation: anim-g 7s ease-in-out infinite alternate;
+  animation: anim-g 7s ease-in-out infinite alternate; }
+@-webkit-keyframes anim-g {
+  0% {
+    background: rgba(51, 234, 67, 0.05127); }
+  33% {
+    background: rgba(191, 51, 91, 0.96996); }
+  66% {
+    background: rgba(189, 225, 214, 0.95934); }
+  100% {
+    background: rgba(142, 17, 196, 0.35458); } }
+@keyframes anim-g {
+  0% {
+    background: rgba(215, 66, 52, 0.08395); }
+  33% {
+    background: rgba(129, 12, 30, 0.05335); }
+  66% {
+    background: rgba(253, 25, 29, 0.84131); }
+  100% {
+    background: rgba(130, 136, 220, 0.76596); } }
+  div.g:hover {
+    -webkit-animation: anim-h-g 4s ease infinite alternate;
+    animation: anim-h-g 4s linear infinite alternate; }
+@-webkit-keyframes anim-h-g {
+  0% {
+    background: rgba(79, 63, 186, 0.09964); }
+  33% {
+    background: rgba(193, 121, 33, 0.74476); }
+  66% {
+    background: rgba(239, 152, 64, 0.55597); }
+  100% {
+    background: rgba(201, 220, 196, 0.70202); } }
+@keyframes anim-g {
+  0% {
+    background: rgba(78, 200, 52, 0.12842); }
+  33% {
+    background: rgba(194, 51, 223, 0.81515); }
+  66% {
+    background: rgba(128, 83, 9, 0.28325); }
+  100% {
+    background: rgba(174, 227, 223, 0.31445); } }
+div.h {
+  -webkit-animation: anim-h 4s linear infinite alternate;
+  animation: anim-h 5s ease-in infinite alternate; }
+@-webkit-keyframes anim-h {
+  0% {
+    background: rgba(244, 158, 59, 0.92623); }
+  33% {
+    background: rgba(28, 76, 248, 0.81188); }
+  66% {
+    background: rgba(117, 24, 143, 0.6979); }
+  100% {
+    background: rgba(74, 200, 175, 0.23873); } }
+@keyframes anim-h {
+  0% {
+    background: rgba(72, 91, 65, 0.75324); }
+  33% {
+    background: rgba(114, 70, 239, 0.39009); }
+  66% {
+    background: rgba(205, 237, 207, 0.86612); }
+  100% {
+    background: rgba(192, 97, 117, 0.83273); } }
+  div.h:hover {
+    -webkit-animation: anim-h-h 3s ease-out infinite alternate;
+    animation: anim-h-h 3s ease-out infinite alternate; }
+@-webkit-keyframes anim-h-h {
+  0% {
+    background: rgba(202, 176, 36, 0.5578); }
+  33% {
+    background: rgba(86, 228, 158, 0.26935); }
+  66% {
+    background: rgba(196, 80, 171, 0.07847); }
+  100% {
+    background: rgba(212, 132, 212, 0.91585); } }
+@keyframes anim-h {
+  0% {
+    background: rgba(146, 90, 119, 0.81894); }
+  33% {
+    background: rgba(70, 54, 140, 0.86926); }
+  66% {
+    background: rgba(23, 86, 204, 0.38033); }
+  100% {
+    background: rgba(243, 96, 150, 0.41948); } }
+div.i {
+  -webkit-animation: anim-i 3s ease-out infinite alternate;
+  animation: anim-i 6s ease-in infinite alternate; }
+@-webkit-keyframes anim-i {
+  0% {
+    background: rgba(106, 96, 142, 0.5844); }
+  33% {
+    background: rgba(211, 23, 167, 0.99079); }
+  66% {
+    background: rgba(124, 95, 245, 0.73244); }
+  100% {
+    background: rgba(174, 129, 178, 0.31173); } }
+@keyframes anim-i {
+  0% {
+    background: rgba(35, 51, 162, 0.01293); }
+  33% {
+    background: rgba(146, 228, 44, 0.46477); }
+  66% {
+    background: rgba(248, 65, 211, 0.45516); }
+  100% {
+    background: rgba(155, 193, 102, 0.00577); } }
+  div.i:hover {
+    -webkit-animation: anim-h-i 4s ease-in infinite alternate;
+    animation: anim-h-i 4s ease-in-out infinite alternate; }
+@-webkit-keyframes anim-h-i {
+  0% {
+    background: rgba(181, 242, 127, 0.84022); }
+  33% {
+    background: rgba(239, 163, 58, 0.69689); }
+  66% {
+    background: rgba(247, 9, 205, 0.0948); }
+  100% {
+    background: rgba(80, 180, 150, 0.94055); } }
+@keyframes anim-i {
+  0% {
+    background: rgba(2, 44, 128, 0.61706); }
+  33% {
+    background: rgba(176, 244, 195, 0.08252); }
+  66% {
+    background: rgba(187, 71, 152, 0.2611); }
+  100% {
+    background: rgba(17, 14, 37, 0.42934); } }
+div.j {
+  -webkit-animation: anim-j 7s ease-in-out infinite alternate;
+  animation: anim-j 6s ease infinite alternate; }
+@-webkit-keyframes anim-j {
+  0% {
+    background: rgba(34, 226, 92, 0.2797); }
+  33% {
+    background: rgba(19, 235, 210, 0.14852); }
+  66% {
+    background: rgba(255, 40, 95, 0.99182); }
+  100% {
+    background: rgba(125, 218, 62, 0.93963); } }
+@keyframes anim-j {
+  0% {
+    background: rgba(98, 249, 111, 0.3986); }
+  33% {
+    background: rgba(59, 120, 111, 0.70596); }
+  66% {
+    background: rgba(94, 17, 171, 0.93657); }
+  100% {
+    background: rgba(57, 106, 28, 0.90786); } }
+  div.j:hover {
+    -webkit-animation: anim-h-j 2s ease-in infinite alternate;
+    animation: anim-h-j 5s ease infinite alternate; }
+@-webkit-keyframes anim-h-j {
+  0% {
+    background: rgba(212, 160, 12, 0.70271); }
+  33% {
+    background: rgba(184, 43, 85, 0.08678); }
+  66% {
+    background: rgba(176, 163, 67, 0.68423); }
+  100% {
+    background: rgba(110, 19, 166, 0.93721); } }
+@keyframes anim-j {
+  0% {
+    background: rgba(95, 163, 62, 0.84712); }
+  33% {
+    background: rgba(46, 119, 141, 0.44897); }
+  66% {
+    background: rgba(203, 231, 149, 0.23303); }
+  100% {
+    background: rgba(87, 176, 249, 0.57653); } }
+div.k {
+  -webkit-animation: anim-k 3s linear infinite alternate;
+  animation: anim-k 7s ease infinite alternate; }
+@-webkit-keyframes anim-k {
+  0% {
+    background: rgba(205, 76, 81, 0.47852); }
+  33% {
+    background: rgba(46, 164, 248, 0.61806); }
+  66% {
+    background: rgba(107, 50, 208, 0.13702); }
+  100% {
+    background: rgba(175, 202, 80, 0.7255); } }
+@keyframes anim-k {
+  0% {
+    background: rgba(237, 40, 122, 0.34887); }
+  33% {
+    background: rgba(1, 253, 90, 0.09191); }
+  66% {
+    background: rgba(238, 175, 225, 0.60227); }
+  100% {
+    background: rgba(118, 91, 20, 0.39938); } }
+  div.k:hover {
+    -webkit-animation: anim-h-k 4s ease infinite alternate;
+    animation: anim-h-k 3s ease-in infinite alternate; }
+@-webkit-keyframes anim-h-k {
+  0% {
+    background: rgba(100, 190, 44, 0.45115); }
+  33% {
+    background: rgba(179, 1, 13, 0.71172); }
+  66% {
+    background: rgba(214, 148, 108, 0.90741); }
+  100% {
+    background: rgba(148, 138, 206, 0.10303); } }
+@keyframes anim-k {
+  0% {
+    background: rgba(208, 93, 151, 0.31996); }
+  33% {
+    background: rgba(125, 113, 140, 0.29754); }
+  66% {
+    background: rgba(217, 68, 128, 0.46275); }
+  100% {
+    background: rgba(123, 173, 110, 0.9253); } }
+div.l {
+  -webkit-animation: anim-l 7s ease-in-out infinite alternate;
+  animation: anim-l 4s ease-out infinite alternate; }
+@-webkit-keyframes anim-l {
+  0% {
+    background: rgba(146, 142, 42, 0.65131); }
+  33% {
+    background: rgba(17, 187, 106, 0.31674); }
+  66% {
+    background: rgba(25, 192, 235, 0.90127); }
+  100% {
+    background: rgba(164, 222, 113, 0.62406); } }
+@keyframes anim-l {
+  0% {
+    background: rgba(149, 202, 86, 0.02466); }
+  33% {
+    background: rgba(148, 81, 240, 0.91686); }
+  66% {
+    background: rgba(179, 140, 25, 0.784); }
+  100% {
+    background: rgba(231, 40, 73, 0.92425); } }
+  div.l:hover {
+    -webkit-animation: anim-h-l 5s linear infinite alternate;
+    animation: anim-h-l 4s ease infinite alternate; }
+@-webkit-keyframes anim-h-l {
+  0% {
+    background: rgba(125, 127, 54, 0.79388); }
+  33% {
+    background: rgba(14, 24, 232, 0.65863); }
+  66% {
+    background: rgba(255, 180, 38, 0.20102); }
+  100% {
+    background: rgba(133, 209, 195, 0.37618); } }
+@keyframes anim-l {
+  0% {
+    background: rgba(201, 38, 94, 0.22206); }
+  33% {
+    background: rgba(47, 96, 25, 0.89889); }
+  66% {
+    background: rgba(60, 181, 89, 0.30979); }
+  100% {
+    background: rgba(242, 27, 253, 0.92848); } }
+div.m {
+  -webkit-animation: anim-m 4s ease-out infinite alternate;
+  animation: anim-m 3s ease-in infinite alternate; }
+@-webkit-keyframes anim-m {
+  0% {
+    background: rgba(81, 236, 183, 0.42145); }
+  33% {
+    background: rgba(248, 44, 146, 0.88502); }
+  66% {
+    background: rgba(30, 243, 223, 0.5086); }
+  100% {
+    background: rgba(216, 67, 3, 0.21776); } }
+@keyframes anim-m {
+  0% {
+    background: rgba(238, 155, 54, 0.23843); }
+  33% {
+    background: rgba(184, 19, 44, 0.20176); }
+  66% {
+    background: rgba(7, 109, 45, 0.58248); }
+  100% {
+    background: rgba(150, 239, 132, 0.22916); } }
+  div.m:hover {
+    -webkit-animation: anim-h-m 2s ease-out infinite alternate;
+    animation: anim-h-m 4s ease-out infinite alternate; }
+@-webkit-keyframes anim-h-m {
+  0% {
+    background: rgba(33, 6, 151, 0.07339); }
+  33% {
+    background: rgba(2, 58, 48, 0.92006); }
+  66% {
+    background: rgba(57, 61, 226, 0.1043); }
+  100% {
+    background: rgba(255, 169, 129, 0.46774); } }
+@keyframes anim-m {
+  0% {
+    background: rgba(113, 63, 48, 0.70377); }
+  33% {
+    background: rgba(68, 93, 33, 0.6818); }
+  66% {
+    background: rgba(176, 116, 250, 0.13183); }
+  100% {
+    background: rgba(8, 191, 134, 0.48369); } }
+div.n {
+  -webkit-animation: anim-n 6s ease-in infinite alternate;
+  animation: anim-n 7s ease infinite alternate; }
+@-webkit-keyframes anim-n {
+  0% {
+    background: rgba(222, 154, 213, 0.94226); }
+  33% {
+    background: rgba(8, 124, 131, 0.1276); }
+  66% {
+    background: rgba(218, 119, 2, 0.63361); }
+  100% {
+    background: rgba(172, 122, 222, 0.38213); } }
+@keyframes anim-n {
+  0% {
+    background: rgba(158, 74, 248, 0.20364); }
+  33% {
+    background: rgba(131, 148, 23, 0.93061); }
+  66% {
+    background: rgba(164, 62, 21, 0.77664); }
+  100% {
+    background: rgba(12, 207, 231, 0.24228); } }
+  div.n:hover {
+    -webkit-animation: anim-h-n 5s ease-in infinite alternate;
+    animation: anim-h-n 2s ease-out infinite alternate; }
+@-webkit-keyframes anim-h-n {
+  0% {
+    background: rgba(126, 97, 83, 0.61428); }
+  33% {
+    background: rgba(125, 9, 49, 0.02354); }
+  66% {
+    background: rgba(3, 226, 123, 0.9889); }
+  100% {
+    background: rgba(92, 141, 172, 0.7214); } }
+@keyframes anim-n {
+  0% {
+    background: rgba(197, 56, 215, 0.29605); }
+  33% {
+    background: rgba(111, 118, 214, 0.42264); }
+  66% {
+    background: rgba(191, 160, 96, 0.97076); }
+  100% {
+    background: rgba(16, 22, 75, 0.70707); } }
+div.o {
+  -webkit-animation: anim-o 3s ease infinite alternate;
+  animation: anim-o 3s ease-in infinite alternate; }
+@-webkit-keyframes anim-o {
+  0% {
+    background: rgba(8, 231, 251, 0.97332); }
+  33% {
+    background: rgba(27, 147, 156, 0.1649); }
+  66% {
+    background: rgba(225, 74, 248, 0.07128); }
+  100% {
+    background: rgba(151, 109, 203, 0.18139); } }
+@keyframes anim-o {
+  0% {
+    background: rgba(174, 226, 77, 0.16364); }
+  33% {
+    background: rgba(248, 102, 197, 0.29933); }
+  66% {
+    background: rgba(51, 196, 47, 0.15615); }
+  100% {
+    background: rgba(135, 250, 133, 0.68413); } }
+  div.o:hover {
+    -webkit-animation: anim-h-o 4s ease-in infinite alternate;
+    animation: anim-h-o 2s ease-in-out infinite alternate; }
+@-webkit-keyframes anim-h-o {
+  0% {
+    background: rgba(229, 29, 220, 0.725); }
+  33% {
+    background: rgba(218, 247, 244, 0.28854); }
+  66% {
+    background: rgba(65, 154, 209, 0.12889); }
+  100% {
+    background: rgba(148, 211, 120, 0.76062); } }
+@keyframes anim-o {
+  0% {
+    background: rgba(53, 128, 227, 0.85074); }
+  33% {
+    background: rgba(235, 3, 4, 0.73745); }
+  66% {
+    background: rgba(96, 225, 142, 0.41426); }
+  100% {
+    background: rgba(128, 188, 29, 0.83927); } }
+div.p {
+  -webkit-animation: anim-p 3s linear infinite alternate;
+  animation: anim-p 3s ease-in infinite alternate; }
+@-webkit-keyframes anim-p {
+  0% {
+    background: rgba(234, 209, 165, 0.63305); }
+  33% {
+    background: rgba(154, 221, 71, 0.6214); }
+  66% {
+    background: rgba(232, 26, 157, 0.15552); }
+  100% {
+    background: rgba(109, 32, 131, 0.70174); } }
+@keyframes anim-p {
+  0% {
+    background: rgba(139, 130, 212, 0.93573); }
+  33% {
+    background: rgba(248, 190, 173, 0.20399); }
+  66% {
+    background: rgba(17, 97, 53, 0.06304); }
+  100% {
+    background: rgba(111, 169, 45, 0.38901); } }
+  div.p:hover {
+    -webkit-animation: anim-h-p 2s ease-in-out infinite alternate;
+    animation: anim-h-p 5s ease-in-out infinite alternate; }
+@-webkit-keyframes anim-h-p {
+  0% {
+    background: rgba(169, 97, 186, 0.2284); }
+  33% {
+    background: rgba(115, 78, 41, 0.52328); }
+  66% {
+    background: rgba(58, 77, 144, 0.33264); }
+  100% {
+    background: rgba(202, 224, 17, 0.90949); } }
+@keyframes anim-p {
+  0% {
+    background: rgba(250, 117, 208, 0.18025); }
+  33% {
+    background: rgba(56, 120, 246, 0.10888); }
+  66% {
+    background: rgba(242, 13, 178, 0.03799); }
+  100% {
+    background: rgba(12, 154, 125, 0.43123); } }
+
+/*# sourceMappingURL=style.css.map */
