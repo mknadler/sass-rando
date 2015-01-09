@@ -6,8 +6,8 @@
 // Example
 // random-between(4, 7);
 // => 4, 5, 6 or 7
-@function random-between( $min, $max ) {
-  @if($min < 0) or ($max < 0) {
+@function random-between( $min, $max ){
+  @if ($min < 0) or ($max < 0) {
     @error "$min and $max must both be positive integers";
   }
   @if ($min > $max) {
@@ -42,16 +42,6 @@
   @return unquote("#"+"#{$rgb}");
 }
 
-////// random-value
-// Returns a random value from a list of values
-// Example:
-// $timing-functions: ease, ease-in, ease-out, ease-in-out, linear
-// transition: 3s random-value($timing-functions);
-@function random-value( $value-list ){
-  $value-to-find: random(length($value-list));
-  @return nth($value-list, $value-to-find);
-}
-
 ////// random-rgba
 // Returns a random RGBa value.
 // Can optionally pass in a list of multipliers or an opacity value. 
@@ -83,4 +73,14 @@
   @else {
     @return rgba(random($r),random($g),random($b), random());
   }
+}
+
+////// random-value
+// Returns a random value from a list of values
+// Example:
+// $timing-functions: ease, ease-in, ease-out, ease-in-out, linear
+// transition: 3s random-value($timing-functions);
+@function random-value( $value-list ){
+  $value-to-find: random(length($value-list));
+  @return nth($value-list, $value-to-find);
 }
