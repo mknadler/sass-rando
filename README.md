@@ -37,7 +37,7 @@ For grayscale, keep all values very low.
 Example usage:
 `background: random-rgba((.3,.2,1), .7)`;
 
-###$random-value 
+###random-value 
 Given a list of values, returns one of those values.
 Example usage:
 <code>$timing-functions: ease, ease-in, ease-in-out, linear;
