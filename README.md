@@ -58,12 +58,11 @@ Example usage:
 `margin: shuffle(40px 40px 80px 90px)`
 
 ###random-animate
-`@include random-animate($num-elements, $element-name, $animation-name, $prop-to-animate, $function-name, $steps);`
+`@include random-animate($num-elements, $animation-name, $prop-to-animate, $function-name, $animation-props: 3s ease, $steps:2);`
 
 For a given number of nth-children of a certain element, creates a keyframe and animation for each element which takes advantage of one of the other functions in the library.
 
 `$animation-name` is only important to prevent naming conflicts, if you happen to be randomly animating more than one type of element on a page.
 
 Example usage: 
-
-`div { @include random-animate(20, div, colorize, background, random-hex); }`
+`div { @include random-animate(20, colorize, background, random-hex, 4s ease-out infinite alternate, 4); }`
