@@ -1,12 +1,12 @@
 {
   "name": "randomize.scss",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "homepage": "https://github.com/mknadler/randomize.scss",
   "authors": [
     "mknadler <miriam.k.nadler@gmail.com>"
   ],
   "description": "Sass randomization functions and mixins",
-  "main": "_randomize.scss",
+  "main": "sass/_randomize.scss",
   "keywords": [
     "Sass",
     "random",
@@ -19,6 +19,7 @@
     "bower_components",
     "test",
     "tests",
-    ".gitignore"
+    ".gitignore",
+    "sass/_randomize-commented.scss"
   ]
 }

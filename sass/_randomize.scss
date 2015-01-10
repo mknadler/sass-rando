@@ -1,7 +1,7 @@
 // Randomize.scss
 // https://github.com/mknadler/randomize.scss
 
-@function random-between( $min, $max, $decimal: false){
+@function random-between($min, $max, $decimal: false){
   @if ($min < 0) or ($max < 0) {
     @error "$min and $max must both be positive integers";
   }
@@ -22,7 +22,6 @@
     @return ($min - 1) + random(($max - $min) + 1);
   }
 }
-
 
 @function random-hex(){
   $rgb: '';
@@ -60,7 +59,7 @@
   }
 }
 
-@function random-value( $value-list ){
+@function random-value($value-list ){
   $value-to-find: random(length($value-list));
   @return nth($value-list, $value-to-find);
 }
@@ -77,10 +76,17 @@
   @return $list;
 }
 
-@mixin random-animate($num-elements, $animation-name, $prop-to-animate, $function-name, $animation-props:3s ease, $steps:2) {
+@mixin random-animate($num-elements, $prop-to-animate, $function-name, $animation-props:3s ease infinite, $steps:2) {
+  @if (type-of($steps) != 'number') or ($num-elements % 1 != 0) or ($steps < 2) { 
+    @error "$steps must be an integer with a value of at least 1" 
+  }
+  @if (type-of($num-elements) != 'number') or ($num-elements % 1 != 0) or ($num-elements < 1) {
+    @error "$num-elements must be a positive integer"
+  }
   @while $num-elements > 0 {
+    $id: unique-id();
     &:nth-child(#{$num-elements}) {
-      @-webkit-keyframes #{$animation-name}-#{$num-elements} {
+      @-webkit-keyframes #{$id} {
         $step-list: ();
         $steps-to-add: $steps;
         @while $steps-to-add > 0 {
@@ -92,7 +98,7 @@
           #{nth($step-list, $i)}% { #{$prop-to-animate}: call(#{$function-name}); }
         }
       };
-      @keyframes #{$animation-name}-#{$num-elements} {
+      @keyframes #{$id} {
         $step-list: ();
           $steps-to-add: $steps;
           @while $steps-to-add > 0 {
@@ -104,8 +110,8 @@
           #{nth($step-list, $i)}% { #{$prop-to-animate}: call(#{$function-name}); }
         }
       };
-      -webkit-animation: #{$animation-name}-#{$num-elements} #{$animation-props};
-      animation: #{$animation-name}-#{$num-elements} #{$animation-props}; 
+      -webkit-animation: #{$id} #{$animation-props};
+      animation: #{$id} #{$animation-props}; 
     };
     $num-elements: $num-elements - 1;
   };

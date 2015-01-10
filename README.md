@@ -6,7 +6,7 @@ What can you do with it? [Here are](http://codepen.io/mknadler/pen/QwdQBx) [some
 
 More will be added soon; in the meantime, please feel free to request specific features, make a PR, or [get in touch](https://twitter.com/antimytheme).
 
-Upcoming changes: add unit support to random-between (so that a call of `random-between(10px, 20px)` will work & output in pixels), add warnings/errors to @random-animate and @random-iterate, add options to @random-animate besides nth-child (nth-of-type; manual list of elements), look into configuration objects as an alternative to having `($so, $so, $so, $so, $so, $so)` many parameters.
+Upcoming changes: add warnings/errors to @random-iterate, add options to @random-animate besides nth-child (nth-of-type; manual list of elements), add parameter to @random-animate that allows a value to be passed to a passed-in function (necessary so that the random value is generated inside of the loop).
 
 ## How To Use
 
@@ -76,15 +76,13 @@ Example usage:
 `margin: shuffle(40px 40px 80px 90px)`
 
 ###random-animate
-`@include random-animate($num-elements, $animation-name, $prop-to-animate, $function-name, $animation-props: 3s ease, $steps:2);`
+`@include random-animate($num-elements, $prop-to-animate, $function-name, $animation-props: 3s ease infinite, $steps:2);`
 
 For a given number of nth-children of a certain element, creates a keyframe and animation for each element which takes advantage of one of the other functions in the library.
 
-`$animation-name` is only important to prevent naming conflicts, if you happen to be randomly animating more than one type of element on a page.
+Example usages: 
+`span { @include random-animate(20, color, random-hex, 4s ease-out infinite alternate, 4); }`
 
-Example usage: 
-`div { @include random-animate(20, colorize, background, random-hex, 4s ease-out infinite alternate, 4); }`
-This would create 20 keyframes and animations for each div:nth-child between 1 and 20, each animating between four different colors.
 
 ###random-iterate
 `@include random-iterate($number-of-items, $property, $function);`
