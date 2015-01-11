@@ -42,10 +42,6 @@
 }
 
 
-
-c
-
-
 @function random-rgba($multiplier:(1, 1, 1), $opacity:false){
   @each $val in $multiplier {
     @if $val < 0 or $val == 0 {
