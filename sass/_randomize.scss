@@ -84,9 +84,9 @@
     @error "$num-elements must be a positive integer"
   }
   @while $num-elements > 0 {
-    $id: unique-id();
+    $animation-name: unique-id();
     &:nth-child(#{$num-elements}) {
-      @-webkit-keyframes #{$id} {
+      @-webkit-keyframes #{$animation-name} {
         $step-list: ();
         $steps-to-add: $steps;
         @while $steps-to-add > 0 {
@@ -98,7 +98,7 @@
           #{nth($step-list, $i)}% { #{$prop-to-animate}: call(#{$function-name}); }
         }
       };
-      @keyframes #{$id} {
+      @keyframes #{$animation-name} {
         $step-list: ();
           $steps-to-add: $steps;
           @while $steps-to-add > 0 {
@@ -110,8 +110,8 @@
           #{nth($step-list, $i)}% { #{$prop-to-animate}: call(#{$function-name}); }
         }
       };
-      -webkit-animation: #{$id} #{$animation-props};
-      animation: #{$id} #{$animation-props}; 
+      -webkit-animation: #{$animation-name} #{$animation-props};
+      animation: #{$animation-name} #{$animation-props}; 
     };
     $num-elements: $num-elements - 1;
   };
