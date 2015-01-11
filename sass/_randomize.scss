@@ -145,32 +145,3 @@ c
     $number-of-items: $number-of-items - 1;
   }
 }
-
-
-svg {
-  width: 50%;
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 10%;
-  margin: auto;
-}
-
-
-// top right
-path.path16 {
-  fill: #5A9441; // product
-}
-
-// top left
-path.path17 {
-  fill: #C5D638; //product
-}
-
-// bottom left
-path.path18 {
-  fill: #02B14F; // product
-}
-
-// bottom right
-path.path13 {
-  fill: #016836; // product
-}
