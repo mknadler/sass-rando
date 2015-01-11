@@ -1,6 +1,8 @@
 // Randomize.scss
 // https://github.com/mknadler/randomize.scss
 
+@include "utilites/utilities";
+
 @function random-between($min, $max){
   @if type-of($min) != number or
       type-of($max) != number or
@@ -73,7 +75,7 @@
 
   @if type-of($opacity) == number {
     @if $opacity < 0 or $opacity > 1 {
-      @warn "opacity should be a number between 0 and 1";
+      @warn "opacity should be a number between 0 and 1: #{$opacity} given. As a result, the color will be fully opaque.";
       $opacity: 1;
     }
     @return rgba(random($r),random($g),random($b), $opacity);
@@ -119,7 +121,7 @@
   @while $num-elements > 0 {
     $animation-name: unique-id();
     &:nth-child(#{$num-elements}) {
-      @-webkit-keyframes #{$animation-name} {
+      @include keyframes(#{$animation-name}){
         $step-list: ();
         $steps-to-add: $steps;
         @while $steps-to-add > 0 {
@@ -130,19 +132,7 @@
         @for $i from 1 through $steps-length {
           #{nth($step-list, $i)}% { #{$prop-to-animate}: call(#{$function-name}); }
         }
-      };
-      @keyframes #{$animation-name} {
-        $step-list: ();
-          $steps-to-add: $steps;
-          @while $steps-to-add > 0 {
-            $step-list: join(floor(($steps-to-add - 1) * (100 / ($steps - 1))), $step-list);
-            $steps-to-add: $steps-to-add - 1;
-          }
-        $steps-length: length($step-list);
-        @for $i from 1 through $steps-length {
-          #{nth($step-list, $i)}% { #{$prop-to-animate}: call(#{$function-name}); }
-        }
-      };
+      }
       -webkit-animation: #{$animation-name} #{$animation-props};
       animation: #{$animation-name} #{$animation-props};
     };
