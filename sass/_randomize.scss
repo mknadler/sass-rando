@@ -111,27 +111,37 @@
 
 
 
-@mixin random-animate($num-elements, $prop-to-animate, $function-name, $animation-props:3s ease infinite, $steps:2) {
-  @if (type-of($steps) != 'number') or ($num-elements % 1 != 0) or ($steps < 2) {
+@mixin random-animate($num-elements, $prop-to-animate, $animation-props, $steps, $function-name, $args...) {
+  @if (type-of($steps) != 'number') or ($steps % 1 != 0) or ($steps < 2) {
     @error "$steps must be an integer with a value of at least 1"
   }
+
   @if (type-of($num-elements) != 'number') or ($num-elements % 1 != 0) or ($num-elements < 1) {
     @error "$num-elements must be a positive integer"
   }
+
+  @if function-exists($function-name) != true {
+    @error "The given function name, '#{$function-name}', does not exist";
+  }
+
   @while $num-elements > 0 {
     $animation-name: unique-id();
     &:nth-child(#{$num-elements}) {
       @include keyframes(#{$animation-name}){
         $step-list: ();
         $steps-to-add: $steps;
+
         @while $steps-to-add > 0 {
           $step-list: join(floor(($steps-to-add - 1) * (100 / ($steps - 1))), $step-list);
           $steps-to-add: $steps-to-add - 1;
         }
+
         $steps-length: length($step-list);
+
         @for $i from 1 through $steps-length {
-          #{nth($step-list, $i)}% { #{$prop-to-animate}: call(#{$function-name}); }
+          #{nth($step-list, $i)}% { #{$prop-to-animate}: call($function-name, $args...); }
         }
+
       }
       -webkit-animation: #{$animation-name} #{$animation-props};
       animation: #{$animation-name} #{$animation-props};
