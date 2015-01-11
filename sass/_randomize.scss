@@ -135,18 +135,18 @@
       }
       -webkit-animation: #{$animation-name} #{$animation-props};
       animation: #{$animation-name} #{$animation-props};
-    };
+    }
     $num-elements: $num-elements - 1;
-  };
+  }
 }
 
 
 
-@mixin random-iterate($number-of-items, $property, $function){
+@mixin random-iterate($number-of-items, $property, $function, $args...){
 
   @while $number-of-items > 0 {
     &:nth-child(#{$number-of-items}){
-      #{$property}: call(#{$function});
+      #{$property}: call($function, $args...);
     }
     $number-of-items: $number-of-items - 1;
   }
