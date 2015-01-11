@@ -1,42 +1,64 @@
 // Randomize.scss
 // https://github.com/mknadler/randomize.scss
 
-@function random-between($min, $max, $decimal: false){
-  @if ($min < 0) or ($max < 0) {
-    @error "$min and $max must both be positive integers";
+@function random-between($min, $max){
+  @if type-of($min) != number or
+      type-of($max) != number or
+      $min < 0 or
+      $max < 0 or
+      $min % 1 != 0 or
+      $max % 1 != 0 {
+        @error "$min and $max must both be positive integers";
   }
+
   @if ($min > $max) {
-    $old_min: $min; 
+    $old_min: $min;
     $min: $max;
     $max: $old_min;
   }
-  @if $decimal == true or $decimal == decimal {
-    @return random() * ($max - $min);
-  }
-  @else {
-    @if ($min % 1 != 0) or ($max % 1 != 0){
-      @warn "random-between has rounded your values to the nearest integer";
-      $min: round($min);
-      $max: round($max);
-    }
-    @return ($min - 1) + random(($max - $min) + 1);
-  }
+
+  @return ($min - 1) + random(($max - $min) + 1);
 }
+
+
+
+@function random-decimal-between($min, $max){
+  @if type-of($min) != number or
+      type-of($max) != number or
+      $min < 0 or
+      $max < 0 {
+        @error "$min and $max must both be positive numbers";
+  }
+
+  @if ($min > $max) {
+    $old_min: $min;
+    $min: $max;
+    $max: $old_min;
+  }
+
+  @return (($max - $min) * random()) + $min;
+}
+
+
 
 @function random-hex(){
   $rgb: '';
   $i: 6;
+
   @while $i > 0 {
     $hex-unit: random(16) - 1;
     $letters: A, B, C, D, E, F;
-    @if $hex-unit > 9 { 
+    @if $hex-unit > 9 {
       $hex-unit: nth($letters, ($hex-unit - 9));
     }
+
     $rgb: str-insert($rgb, ("" + $hex-unit), 0);
     $i: $i - 1;
   }
   @return unquote("#"+"#{$rgb}");
 }
+
+
 
 @function random-rgba($multiplier:(1, 1, 1), $opacity:false){
   @each $val in $multiplier {
@@ -44,28 +66,36 @@
       @error "RGBa multipliers must be positive";
     }
   }
+
   $r: round(255 * nth($multiplier, 1));
   $g: round(255 * nth($multiplier, 2));
   $b: round(255 * nth($multiplier, 3));
+
   @if type-of($opacity) == number {
     @if $opacity < 0 or $opacity > 1 {
       @warn "opacity should be a number between 0 and 1";
-      $opacity: 1; 
+      $opacity: 1;
     }
     @return rgba(random($r),random($g),random($b), $opacity);
   }
+
   @else {
     @return rgba(random($r),random($g),random($b), random());
   }
 }
+
+
 
 @function random-value($value-list ){
   $value-to-find: random(length($value-list));
   @return nth($value-list, $value-to-find);
 }
 
+
+
 @function shuffle($list){
   $list-length: length($list);
+
   @while($list-length > 0){
     $rand: random($list-length);
     $temp: nth($list, $rand);
@@ -73,12 +103,15 @@
     $list: set-nth($list, $list-length, $temp);
     $list-length: $list-length - 1;
   }
+
   @return $list;
 }
 
+
+
 @mixin random-animate($num-elements, $prop-to-animate, $function-name, $animation-props:3s ease infinite, $steps:2) {
-  @if (type-of($steps) != 'number') or ($num-elements % 1 != 0) or ($steps < 2) { 
-    @error "$steps must be an integer with a value of at least 1" 
+  @if (type-of($steps) != 'number') or ($num-elements % 1 != 0) or ($steps < 2) {
+    @error "$steps must be an integer with a value of at least 1"
   }
   @if (type-of($num-elements) != 'number') or ($num-elements % 1 != 0) or ($num-elements < 1) {
     @error "$num-elements must be a positive integer"
@@ -111,13 +144,16 @@
         }
       };
       -webkit-animation: #{$animation-name} #{$animation-props};
-      animation: #{$animation-name} #{$animation-props}; 
+      animation: #{$animation-name} #{$animation-props};
     };
     $num-elements: $num-elements - 1;
   };
 }
 
+
+
 @mixin random-iterate($number-of-items, $property, $function){
+
   @while $number-of-items > 0 {
     &:nth-child(#{$number-of-items}){
       #{$property}: call(#{$function});
