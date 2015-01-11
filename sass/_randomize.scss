@@ -1,7 +1,7 @@
 // Randomize.scss
 // https://github.com/mknadler/randomize.scss
 
-@import 'utilites/utilities';
+@import 'utilities/utilities';
 
 @function random-between($min, $max){
   @if type-of($min) != number or
