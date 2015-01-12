@@ -3,17 +3,17 @@
 
 @import "utilities/utilities";
 
-@function random-between($min, $max){
-  @if type-of($min) != number or
-      type-of($max) != number or
+@function random-between($min, $max) {
+  @if type-of($min) != 'number' or
+      type-of($max) != 'number' or
       $min < 0 or
       $max < 0 or
       $min % 1 != 0 or
       $max % 1 != 0 {
-        @error "$min and $max must both be positive integers";
+        @error '$min and $max must both be positive integers.';
   }
 
-  @if ($min > $max) {
+  @if $min > $max {
     $old_min: $min;
     $min: $max;
     $max: $old_min;
@@ -24,15 +24,15 @@
 
 
 
-@function random-decimal-between($min, $max){
-  @if type-of($min) != number or
-      type-of($max) != number or
+@function random-decimal-between($min, $max) {
+  @if type-of($min) != 'number' or
+      type-of($max) != 'number' or
       $min < 0 or
       $max < 0 {
-        @error "$min and $max must both be positive numbers";
+        @error '$min and $max must both be positive numbers.';
   }
 
-  @if ($min > $max) {
+  @if $min > $max {
     $old_min: $min;
     $min: $max;
     $max: $old_min;
@@ -43,29 +43,31 @@
 
 
 
-@function random-hex(){
+@function random-hex() {
   $rgb: '';
   $i: 6;
 
   @while $i > 0 {
     $hex-unit: random(16) - 1;
-    $letters: A, B, C, D, E, F;
+    $letters: 'A', 'B', 'C', 'D', 'E', 'F';
+
     @if $hex-unit > 9 {
       $hex-unit: nth($letters, ($hex-unit - 9));
     }
 
-    $rgb: str-insert($rgb, ("" + $hex-unit), 0);
+    $rgb: str-insert($rgb, ('' + $hex-unit), 0);
     $i: $i - 1;
   }
-  @return unquote("#"+"#{$rgb}");
+
+  @return unquote('#' + '#{$rgb}');
 }
 
 
 
-@function random-rgba($multiplier:(1, 1, 1), $opacity:false){
+@function random-rgba($multiplier: (1, 1, 1), $opacity: false) {
   @each $val in $multiplier {
     @if $val < 0 or $val == 0 {
-      @error "RGBa multipliers must be positive";
+      @error 'RGBa multipliers must be positive.';
     }
   }
 
@@ -73,32 +75,31 @@
   $g: round(255 * nth($multiplier, 2));
   $b: round(255 * nth($multiplier, 3));
 
-  @if type-of($opacity) == number {
+  @if type-of($opacity) == 'number' {
     @if $opacity < 0 or $opacity > 1 {
-      @warn "opacity should be a number between 0 and 1: #{$opacity} given. As a result, the color will be fully opaque.";
+      @warn 'opacity should be a number between 0 and 1: `#{$opacity}` given. As a result, the color will be fully opaque.';
       $opacity: 1;
     }
-    @return rgba(random($r),random($g),random($b), $opacity);
+
+    @return rgba(random($r), random($g), random($b), $opacity);
   }
 
-  @else {
-    @return rgba(random($r),random($g),random($b), random());
-  }
+  @return rgba(random($r), random($g), random($b), random());
 }
 
 
 
-@function random-value($value-list ){
+@function random-value($value-list) {
   $value-to-find: random(length($value-list));
   @return nth($value-list, $value-to-find);
 }
 
 
 
-@function shuffle($list){
+@function shuffle($list) {
   $list-length: length($list);
 
-  @while($list-length > 0){
+  @while($list-length > 0) {
     $rand: random($list-length);
     $temp: nth($list, $rand);
     $list: set-nth($list, $rand, nth($list, $list-length));
@@ -113,21 +114,22 @@
 
 @mixin random-animate($num-elements, $prop-to-animate, $animation-props, $steps, $function-name, $args...) {
   @if (type-of($steps) != 'number') or ($steps % 1 != 0) or ($steps < 2) {
-    @error "$steps must be an integer with a value of at least 1"
+    @error '$steps must be an integer with a value of at least 1.';
   }
 
   @if (type-of($num-elements) != 'number') or ($num-elements % 1 != 0) or ($num-elements < 1) {
-    @error "$num-elements must be a positive integer"
+    @error '$num-elements must be a positive integer.';
   }
 
   @if function-exists($function-name) != true {
-    @error "The given function name, '#{$function-name}', does not exist";
+    @error 'The given function name, `#{$function-name}` does not exist.';
   }
 
   @while $num-elements > 0 {
     $animation-name: unique-id();
+
     &:nth-child(#{$num-elements}) {
-      @include keyframes(#{$animation-name}){
+      @include keyframes($animation-name) {
         $step-list: ();
         $steps-to-add: $steps;
 
@@ -139,25 +141,28 @@
         $steps-length: length($step-list);
 
         @for $i from 1 through $steps-length {
-          #{nth($step-list, $i)}% { #{$prop-to-animate}: call($function-name, $args...); }
+          #{nth($step-list, $i)}% {
+            #{$prop-to-animate}: call($function-name, $args...);
+          }
         }
-
       }
-      -webkit-animation: #{$animation-name} #{$animation-props};
-      animation: #{$animation-name} #{$animation-props};
+
+      -webkit-animation: $animation-name $animation-props;
+      animation: $animation-name $animation-props;
     }
+
     $num-elements: $num-elements - 1;
   }
 }
 
 
 
-@mixin random-iterate($number-of-items, $property, $function, $args...){
-
+@mixin random-iterate($number-of-items, $property, $function, $args...) {
   @while $number-of-items > 0 {
-    &:nth-child(#{$number-of-items}){
+    &:nth-child(#{$number-of-items}) {
       #{$property}: call($function, $args...);
     }
+
     $number-of-items: $number-of-items - 1;
   }
 }
