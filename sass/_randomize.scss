@@ -120,7 +120,7 @@
     @error "$num-elements must be a positive integer"
   }
 
-  @if function-exists($function-name) != true {
+  @if not function-exists($function-name) {
     @error "The given function name, '#{$function-name}', does not exist";
   }
 
@@ -148,6 +148,7 @@
     }
     $num-elements: $num-elements - 1;
   }
+
 }
 
 
