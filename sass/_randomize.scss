@@ -102,6 +102,13 @@
   @return hsla($hue, random-between(20,80), random-between(20,80), $opacity);
 }
 
+@function color-with-random-hue($saturation: 100, $lightness: 50, $opacity: 1) {
+  $saturation: limit($saturation, 0, 100);
+  $lightness: limit($lightness, 0, 100);
+  $opacity: limit($opacity);
+  @return hsla(random-between(0, 360), percentage($saturation/100), percentage($lightness/100), $opacity);
+}
+
 @function random-value($value-list) {
   $value-to-find: random(length($value-list));
   @return nth($value-list, $value-to-find);
