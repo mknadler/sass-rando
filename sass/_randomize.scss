@@ -87,7 +87,7 @@
   @return rgba(random($r), random($g), random($b), random());
 }
 
-@function random-hsla-by-hue($hue: 270, $opacity: 1) {
+@function random-color-by-hue($hue: 270, $opacity: 1) {
   @if $hue < 0 {
       @warn 'hue must be greater than 0, but `#{$hue}` given. Clamping to 0';
       $hue: 0;
