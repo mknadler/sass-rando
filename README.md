@@ -58,6 +58,24 @@ Example usage:
 
 `background: random-rgba((.3,.2,1), .7)`;
 
+###random-color-by-hue
+`random-color-by-hue($hue: 270, $opacity: 1)`
+
+Gives you a random color with a hue you choose. Hue and opacity follows the [CSS conventions for hsla colors](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#hsla()). (Hue should be between 0 and 360, opacity between 0 and 1.)
+
+Example usage:
+
+`background: random-color-by-hue(100);`
+
+###color-with-random-hue
+`color-with-random-hue($saturation: 100, $lightness: 50, $opacity: 1)`
+
+The inverse of the above method. Pick a saturation and lightness (between 0 and 100) and let it pick a hue for you. With no arguments will give a completely saturated and opaque random hue with mid lightness. See the [CSS conventions for hsla colors](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#hsla()).
+
+Example usage:
+
+`background: color-with-random-hue(20, 80, 1);`
+
 ###random-value 
 Given a list of values, returns one of those values.
 
