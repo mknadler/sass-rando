@@ -87,7 +87,9 @@
   @return rgba(random($r), random($g), random($b), random());
 }
 
-@function random-color-by-hue($hue: 270, $opacity: 1) {
+
+
+@function random-color-by-hue($hue, $opacity: 1) {
   @if $hue < 0 {
       @warn 'hue must be greater than 0, but `#{$hue}` given. Clamping to 0';
       $hue: 0;
@@ -99,8 +101,10 @@
     @warn 'opacity should be a number between 0 and 1: `#{$opacity}` given. As a result, the color will be fully opaque.';
     $opacity: 1;
   }
-  @return hsla($hue, random-between(20,80), random-between(20,80), $opacity);
+  @return hsla($hue, random-between(20, 100), random-between(20, 80), $opacity);
 }
+
+
 
 @function color-with-random-hue($saturation: 100, $lightness: 50, $opacity: 1) {
   $saturation: limit($saturation, 0, 100);
@@ -108,6 +112,8 @@
   $opacity: limit($opacity);
   @return hsla(random-between(0, 360), percentage($saturation/100), percentage($lightness/100), $opacity);
 }
+
+
 
 @function random-value($value-list) {
   $value-to-find: random(length($value-list));
