@@ -6,7 +6,7 @@ What can you do with it? [Here are](http://codepen.io/mknadler/pen/QwdQBx) [some
 
 More will be added soon; in the meantime, please feel free to request specific features, make a PR, or [get in touch](https://twitter.com/antimytheme).
 
-Upcoming changes: add warnings/errors to @random-iterate, add options to @random-animate besides nth-child (nth-of-type; manual list of elements), add parameter to @random-animate that allows a value to be passed to a passed-in function (necessary so that the random value is generated inside of the loop).
+N.B.: The documentation below is currently slightly out-of-date.
 
 ## How To Use
 
@@ -46,7 +46,7 @@ Example usage:
 
 Returns a random RGBa value.
 
-Can optionally pass in a list of multipliers and/or an opacity value. 
+Can optionally pass in a list of multipliers and/or an opacity value.
 
 `$multiplier` accepts a *list* of numbers which may be used to impact the chances of the generated color/s skewing in a certain direction.
 
@@ -76,7 +76,7 @@ Example usage:
 
 `background: color-with-random-hue(20, 80, 1);`
 
-###random-value 
+###random-value
 Given a list of values, returns one of those values.
 
 Example usage:
@@ -98,7 +98,7 @@ Example usage:
 
 For a given number of nth-children of a certain element, creates a keyframe and animation for each element which takes advantage of one of the other functions in the library.
 
-Example usages: 
+Example usages:
 `span { @include random-animate(20, color, random-hex, 4s ease-out infinite alternate, 4); }`
 
 
@@ -109,3 +109,8 @@ Given a number of elements, a function, and a property, applies that function fo
 
 Example usage, given 10 divs:
 `div { @include random-iterate(10, background, random-hex); }`
+
+Thanks those who have contributed:
+@jshawl
+@hugogiraudel
+@nickmasso
