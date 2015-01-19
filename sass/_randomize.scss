@@ -122,6 +122,54 @@
 
 
 
+@function roll($die) {
+  // method to typecast strings to numbers adapted from http://hugogiraudel.com/2014/01/15/sass-string-to-number/
+
+  // Account for a few potential mistakes in input
+  @if type-of($die) != 'number' {
+    @error '$die, "#{$die}", was not a number; was expecting input in the format of, e.g., 2d6';
+  }
+  @if unitless($die) {
+    @error '$die, "#{$die}", was unitless; was expecting input in the format of, e.g., 2d6';
+  }
+
+  // Parse the input into two strings
+  $num-of-dice: str-slice($die + '', 1, str-index($die + '', d) - 1);
+  $die-max: str-slice($die + '', str-index($die + '', d) + 1);
+
+  // Define some variables at a scope outside the loops below
+  $result: 0;
+  $number-storage: 0;
+
+  @each $target in $num-of-dice, $die-max {
+    $strings: '0' '1' '2' '3' '4' '5' '6' '7' '8' '9';
+
+    // For each digit in each number-string, convert it from a string to a number
+    @for $i from 1 through str-length(#{$target}) {
+      $char: str-slice($target, $i, $i);
+      $index: index($strings, $char);
+      $number-storage: $number-storage * 10 +  $index - 1;
+    }
+
+    // Assign the results of the above conversion to their proper vars
+    @if $target == $num-of-dice {
+      $num-of-dice: $number-storage;
+      $number-storage: 0;
+    } @else if $target == $die-max {
+      $die-max: $number-storage;
+    }
+  }
+
+  // Finally, roll the dice!
+  @for $i from 1 through $num-of-dice {
+    $result: $result + random($die-max);
+  }
+
+  @return $result;
+}
+
+
+
 @function shuffle($list) {
   $list-length: length($list);
 
