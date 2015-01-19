@@ -204,7 +204,7 @@
 
 
 
-/// Given a list, returns a random item from that list. N.B. -- in the current implementation, if random-value is passed a comma-delineated list, that list must be passed in parentheses.
+/// Given a list, returns a random item from that list.
 /// @param {List} $value-list - The list of values to randomly select from
 ///
 /// @example scss
@@ -220,7 +220,10 @@
 ///   animation: 2s ease linear;
 ///   border-radius: 5px;
 /// }
-@function random-value($value-list) {
+@function random-value($value-list...) {
+  @if type-of(nth($value-list, 1)) == 'list' and length($value-list) == 1 {
+    $value-list: nth($value-list, 1);
+  }
   $value-to-find: random(length($value-list));
   @return nth($value-list, $value-to-find);
 }
