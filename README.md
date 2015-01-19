@@ -2,7 +2,7 @@
 
 A small collection of functions and mixins to help you make the most out of Sass's built-in `random()` function.
 
-What can you do with it? [Here are](http://codepen.io/mknadler/pen/QwdQBx) [some examples](http://codepen.io/mknadler/pen/rajpJp).
+[Here's what you can do with it](http://codepen.io/mknadler/full/LEyxxG/).
 
 Stuck? [Check out the docs](http://mknadler.github.io/randomize.scss/).
 
