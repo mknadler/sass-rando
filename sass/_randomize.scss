@@ -403,36 +403,47 @@
   @if not function-exists($function-name) {
     @error 'The given function name, `#{$function-name}`, does not exist';
   }
+
   $counter: 1;
   @while $num-elements >= $counter {
     $animation-name: unique-id();
 
+
+    // Generate the proper number and % of keyframe steps
+    $step-list: ();
+    $steps-to-add: $steps;
+
+    @while $steps-to-add > 0 {
+      $step-list: join(floor(($steps-to-add - 1) * (100 / ($steps - 1))), $step-list);
+      $steps-to-add: $steps-to-add - 1;
+    }
+
+    // Generate the results of the call before-hand to preserve
+    // results across prefixes
+    $steps-length: length($step-list);
+    $result-list: ();
+
+    @for $i from 1 through $steps-length {
+      $result-list: append($result-list, (call($function-name, $args...)));
+    }
+    // Generate the keyframes using the above-generated information
     &:nth-child(#{$counter}) {
       @include keyframes($animation-name) {
-        $step-list: ();
-        $steps-to-add: $steps;
-
-        @while $steps-to-add > 0 {
-          $step-list: join(floor(($steps-to-add - 1) * (100 / ($steps - 1))), $step-list);
-          $steps-to-add: $steps-to-add - 1;
-        }
-
-        $steps-length: length($step-list);
 
         @for $i from 1 through $steps-length {
           #{nth($step-list, $i)}% {
-            #{$prop-to-animate}: call($function-name, $args...);
+            #{$prop-to-animate}: nth($result-list, $i);
           }
         }
       }
 
+      // Call the keyframes
       -webkit-animation: $animation-name $animation-props;
       animation: $animation-name $animation-props;
     }
 
     $counter: $counter + 1;
   }
-
 }
 
 
