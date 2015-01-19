@@ -400,11 +400,11 @@
   @if not function-exists($function-name) {
     @error 'The given function name, `#{$function-name}`, does not exist';
   }
-
-  @while $num-elements > 0 {
+  $counter: 1;
+  @while $num-elements >= $counter {
     $animation-name: unique-id();
 
-    &:nth-child(#{$num-elements}) {
+    &:nth-child(#{$counter}) {
       @include keyframes($animation-name) {
         $step-list: ();
         $steps-to-add: $steps;
@@ -427,10 +427,11 @@
       animation: $animation-name $animation-props;
     }
 
-    $num-elements: $num-elements - 1;
+    $counter: $counter + 1;
   }
 
 }
+
 
 
 /// Given a number of elements, a property, and a function to call upon those elements, call the function separateley on each property of each element; like random-animate, but without the whole 'animation' part.
@@ -457,11 +458,12 @@
 ///   color: #DB47C4;
 /// }
 @mixin random-iterate($number-of-items, $property, $function, $args...) {
-  @while $number-of-items > 0 {
-    &:nth-child(#{$number-of-items}) {
+  $counter: 1;
+  @while $number-of-items >= $counter {
+    &:nth-child(#{$counter}) {
       #{$property}: call($function, $args...);
     }
 
-    $number-of-items: $number-of-items - 1;
+    $counter: $counter + 1;
   }
 }
