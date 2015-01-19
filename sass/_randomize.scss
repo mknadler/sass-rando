@@ -3,6 +3,21 @@
 
 @import "utilities";
 
+/// Generates a random integer within a given range, inclusive of both the minimum and maximum values passed in (so, for example, a call of this function with a $min of 5 could potentially return 5).
+/// @param {Number} $min - The lowest integer
+/// @param {Number} $max - The highest integer
+///
+/// @example scss
+/// // SCSS
+/// div.widget {
+///  width: random-between(30px, 100px);
+/// }
+///
+/// @example css
+/// // CSS
+/// div.widget {
+///   width: 58px;
+/// }
 @function random-between($min, $max) {
   @if type-of($min) != 'number' or
       type-of($max) != 'number' or
@@ -24,6 +39,21 @@
 
 
 
+/// Generates a random decimal within a given range, inclusive of both the minimum and maximum values passed in (so, for example, a call of this function with a $min of 0.1 could potentially return 0.1).
+/// @param {Number} $min - The lowest number
+/// @param {Number} $max - The highest number
+///
+/// @example scss
+/// // SCSS
+/// div.widget {
+///  width: random-decimal-between(30.5px, 30.9px);
+/// }
+///
+/// @example css
+/// // CSS
+/// div.widget {
+///   width: 30.79564px;
+/// }
 @function random-decimal-between($min, $max) {
   @if type-of($min) != 'number' or
       type-of($max) != 'number' or
@@ -43,6 +73,19 @@
 
 
 
+/// Generates a random color.
+///
+/// @example scss
+/// // SCSS
+/// span {
+///  color: random-hex();
+/// }
+///
+/// @example css
+/// // CSS
+/// span {
+///   color: #C39A9F;
+/// }
 @function random-hex() {
   $rgb: '';
   $i: 6;
@@ -64,6 +107,21 @@
 
 
 
+/// Generates a random color. By default, it is unbiased, and the colors will almost certainly be translucent. Optionally, you can pass a list of multipliers to weigh the output. For instance, if you pass a red modifier of 2, the function will multiply the maximum red value, 255, by 2, getting 510, find a random number between 1 and 510, and, finally, return that number as the R value, allowing any number over 255 to be clamped to 255. This means that a red multiplier of 2 means that there is a ~50% chance of the red value being 255; a ~67% chance that a red multiplier of 3 will result in a red value of 255; and so on.
+/// @param {List} $multiplier (1, 1, 1) - Red, green, and blue multipliers
+/// @param {Boolean} $opacity (false) - Whether the output should be opaque
+///
+/// @example scss
+/// // SCSS
+/// span {
+///  color: random-rgba(3, 1, 1);
+/// }
+///
+/// @example css
+/// // CSS
+/// span {
+///   color: rgba(229, 240, 108);
+/// }
 @function random-rgba($multiplier: (1, 1, 1), $opacity: false) {
   @each $val in $multiplier {
     @if $val < 0 or $val == 0 {
@@ -89,6 +147,21 @@
 
 
 
+/// Given a hue value, generates a color with random saturation and lightness, and, if the opacity parameter default of 1 is overriden, random opacity. To increase the chances of a somewhat-expected color being output, saturation is clamped between 20 and 100, and lightness between 20 and 80.
+/// @param {Number} $hue - A hue value between 0 and 360
+/// @param {Number} $opacity (1) - The opacity of the generated color
+///
+/// @example scss
+/// // SCSS
+/// span {
+///  color: random-color-by-hue(230);
+/// }
+///
+/// @example css
+/// // CSS
+/// span {
+///   color: #1d35af;
+/// }
 @function random-color-by-hue($hue, $opacity: 1) {
   @if $hue < 0 {
       @warn 'hue must be greater than 0, but `#{$hue}` given. Clamping to 0';
@@ -106,6 +179,22 @@
 
 
 
+/// Given saturation and lightness values, generates a color with random hue, and, if the opacity parameter default of 1 is overriden, random opacity.
+/// @param {Number} $saturation(100) - A saturation value between 0 and 100
+/// @param {Number} $lightness(50) - A lightness value between 0 and 100
+/// @param {Number} $opacity (1) - The opacity of the generated color
+///
+/// @example scss
+/// // SCSS
+/// span {
+///  color: color-with-random-hue();
+/// }
+///
+/// @example css
+/// // CSS
+/// span {
+///   color: #00fff7;
+/// }
 @function color-with-random-hue($saturation: 100, $lightness: 50, $opacity: 1) {
   $saturation: limit($saturation, 0, 100);
   $lightness: limit($lightness, 0, 100);
@@ -115,6 +204,22 @@
 
 
 
+/// Given a list, returns a random item from that list. N.B. -- in the current implementation, if random-value is passed a comma-delineated list, that list must be passed in parentheses.
+/// @param {List} $value-list - The list of values to randomly select from
+///
+/// @example scss
+/// // SCSS
+/// div {
+///   animation: 2s ease random-value(ease ease-in-out linear);
+///   border-radius: random-value((2rem, 5px, 10%));
+/// }
+///
+/// @example css
+/// // CSS
+/// div {
+///   animation: 2s ease linear;
+///   border-radius: 5px;
+/// }
 @function random-value($value-list) {
   $value-to-find: random(length($value-list));
   @return nth($value-list, $value-to-find);
@@ -122,6 +227,20 @@
 
 
 
+/// Generates a value from a simulated dice roll. The input is in the form of, for instance, 2d6 to refer to rolling two six-sided dice; 5d8 to refer to rolling five eight-sided dice; and so on.
+/// @param {number} $die - The number and type of dice to roll
+///
+/// @example scss
+/// // SCSS
+/// div {
+///   height: 2d6 * 10px;
+/// }
+///
+/// @example css
+/// // CSS
+/// div {
+///   height: 80px;
+/// }
 @function roll($die) {
   // method to typecast strings to numbers adapted from http://hugogiraudel.com/2014/01/15/sass-string-to-number/
 
@@ -169,7 +288,22 @@
 }
 
 
-
+/// Given a list, applies a Fisher-Yates shuffle to that list.
+/// @param {list} $list - The list to shuffle
+///
+/// @example scss
+/// // SCSS
+/// $colors: red, orange, yellow, blue, green;
+/// $colors: shuffle($colors);
+/// div:after {
+///   content: $colors;
+/// }
+///
+/// @example css
+/// // CSS
+/// div: after {
+///   content: blue, yellow, red, orange, green;
+/// }
 @function shuffle($list) {
   $list-length: length($list);
 
@@ -185,7 +319,75 @@
 }
 
 
-
+/// Randomly animates a number of nth-children.
+/// @param {Number} $num-elements - The number of elements to animate
+/// @param {String} $prop-to-animate - The property of those elements which should be animated
+/// @param {List} $animation-props - The animation properties to use for the animation
+/// @param {Number} $steps - The number of times each element will be animated
+/// @param {String} $function-name - The randomizing function to be called for use in the animation
+/// @param {String} $args... - Parameters to be passed to the $function-name function
+///
+/// @example scss
+/// // SCSS
+/// // assuming that there are 2 spans with a class of 'demo', and that they are collectively the first (or only) children of their parent:
+///  span.demo {
+///    @include random-animate(3, color, 3s ease, 3, random-rgba, (1, 1, 1), .7);
+///  }
+///
+/// @example css
+/// // CSS
+///  span:nth-child(2) {
+///    -webkit-animation: ur8mqcnb1 3s ease;
+///    animation: ur8mqcnb1 3s ease;
+///  }
+///  @-webkit-keyframes ur8mqcnb1 {
+///    0% {
+///      color: rgba(133, 150, 105, 0.7);
+///    }
+///    50% {
+///      color: rgba(202, 105, 191, 0.7);
+///    }
+///    100% {
+///      color: rgba(59, 238, 72, 0.7);
+///    }
+///  }
+///  @keyframes ur8mqcnb1 {
+///    0% {
+///      color: rgba(25, 229, 252, 0.7);
+///    }
+///    50% {
+///      color: rgba(128, 54, 10, 0.7);
+///    }
+///    100% {
+///      color: rgba(49, 146, 146, 0.7);
+///    }
+///  }
+///  span:nth-child(1) {
+///    -webkit-animation: ur8mqcnba 3s ease;
+///    animation: ur8mqcnba 3s ease;
+///  }
+///  @-webkit-keyframes ur8mqcnba {
+///    0% {
+///      color: rgba(61, 183, 140, 0.7);
+///    }
+///    50% {
+///      color: rgba(169, 197, 140, 0.7);
+///    }
+///    100% {
+///      color: rgba(241, 51, 216, 0.7);
+///    }
+///  }
+///  @keyframes ur8mqcnba {
+///    0% {
+///      color: rgba(47, 37, 255, 0.7);
+///    }
+///    50% {
+///      color: rgba(192, 105, 111, 0.7);
+///    }
+///    100% {
+///      color: rgba(70, 183, 226, 0.7);
+///    }
+///  }
 @mixin random-animate($num-elements, $prop-to-animate, $animation-props, $steps, $function-name, $args...) {
   @if (type-of($steps) != 'number') or ($steps % 1 != 0) or ($steps < 2) {
     @error '$steps must be an integer with a value of at least 1.';
@@ -231,7 +433,29 @@
 }
 
 
-
+/// Given a number of elements, a property, and a function to call upon those elements, call the function separateley on each property of each element; like random-animate, but without the whole 'animation' part.
+/// @param {Number} $number-of-items - The number of elements to be iterated over
+/// @param {String} $property - The property of those elements which will call the function
+/// @param {String} $function - The function to be called on each element
+/// @param {List} $args... - Parameters, if any, to be passed to that function
+///
+/// @example scss
+/// // SCSS
+/// span {
+///   color: random-iterate(3, color, random-hex);
+/// }
+///
+/// @example css
+/// // CSS
+/// span:nth-child(3) {
+///   color: #488176;
+/// }
+/// span:nth-child(2) {
+///   color: #0C0FC3;
+/// }
+/// span:nth-child(1) {
+///   color: #DB47C4;
+/// }
 @mixin random-iterate($number-of-items, $property, $function, $args...) {
   @while $number-of-items > 0 {
     &:nth-child(#{$number-of-items}) {

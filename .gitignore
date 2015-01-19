@@ -1,1 +1,4 @@
 .sass-cache/
+.sassdocrc
+node_modules/
+docs/
