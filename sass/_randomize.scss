@@ -103,7 +103,7 @@
     $i: $i - 1;
   }
 
-  @return unquote('#' + '#{$rgb}');
+  @return unquote('#' + $rgb);
 }
 
 
@@ -165,16 +165,19 @@
 /// }
 @function random-color-by-hue($hue, $opacity: 1) {
   @if $hue < 0 {
-      @warn 'hue must be greater than 0, but `#{$hue}` given. Clamping to 0';
-      $hue: 0;
-    }
+    @warn 'hue must be greater than 0, but `#{$hue}` given. Clamping to 0';
+    $hue: 0;
+  }
+
   @if $hue > 360 {
-      $hue: $hue % 360;
-    }
+    $hue: $hue % 360;
+  }
+
   @if $opacity < 0 or $opacity > 1 {
     @warn 'opacity should be a number between 0 and 1: `#{$opacity}` given. As a result, the color will be fully opaque.';
     $opacity: 1;
   }
+
   @return hsla($hue, random-between(20, 100), random-between(20, 80), $opacity);
 }
 
@@ -200,6 +203,7 @@
   $saturation: limit($saturation, 0, 100);
   $lightness: limit($lightness, 0, 100);
   $opacity: limit($opacity);
+
   @return hsla(random-between(0, 360), percentage($saturation/100), percentage($lightness/100), $opacity);
 }
 
@@ -225,8 +229,8 @@
   @if type-of(nth($value-list, 1)) == 'list' and length($value-list) == 1 {
     $value-list: nth($value-list, 1);
   }
-  $value-to-find: random(length($value-list));
-  @return nth($value-list, $value-to-find);
+
+  @return nth($value-list, random(length($value-list)));
 }
 
 
@@ -274,6 +278,7 @@
   @if type-of($die) != 'number' {
     @error '$die, "#{$die}", was not a number; was expecting input in the format of, e.g., 2d6';
   }
+
   @if unitless($die) {
     @error '$die, "#{$die}", was unitless; was expecting input in the format of, e.g., 2d6';
   }
@@ -451,6 +456,7 @@
     @for $i from 1 through $steps-length {
       $result-list: append($result-list, (call($function-name, $args...)));
     }
+
     // Generate the keyframes using the above-generated information
     &:nth-child(#{$counter}) {
       @include keyframes($animation-name) {
@@ -498,6 +504,7 @@
 /// }
 @mixin random-iterate($number-of-items, $property, $function, $args...) {
   $counter: 1;
+
   @while $number-of-items >= $counter {
     &:nth-child(#{$counter}) {
       #{$property}: call($function, $args...);
