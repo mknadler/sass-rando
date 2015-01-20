@@ -11,27 +11,29 @@
 
 
 @function limit($num, $min: 0, $max: 1) {
-	@if $max < $min {
-		@error 'max isnt greater than min';
-	}
-	@if $num <= $max and $num >= $min { @return $num };
-	@if $num < $min { @return $min };
-	@if $num > $max { @return $max };
+  @if $max < $min {
+    @error 'max isnt greater than min';
+  }
+  @if $num <= $max and $num >= $min { @return $num };
+  @if $num < $min { @return $min };
+  @if $num > $max { @return $max };
 }
 
 
 
-@function map-to-list($map, $depth: 1){
+@function map-to-list($map){
   $carbon: $map;
   $keys: map-keys($carbon);
   $mapvals: ();
   $plainvals: ();
+  $restart: true;
 
-  @for $i from 1 through $depth {
+  @while $restart == true {
 
     @each $key in $keys {
       @if type-of(map-get($carbon, $key)) == 'map'{
         $mapvals: map-merge($mapvals, map-get($carbon, $key));
+        $mapvals: map-remove($mapvals, $key);
         $carbon: map-remove($carbon, $key);
       }
 
@@ -48,6 +50,11 @@
     $carbon: map-remove($carbon, map-keys($carbon));
     $carbon: map-merge($mapvals, $carbon);
     $keys: map-keys($carbon);
+
+    @if length($mapvals) == 0 {
+      $restart: false;
+    }
   }
+
   @return $plainvals;
 }

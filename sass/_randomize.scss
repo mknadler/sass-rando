@@ -231,9 +231,8 @@
 
 
 
-/// Given a map and the depth of that map (how many maps are inside of your map are inside of your map), returns a random value from that map. The first map, not one of the maps inside of your map. Anyways.
+/// Given a map, including maps that have maps inside of maps inside of maps inside of them (and so on), returns a random value from that map.
 /// @param {Map} $map - The map to be parsed
-/// @param {Number} $depth (1) - How many layers deep the map isa
 ///
 /// @example scss
 /// // SCSS
@@ -248,8 +247,8 @@
 ///   animation: 2s ease linear;
 ///   border-radius: 5px;
 /// }
-@function random-value-from-map($map, $depth:1){
-  @return random-value(map-to-list($map, $depth));
+@function random-value-from-map($map){
+  @return random-value(map-to-list($map);
 }
 
 
