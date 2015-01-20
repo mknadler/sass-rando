@@ -8,6 +8,8 @@
   }
 }
 
+
+
 @function limit($num, $min: 0, $max: 1) {
 	@if $max < $min {
 		@error 'max isnt greater than min';
@@ -15,4 +17,37 @@
 	@if $num <= $max and $num >= $min { @return $num };
 	@if $num < $min { @return $min };
 	@if $num > $max { @return $max };
+}
+
+
+
+@function map-to-list($map, $depth: 1){
+  $carbon: $map;
+  $keys: map-keys($carbon);
+  $mapvals: ();
+  $plainvals: ();
+
+  @for $i from 1 through $depth {
+
+    @each $key in $keys {
+      @if type-of(map-get($carbon, $key)) == 'map'{
+        $mapvals: map-merge($mapvals, map-get($carbon, $key));
+        $carbon: map-remove($carbon, $key);
+      }
+
+      @else {
+        $plainvals: append($plainvals, map-get($carbon, $key));
+        @if map-has-key($mapvals, $key){
+          $mapvals: map-remove($mapvals, $key);
+        }
+
+        $carbon: map-remove($carbon, $key);
+      }
+    }
+
+    $carbon: map-remove($carbon, map-keys($carbon));
+    $carbon: map-merge($mapvals, $carbon);
+    $keys: map-keys($carbon);
+  }
+  @return $plainvals;
 }

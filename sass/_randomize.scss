@@ -4,6 +4,7 @@
 @import "utilities";
 
 /// Generates a random integer within a given range, inclusive of both the minimum and maximum values passed in (so, for example, a call of this function with a $min of 5 could potentially return 5).
+/// @group function-existsterm
 /// @param {Number} $min - The lowest integer
 /// @param {Number} $max - The highest integer
 ///
@@ -230,6 +231,28 @@
 
 
 
+/// Given a map and the depth of that map (how many maps are inside of your map are inside of your map), returns a random value from that map. The first map, not one of the maps inside of your map. Anyways.
+/// @param {Map} $map - The map to be parsed
+/// @param {Number} $depth (1) - How many layers deep the map isa
+///
+/// @example scss
+/// // SCSS
+/// div {
+///   animation: 2s ease random-value(ease ease-in-out linear);
+///   border-radius: random-value((2rem, 5px, 10%));
+/// }
+///
+/// @example css
+/// // CSS
+/// div {
+///   animation: 2s ease linear;
+///   border-radius: 5px;
+/// }
+@function random-value-from-map($map, $depth:1){
+  @return random-value(map-to-list($map, $depth));
+}
+
+
 /// Generates a value from a simulated dice roll. The input is in the form of, for instance, 2d6 to refer to rolling two six-sided dice; 5d8 to refer to rolling five eight-sided dice; and so on.
 /// @param {number} $die - The number and type of dice to roll
 ///
@@ -291,6 +314,7 @@
 }
 
 
+
 /// Given a list, applies a Fisher-Yates shuffle to that list.
 /// @param {list} $list - The list to shuffle
 ///
@@ -320,6 +344,7 @@
 
   @return $list;
 }
+
 
 
 /// Randomly animates a number of nth-children.
