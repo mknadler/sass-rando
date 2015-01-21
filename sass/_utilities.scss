@@ -1,3 +1,17 @@
+/// Determines if if a passed number is 1. a number and 2. an integer; if so, returns 'true'; if not, returns 'false'
+/// @param { Number | String | Boolean | List | Map } $value - The parameter to check the type / integerity of
+///
+/// @group utilities
+@function is-int($value){
+  @if (type-of($value) == 'number') and ($value % 1 == 0) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+
+
 /// Applies vendor prefixes to @keyframes
 /// @param {String} $name - The name of the animation
 ///

@@ -23,12 +23,8 @@
 ///   width: 58px;
 /// }
 @function random-between($min, $max) {
-  @if type-of($min) != 'number' or
-      type-of($max) != 'number' or
-      $min < 0 or
-      $max < 0 or
-      $min % 1 != 0 or
-      $max % 1 != 0 {
+  @if ((not is-int($min)) or (not is-int($max)) or
+       $min < 0 or $max > 0 {
         @error '$min and $max must both be positive integers.';
   }
 
@@ -460,11 +456,11 @@
 ///    }
 ///  }
 @mixin random-animate($num-elements, $prop-to-animate, $animation-props, $steps, $function-name, $args...) {
-  @if (type-of($steps) != 'number') or ($steps % 1 != 0) or ($steps < 2) {
+  @if ((not is-int($steps)) or ($steps < 2) {
     @error '$steps must be an integer with a value of at least 1.';
   }
 
-  @if (type-of($num-elements) != 'number') or ($num-elements % 1 != 0) or ($num-elements < 1) {
+  @if ((not is-int($num-elements)) or ($num-elements < 1) {
     @error '$num-elements must be a positive integer.';
   }
 
@@ -546,6 +542,10 @@
 /// }
 @mixin random-iterate($number-of-items, $property, $function, $args...) {
   $counter: 1;
+
+  @if ($number-of-items < 1) or (type-of($number) != 'number') or  {
+    @error '$number-of-items in random-iterate must be an integer greater than or equal to 1'
+  }
 
   @while $number-of-items >= $counter {
     &:nth-child(#{$counter}) {
