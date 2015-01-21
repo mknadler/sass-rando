@@ -4,7 +4,10 @@
 @import "utilities";
 
 /// Generates a random integer within a given range, inclusive of both the minimum and maximum values passed in (so, for example, a call of this function with a $min of 5 could potentially return 5).
-/// @group function-existsterm
+///
+/// @access public
+/// @group random number functions
+///
 /// @param {Number} $min - The lowest integer
 /// @param {Number} $max - The highest integer
 ///
@@ -40,7 +43,11 @@
 
 
 
-/// Generates a random decimal within a given range, inclusive of both the minimum and maximum values passed in (so, for example, a call of this function with a $min of 0.1 could potentially return 0.1).
+/// Generates a random decimal within a given range, inclusive of both the minimum and maximum values passed in (so, for example, a call of this function with a $min of 0.1 could potentially return 0.1)
+///
+/// @access public
+/// @group random number functions
+///
 /// @param {Number} $min - The lowest number
 /// @param {Number} $max - The highest number
 ///
@@ -75,6 +82,9 @@
 
 
 /// Generates a random color.
+///
+/// @access public
+/// @group random color functions
 ///
 /// @example scss
 /// // SCSS
@@ -111,6 +121,9 @@
 /// Generates a random color. By default, it is unbiased, and the colors will almost certainly be translucent. Optionally, you can pass a list of multipliers to weigh the output. For instance, if you pass a red modifier of 2, the function will multiply the maximum red value, 255, by 2, getting 510, find a random number between 1 and 510, and, finally, return that number as the R value, allowing any number over 255 to be clamped to 255. This means that a red multiplier of 2 means that there is a ~50% chance of the red value being 255; a ~67% chance that a red multiplier of 3 will result in a red value of 255; and so on.
 /// @param {List} $multiplier (1, 1, 1) - Red, green, and blue multipliers
 /// @param {Boolean} $opacity (false) - Whether the output should be opaque
+///
+/// @access public
+/// @group random color functions
 ///
 /// @example scss
 /// // SCSS
@@ -149,6 +162,10 @@
 
 
 /// Given a hue value, generates a color with random saturation and lightness, and, if the opacity parameter default of 1 is overriden, random opacity. To increase the chances of a somewhat-expected color being output, saturation is clamped between 20 and 100, and lightness between 20 and 80.
+///
+/// @access public
+/// @group random color functions
+///
 /// @param {Number} $hue - A hue value between 0 and 360
 /// @param {Number} $opacity (1) - The opacity of the generated color
 ///
@@ -184,8 +201,12 @@
 
 
 /// Given saturation and lightness values, generates a color with random hue, and, if the opacity parameter default of 1 is overriden, random opacity.
-/// @param {Number} $saturation(100) - A saturation value between 0 and 100
-/// @param {Number} $lightness(50) - A lightness value between 0 and 100
+///
+/// @access public
+/// @group random color functions
+///
+/// @param {Number} $saturation (100) - A saturation value between 0 and 100
+/// @param {Number} $lightness (50) - A lightness value between 0 and 100
 /// @param {Number} $opacity (1) - The opacity of the generated color
 ///
 /// @example scss
@@ -212,6 +233,9 @@
 /// Given a list, returns a random item from that list.
 /// @param {List} $value-list - The list of values to randomly select from
 ///
+/// @access public
+/// @group random list/map functions
+///
 /// @example scss
 /// // SCSS
 /// div {
@@ -236,6 +260,10 @@
 
 
 /// Given a map, including maps that have maps inside of maps inside of maps inside of them (and so on), returns a random value from that map.
+///
+/// @access public
+/// @group random list/map functions
+///
 /// @param {Map} $map - The map to be parsed
 ///
 /// @example scss
@@ -257,6 +285,10 @@
 
 
 /// Generates a value from a simulated dice roll. The input is in the form of, for instance, 2d6 to refer to rolling two six-sided dice; 5d8 to refer to rolling five eight-sided dice; and so on.
+///
+/// @access public
+/// @group random number functions
+///
 /// @param {number} $die - The number and type of dice to roll
 ///
 /// @example scss
@@ -322,6 +354,9 @@
 /// Given a list, applies a Fisher-Yates shuffle to that list.
 /// @param {list} $list - The list to shuffle
 ///
+/// @access public
+/// @group random list/map functions
+///
 /// @example scss
 /// // SCSS
 /// $colors: red, orange, yellow, blue, green;
@@ -352,6 +387,10 @@
 
 
 /// Randomly animates a number of nth-children.
+///
+/// @access public
+/// @group mixins
+///
 /// @param {Number} $num-elements - The number of elements to animate
 /// @param {String} $prop-to-animate - The property of those elements which should be animated
 /// @param {List} $animation-props - The animation properties to use for the animation
@@ -479,6 +518,10 @@
 
 
 /// Given a number of elements, a property, and a function to call upon those elements, call the function separateley on each property of each element; like random-animate, but without the whole 'animation' part.
+///
+/// @access public
+/// @group mixins
+///
 /// @param {Number} $number-of-items - The number of elements to be iterated over
 /// @param {String} $property - The property of those elements which will call the function
 /// @param {String} $function - The function to be called on each element
