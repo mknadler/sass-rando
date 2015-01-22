@@ -543,7 +543,7 @@
 @mixin random-iterate($number-of-items, $property, $function, $args...) {
   $counter: 1;
 
-  @if ($number-of-items < 1) or (type-of($number) != 'number') {
+  @if ($number-of-items < 1) or (type-of($number-of-items) != 'number') {
     @error '$number-of-items in random-iterate must be an integer greater than or equal to 1'
   }
 
