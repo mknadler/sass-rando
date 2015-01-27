@@ -24,7 +24,7 @@
 /// }
 @function random-between($min, $max) {
   @if ((not is-int($min)) or (not is-int($max))) or
-       $min < 0 or $max > 0 {
+       $min < 0 or $max < 0 {
         @error '$min and $max must both be positive integers.';
   }
 

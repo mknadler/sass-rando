@@ -1,0 +1,74 @@
+@import "../sass/randomize";
+@import "../sass/utilities";
+@import "../sass/true";
+
+@include test-module('Utilities') {
+
+  @include test('is-int() [function]') {
+
+    $test: is-int('a');
+    @include assert-false($test, 'Strings should return false');
+
+    $test: is-int(1.5);
+    @include assert-false($test, 'Decimals should return false');
+
+    $test: is-int(1);
+    @include assert-true($test, 'Integers should return true');
+  }
+
+
+
+  @include test('limit() [function]') {
+
+    $test: limit(5, 7, 9);
+    $expect: 7;
+    @include assert-equal($test, $expect, 'Returns the number clamped to the minimum value');
+
+    $test: limit(11, 7, 9);
+    $expect: 9;
+    @include assert-equal($test, $expect, 'Returns the number clamped to the maximum value');
+
+    $test: limit(7, 5, 9);
+    $expect: 7;
+    @include assert-equal($test, $expect, 'Returns the unaltered input if already within the limit');
+  }
+
+
+
+  @include test('map-to-list() [function]') {
+    $test: map-to-list((a: 1, b: (bb: 2 3), c:(d:(e:(f:(4))))));
+    $expect: 1 (2 3) 4;
+    @include assert-equal($test, $expect, 'Returns values in the map as a list');
+  }
+}
+
+
+@include test-module('Randomize') {
+
+  @include test('random-between() [function]') {
+    $test: random-between(3, 7) <= 7;
+    @include assert-true($test, 'Random number should be within the expected range');
+
+    $test: random-between(3, 7) >= 3;
+    @include assert-true($test, 'Random number should be within the expected range');
+  }
+
+  @include test('random-decimal-between() [function]') {
+    $test: random-decimal-between(3.103, 7.653) <= 7.653;
+    @include assert-true($test, 'Random number should be within the expected range');
+
+    $test: random-decimal-between(3.103, 7.653) >= 3.103;
+    @include assert-true($test, 'Random number should be within the expected range');
+  }
+
+  @include test('random-hex() [function]') {
+    $test: type-of(random-hex()) == 'string');
+    @include assert-true($test, 'Random-hex should return a string');
+
+    $test: str-length(random-hex()) == 7);
+    @include assert-true($test, 'Random-hex should have a length of 7');
+  }
+
+}
+
+@include report;
