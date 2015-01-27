@@ -2,7 +2,9 @@
 
 A small collection of functions and mixins to help you make the most out of Sass's built-in `random()` function.
 
-[Here's what you can do with it](http://codepen.io/mknadler/full/LEyxxG/).
+It makes otherwise-frustrating tasks like [randomly animating SVGs with dozens of elements](http://codepen.io/mknadler/pen/EaWeeo) simple to implement.
+
+[Here's (almost) everything that you can do with it](http://codepen.io/mknadler/full/LEyxxG/).
 
 Stuck? [Check out the docs](http://mknadler.github.io/randomize.scss/).
 
