@@ -8,7 +8,7 @@ Stuck? [Check out the docs](http://mknadler.github.io/randomize.scss/).
 
 ## How To Install
 
-`bower install randomize.scss`, `git clone`, or simply copy-and-pasting. I won't judge.
+`bower install randomize.scss`, `git clone`, or simply copy-and-paste the contents of the `sass/` folder.
 
 ## Questions?
 
