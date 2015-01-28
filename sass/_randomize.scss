@@ -1,7 +1,7 @@
 // Randomize.scss
 // https://github.com/mknadler/randomize.scss
 
-@import "utilities";
+@import 'utilities';
 
 /// Generates a random integer within a given range, inclusive of both the minimum and maximum values passed in (so, for example, a call of this function with a $min of 5 could potentially return 5).
 ///

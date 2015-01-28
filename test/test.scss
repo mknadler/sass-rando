@@ -1,6 +1,12 @@
-@import "../sass/randomize";
-@import "../sass/utilities";
-@import "../sass/true";
+@import '../sass/randomize';
+@import '../sass/utilities';
+@import '../sass/true';
+
+@mixin repeat($iterations: 100) {
+  @for $i from 1 through $iterations {
+    @content;
+  }
+}
 
 @include test-module('Utilities') {
 
@@ -46,27 +52,61 @@
 @include test-module('Randomize') {
 
   @include test('random-between() [function]') {
-    $test: random-between(3, 7) <= 7;
-    @include assert-true($test, 'Random number should be within the expected range');
+    @include repeat {
 
-    $test: random-between(3, 7) >= 3;
-    @include assert-true($test, 'Random number should be within the expected range');
+      $random: random-between(1, 10);
+      $test: $random <= 10 and $random >= 1;
+      @include assert-true($test, 'Random number should be within the expected range');
+    }
   }
 
   @include test('random-decimal-between() [function]') {
-    $test: random-decimal-between(3.103, 7.653) <= 7.653;
-    @include assert-true($test, 'Random number should be within the expected range');
+    @include repeat {
 
-    $test: random-decimal-between(3.103, 7.653) >= 3.103;
-    @include assert-true($test, 'Random number should be within the expected range');
+      $random: random-decimal-between(3.103, 3.192);
+      $test: $random >= 3.103 and $random <= 3.192;
+      @include assert-true($test, 'Random number should be within the expected range');
+    }
   }
 
   @include test('random-hex() [function]') {
-    $test: type-of(random-hex()) == 'string');
-    @include assert-true($test, 'Random-hex should return a string');
+    @include repeat {
 
-    $test: str-length(random-hex()) == 7);
-    @include assert-true($test, 'Random-hex should have a length of 7');
+      $test: type-of(random-hex()) == 'string';
+      @include assert-true($test, 'Random-hex should return a string');
+
+      $test: str-length(random-hex()) == 7;
+      @include assert-true($test, 'Random-hex should have a length of 7');
+    }
+  }
+
+  @include test('random-rgba() [function]') {
+    @include repeat {
+
+      $test: str-length(random-rgba((1, 1, 1), 1) + "") == 7;
+      @include assert-true($test, 'Random rgba with opacity 1 should return a hex code');
+    }
+  }
+
+  @include test('roll() [function]') {
+    @include repeat {
+
+      $random: roll(1d6);
+      $test: ($random >= 1) and ($random <= 6) and ($random % 1 == 0);
+      @include assert-true($test, 'Rolling 1d6 should return an integer between 1 and 6');
+
+      $random: roll(2d6);
+      $test: ($random >= 1) and ($random <= 12) and ($random % 1 == 0);
+      @include assert-true($test, 'Rolling 1d6 should return an integer between 1 and 12');
+    }
+  }
+
+  @include test('shuffle [function]') {
+
+    $list-original: A B C D E F G;
+    $list-shuffled: shuffle($list-original);
+    $test: length($list-original) == length($list-shuffled);
+    @include assert-true($test, 'Shuffling a list should return a list of equal length');
   }
 
 }
