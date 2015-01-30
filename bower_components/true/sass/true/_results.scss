@@ -1,0 +1,24 @@
+// Results
+// =======
+
+@function report(
+  $results: $true-results,
+  $items: 'Tests'
+) {
+  $run: map-get($results, run);
+  $pass: map-get($results, pass);
+  $fail: map-get($results, fail);
+
+  $message: '#{$run} #{$items}, #{$pass} Passed, #{$fail} Failed';
+
+  @return $message;
+}
+
+@mixin report(
+  $output: map-get($true, summary)
+) {
+  $message: report($true-results);
+  @if index($output, terminal) {
+    @include result-message('SUMMARY: ' + $message, debug);
+  }
+}

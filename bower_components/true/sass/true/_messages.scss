@@ -1,0 +1,34 @@
+// Messages
+// ========
+
+$-tnl: "\a ";
+
+@mixin spacer-comment() {
+/*
+*/
+}
+
+@mixin result-message(
+  $message,
+  $output
+) {
+  $lines: str-split($message, $-tnl);
+  @if index($output, css) {
+    @each $line in $lines {
+      /* #{$line} */
+    }
+  } @else if index($output, debug) or index($output, terminal) {
+    @each $line in $lines  {
+      @debug $line;
+    }
+  } @else if index($output, warn) {
+    @warn $message;
+    @each $line in $lines {
+      @if index($lines, $line) == length($lines) {
+        @warn $line;
+      } @else {
+        @debug $line;
+      }
+    }
+  }
+}
