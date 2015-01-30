@@ -1,0 +1,27 @@
+{
+  "name": "Randomize.scss",
+  "title": "Randomize.scss",
+  "version": "0.9.5",
+  "description": "A small collection of functions and mixins to help you make the most out of Sass's built-in `random()` function.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mknadler/randomize.scss.git"
+  },
+  "author": "Miriam Nadler",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mknadler/randomize.scss/issues"
+  },
+  "homepage": "https://github.com/mknadler/randomize.scss",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-sassdoc": "^1.2.1",
+    "grunt-shell": "^1.1.1",
+    "load-grunt-tasks": "^3.1.0"
+  }
+}

@@ -1,0 +1,73 @@
+// Assert
+// ======
+
+@mixin assert-true(
+  $assert,
+  $fail-message: ''
+) {
+  $name: map-get($test-results, name);
+  $debug-message: '#{inspect($assert)} is not true';
+  $result: if($assert, pass, fail);
+  @include report-assert($name, $result, $fail-message, $debug-message...);
+}
+
+@mixin assert-false(
+  $assert,
+  $fail-message: ''
+) {
+  $name: map-get($test-results, name);
+  $debug-message: '#{inspect($assert)} is not false';
+  $result: if(not $assert, pass, fail);
+  @include report-assert($name, $result, $fail-message, $debug-message...);
+}
+
+@mixin assert-equal(
+  $assert,
+  $expected,
+  $fail-message: ''
+) {
+  $name: map-get($test-results, name);
+  $debug-message: 'Expected: #{inspect($expected)}',
+                  'Result: #{inspect($assert)}';
+  $result: if(is-equal($assert, $expected), pass, fail);
+  @include report-assert($name, $result, $fail-message, $debug-message...);
+}
+
+@mixin assert-unequal(
+  $assert,
+  $expected,
+  $fail-message: ''
+) {
+  $name: map-get($test-results, name);
+  $debug-message: 'Expected: #{inspect($expected)}',
+                  'Result: #{inspect($assert)}';
+  $result: if(is-equal($assert, $expected), fail, pass);
+  @include report-assert($name, $result, $fail-message, $debug-message...);
+}
+
+// Pass / Fail
+// -----------
+
+@mixin report-assert(
+  $name,
+  $result,
+  $fail-message: false,
+  $debug...
+) {
+  @if $result == fail {
+    @debug 'FAIL: #{$name}';
+
+    @each $item in $debug {
+      @debug $item;
+    }
+
+    @if $fail-message {
+      @warn $fail-message;
+    }
+
+    $test-details: $test-details + $-tnl + '  - error: '
+                   + '(#{$debug}) ' + $fail-message !global;
+  }
+
+  $test-results: map-add($test-results, (run: 1, $result: 1)) !global;
+}

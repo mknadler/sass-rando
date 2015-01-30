@@ -1,0 +1,60 @@
+// Test Module
+// ===========
+
+$module-results: null;
+
+@mixin test-module(
+  $name,
+  $output: map-get($true, output)
+) {
+  $module-results: $blank-results !global;
+  @include setup-module($name, $output);
+  @content;
+  @include report-module($name, $module-results, $output);
+  $module-results: null !global;
+}
+
+
+// Module Setup (private)
+// ----------------------
+@mixin setup-module(
+  $name,
+  $output: map-get($true, output)
+) {
+  // Initial CSS Output
+  @if index($output, css) {
+    @include result-message('### #{$name} ----------', css);
+  }
+}
+
+
+// Module Results (private)
+// ------------------------
+@mixin report-module(
+  $name,
+  $module-results,
+  $output: map-get($true, output)
+) {
+
+  // Terminal Results
+  @if index($output, terminal) {
+    $debug-message: '#{$name}: #{report($module-results, Tests)})';
+    @include result-message($debug-message, debug);
+  }
+
+  // CSS Results
+  @if index($output, css) {
+    $run: map-get($module-results, run);
+    $pass: map-get($module-results, pass);
+    $fail: map-get($module-results, fail);
+
+    $css-message: '#{$run} Tests:#{$-tnl} - #{$pass} Passed#{$-tnl} - #{$fail} Failed';
+
+    @include spacer-comment;
+    @include result-message($css-message, css);
+    @include spacer-comment;
+  }
+
+  // Add to Total
+  $true-results: map-add($true-results, $module-results) !global;
+}

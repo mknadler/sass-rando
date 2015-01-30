@@ -1,0 +1,40 @@
+// Utilities
+// =========
+
+// Add map values together
+@function map-add(
+  $base,
+  $add
+) {
+  @each $key, $value in $add {
+    @if $value {
+      $base-value: map-get($base, $key);
+      $new-value: if($base-value, $base-value + $value, $value);
+      $base: map-merge($base, ($key: $new-value));
+    }
+  }
+
+  @return $base;
+}
+
+// Split a string
+@function str-split($string, $substring) {
+  $strings: ();
+  $found-at: str-index($string, $substring);
+  @while $found-at {
+    $strings: append($strings, if($found-at > 1, str-slice($string, 1, $found-at - 1), ""));
+    $string: str-slice($string, $found-at + str-length($substring));
+    $found-at: str-index($string, $substring);
+  }
+  $strings: append($strings, $string);
+  @return $strings;
+}
+
+// Check for strict equality
+@function is-equal($one, $two) {
+  @if type-of($one) == number and type-of($two) == number {
+    @return $one == $two and unit($one) == unit($two);
+  } @else {
+    @return $one == $two;
+  }
+}
