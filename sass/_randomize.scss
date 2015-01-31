@@ -3,7 +3,7 @@
 
 @import 'utilities';
 
-/// Generates a random integer within a given range, inclusive of both the minimum and maximum values passed in (so, for example, a call of this function with a $min of 5 could potentially return 5).
+/// Generates a random integer within a range, inclusive of both the minimum and maximum values passed in (so, for example, a call of this function with a $min of 5 could potentially return 5).
 ///
 /// @access public
 /// @group random number functions
