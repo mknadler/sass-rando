@@ -37,7 +37,9 @@
 ///
 @function limit($num, $min: 0, $max: 1) {
   @if $max < $min {
-    @error 'max isnt greater than min';
+    $temp: $min;
+    $min: $max;
+    $max: $temp;
   }
   @if $num <= $max and $num >= $min { @return $num };
   @if $num < $min { @return $min };
