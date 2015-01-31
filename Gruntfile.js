@@ -21,6 +21,18 @@ module.exports = function(grunt) {
     },
     test: {
       command: 'true-cli test/test.scss'
+    },
+    pushdocs : {
+      command: [
+        'git checkout gh-pages',
+        'git pull origin master',
+        'mv docs/index.html index.html',
+        'mv docs/assets assets',
+        'git add assets/',
+        'git add index.html',
+        'git commit -m "Updates documentation',
+        'git push origin gh-pages'
+      ].join('&&')
     }
 
   }
@@ -28,6 +40,7 @@ module.exports = function(grunt) {
 });
 
   grunt.registerTask('default', ['sassdoc', 'shell:greet', 'shell:test']);
+  grunt.registerTask('push-docs', 'shell:pushdocs');
 
   grunt.event.on('sassdoc.start', function (target, src, dest) {
      grunt.log.writeln('SassDoc: compiling documentation from ' + src + ' to ' + dest + '!!!!');
