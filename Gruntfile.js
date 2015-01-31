@@ -30,8 +30,9 @@ module.exports = function(grunt) {
         'mv docs/assets assets',
         'git add assets/',
         'git add index.html',
-        'git commit -m "Updates documentation',
-        'git push origin gh-pages'
+        'git commit -m "Updates documentation"',
+        'git push origin gh-pages',
+        'git checkout development'
       ].join('&&')
     }
 
