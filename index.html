@@ -1923,7 +1923,7 @@ div: after {
     
   <h3 class="item__sub-heading">Description</h3>
 
-  <div class="item__description"><p>Generates a random integer within a given range, inclusive of both the minimum and maximum values passed in (so, for example, a call of this function with a $min of 5 could potentially return 5).</p>
+  <div class="item__description"><p>Generates a random integer within a range, inclusive of both the minimum and maximum values passed in (so, for example, a call of this function with a $min of 5 could potentially return 5).</p>
 </div>
 
 
@@ -2816,7 +2816,9 @@ div {
     data-current-state="collapsed"
     data-expanded="@function limit($num, $min: 0, $max: 1) { 
   @if $max &lt; $min {
-    @error &#39;max isnt greater than min&#39;;
+    $temp: $min;
+    $min: $max;
+    $max: $temp;
   }
   @if $num &lt;= $max and $num &gt;= $min { @return $num };
   @if $num &lt; $min { @return $min };
@@ -2922,15 +2924,6 @@ div {
   
     
     
-  <h3 class="item__sub-heading">Throws</h3>
-
-  <ul class="list-unstyled">
-    
-      <li><p>max isnt greater than min</p>
-</li>
-    
-  </ul>
-
 
   
     
