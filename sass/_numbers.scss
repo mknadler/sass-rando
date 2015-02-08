@@ -1,0 +1,136 @@
+/// Generates a random integer within a range, inclusive of both the minimum and maximum values passed in (so, for example, a call of this function with a $min of 5 could potentially return 5).
+///
+/// @access public
+/// @group random number functions
+///
+/// @param {Number} $min - The lowest integer
+/// @param {Number} $max - The highest integer
+///
+/// @example scss
+/// // SCSS
+/// div.widget {
+///  width: random-between(30px, 100px);
+/// }
+///
+/// @example css
+/// // CSS
+/// div.widget {
+///   width: 58px;
+/// }
+@function random-between($min, $max) {
+  @if ((not is-int($min)) or (not is-int($max))) or
+       $min < 0 or $max < 0 {
+        @error '$min and $max must both be positive integers.';
+  }
+
+  @if $min > $max {
+    $old_min: $min;
+    $min: $max;
+    $max: $old_min;
+  }
+
+  @return ($min - 1) + random(($max - $min) + 1);
+}
+
+
+
+/// Generates a random decimal within a given range, inclusive of both the minimum and maximum values passed in (so, for example, a call of this function with a $min of 0.1 could potentially return 0.1)
+///
+/// @access public
+/// @group random number functions
+///
+/// @param {Number} $min - The lowest number
+/// @param {Number} $max - The highest number
+///
+/// @example scss
+/// // SCSS
+/// div.widget {
+///  width: random-decimal-between(30.5px, 30.9px);
+/// }
+///
+/// @example css
+/// // CSS
+/// div.widget {
+///   width: 30.79564px;
+/// }
+@function random-decimal-between($min, $max) {
+  @if type-of($min) != 'number' or
+      type-of($max) != 'number' or
+      $min < 0 or
+      $max < 0 {
+        @error '$min and $max must both be positive numbers.';
+  }
+
+  @if $min > $max {
+    $old_min: $min;
+    $min: $max;
+    $max: $old_min;
+  }
+
+  @return (($max - $min) * random()) + $min;
+}
+
+/// Generates a value from a simulated dice roll. The input is in the form of, for instance, 2d6 to refer to rolling two six-sided dice; 5d8 to refer to rolling five eight-sided dice; and so on.
+///
+/// @access public
+/// @group random number functions
+///
+/// @param {number} $die - The number and type of dice to roll
+///
+/// @example scss
+/// // SCSS
+/// div {
+///   height: 2d6 * 10px;
+/// }
+///
+/// @example css
+/// // CSS
+/// div {
+///   height: 80px;
+/// }
+@function roll($die) {
+  // method to typecast strings to numbers adapted from http://hugogiraudel.com/2014/01/15/sass-string-to-number/
+
+  // Account for a few potential mistakes in input
+  @if type-of($die) != 'number' {
+    @error '$die, "#{$die}", was not a number; was expecting input in the format of, e.g., 2d6';
+  }
+
+  @if unitless($die) {
+    @error '$die, "#{$die}", was unitless; was expecting input in the format of, e.g., 2d6';
+  }
+
+  // Parse the input into two strings
+  $num-of-dice: str-slice($die + '', 1, str-index($die + '', d) - 1);
+  $die-max: str-slice($die + '', str-index($die + '', d) + 1);
+
+  // Define some variables at a scope outside the loops below
+  $result: 0;
+  $number-storage: 0;
+
+  @each $target in $num-of-dice, $die-max {
+    $strings: '0' '1' '2' '3' '4' '5' '6' '7' '8' '9';
+
+    // For each digit in each number-string, convert it from a string to a number
+    @for $i from 1 through str-length(#{$target}) {
+      $char: str-slice($target, $i, $i);
+      $index: index($strings, $char);
+      $number-storage: $number-storage * 10 +  $index - 1;
+    }
+
+    // Assign the results of the above conversion to their proper vars
+    @if $target == $num-of-dice {
+      $num-of-dice: $number-storage;
+      $number-storage: 0;
+    } @else if $target == $die-max {
+      $die-max: $number-storage;
+    }
+  }
+
+  // Finally, roll the dice!
+  @for $i from 1 through $num-of-dice {
+    $result: $result + random($die-max);
+  }
+
+  @return $result;
+}
