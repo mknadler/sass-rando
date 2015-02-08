@@ -225,6 +225,31 @@
 }
 
 
+/// Given two colors, mix them, randomizing how much of each color to use in so doing. Optionally, pass in the lowest and highest amount of the first color that will be used in generating the mixture.
+///
+/// @access public
+/// @group random color functions
+///
+/// @param {Color} $color-1 - The first color to be used in generating a mixed color
+/// @param {Color} $color-2 - The second color to be used in generating a mixed color
+/// @param {Number} $min-1 (10%) - The lowest amount of the first color that will be used in mixing
+/// @param {Number} $max-1 (90%) - The highest amount of the first color that will be used in mixing
+///
+/// @example scss
+/// // SCSS
+/// body {
+///  background: random-mix(red, blue);
+/// }
+///
+/// @example css
+/// // CSS
+/// body {
+///   background: #c1003d;
+/// }
+@function random-mix($color-1, $color-2, $min-1: 10%, $max-1: 90%){
+  @return mix($color-1, $color-2, random-between($min-1, $max-1));
+}
+
 
 /// Given a list, returns a random item from that list.
 /// @param {List} $value-list - The list of values to randomly select from
