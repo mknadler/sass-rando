@@ -18,8 +18,10 @@
 /// @group utilities
 ///
 @mixin keyframes($name) {
-  @-webkit-keyframes #{$name} {
-    @content;
+  @if $_randomize-prefixes {
+    @-webkit-keyframes #{$name} {
+      @content;
+    }
   }
 
   @keyframes #{$name} {
