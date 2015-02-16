@@ -8,6 +8,8 @@ It makes otherwise-frustrating tasks like [randomly animating SVGs with dozens o
 
 Stuck? [Check out the docs](http://mknadler.github.io/randomize.scss/).
 
+Randomize.scss requires Sass 3.3.0+.
+
 ## How To Install
 
 `bower install randomize.scss`, `git clone`, or simply copy-and-paste the contents of the `sass/` folder.
