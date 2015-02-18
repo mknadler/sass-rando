@@ -8,7 +8,7 @@
   
   <meta charset="utf-8" />
 
-<title>Randomize.scss - v0.9.5</title>
+<title>Randomize.scss - v0.9.7</title>
 <link rel="stylesheet" href="assets/css/main.css" />
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700' rel='stylesheet' type='text/css'>
 <meta name="viewport" content="width=device-width">
@@ -26,7 +26,7 @@
   <div class="sidebar__header">
   <h1 class="sidebar__title">
     
-      <a href="https://github.com/mknadler/randomize.scss">Randomize.scss - v0.9.5</a>
+      <a href="https://github.com/mknadler/randomize.scss">Randomize.scss - v0.9.7</a>
     
   </h1>
 </div>
@@ -54,17 +54,8 @@
           
           
             <ul class="list-unstyled">
-            <li class="sidebar__item  sassdoc__item" data-name="random-hex" data-type="function">
-              <a href="#function-random-hex">random-hex
-              
-              
-              </a>
-            </li>
-            
-          
-            
-            <li class="sidebar__item  sassdoc__item" data-name="random-rgba" data-type="function">
-              <a href="#function-random-rgba">random-rgba
+            <li class="sidebar__item  sassdoc__item" data-name="random-color" data-type="function">
+              <a href="#function-random-color">random-color
               
               
               </a>
@@ -359,160 +350,12 @@
 
               
               
-                <section class="main__item  item" id="function-random-hex">
+                <section class="main__item  item" id="function-random-color">
 
 <h3 class="item__heading">
   
 
-  <a class="item__name" href="#function-random-hex">random-hex</a>
-
-  
-
-  
-</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="relative  clear  code--collapsed">
-  <pre class="item__code  item__code--togglable  language-scss"
-    data-current-state="collapsed"
-    data-expanded="@function random-hex() { 
-  $rgb: &#39;&#39;;
-  $i: 6;
-
-  @while $i &gt; 0 {
-    $hex-unit: random(16) - 1;
-    $letters: &#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;, &#39;E&#39;, &#39;F&#39;;
-
-    @if $hex-unit &gt; 9 {
-      $hex-unit: nth($letters, ($hex-unit - 9));
-    }
-
-    $rgb: str-insert($rgb, (&#39;&#39; + $hex-unit), 0);
-    $i: $i - 1;
-  }
-
-  @return unquote(&#39;#&#39; + $rgb);
- }"
-    data-collapsed="@function random-hex() { ... }"><code>@function random-hex() { ... }</code></pre>
-
-  
-</div>
-
-
-
-
-
-
-  
-    
-    
-  <h3 class="item__sub-heading">Description</h3>
-
-  <div class="item__description"><p>Generates a random color.</p>
-</div>
-
-
-  
-    
-    <h3 class="item__sub-heading">Parameters</h3>
-
-
-
-  <p>None.</p>
-
-
-
-  
-    
-    
-
-  
-    
-    
-  <h3 class="item__sub-heading">Example</h3>
-
-  
-  <div class="item__example  example">
-    
-    <pre class="example__code"><code class="language-scss">// SCSS
-span {
- color: random-hex();
-}</code></pre>
-  </div>
-  
-  <div class="item__example  example">
-    
-    <pre class="example__code"><code class="language-css">// CSS
-span {
-  color: #C39A9F;
-}</code></pre>
-  </div>
-  
-
-
-  
-    
-    
-
-  
-    
-    
-
-
-
-
-  
-    
-    
-
-
-
-
-
-  
-    
-    
-
-  
-    
-    
-
-
-
-
-  
-    
-    
-
-  
-    
-    
-  
-    
-    
-
-  
-
-
-
-</section>
-              
-                <section class="main__item  item" id="function-random-rgba">
-
-<h3 class="item__heading">
-  
-
-  <a class="item__name" href="#function-random-rgba">random-rgba</a>
+  <a class="item__name" href="#function-random-color">random-color</a>
 
   
 
@@ -557,7 +400,7 @@ span {
 <div class="relative  clear  code--collapsed">
   <pre class="item__code  item__code--togglable  language-scss"
     data-current-state="collapsed"
-    data-expanded="@function random-rgba($multiplier: 1, 1, 1, $opacity: false) { 
+    data-expanded="@function random-color($multiplier: 1, 1, 1, $opacity: 1) { 
   @each $val in $multiplier {
     @if $val &lt; 0 or $val == 0 {
       @error &#39;RGBa multipliers must be positive.&#39;;
@@ -579,7 +422,7 @@ span {
 
   @return rgba(random($r), random($g), random($b), random());
  }"
-    data-collapsed="@function random-rgba($multiplier: 1, 1, 1, $opacity: false) { ... }"><code>@function random-rgba($multiplier: 1, 1, 1, $opacity: false) { ... }</code></pre>
+    data-collapsed="@function random-color($multiplier: 1, 1, 1, $opacity: 1) { ... }"><code>@function random-color($multiplier: 1, 1, 1, $opacity: 1) { ... }</code></pre>
 
   
 </div>
@@ -594,7 +437,8 @@ span {
     
   <h3 class="item__sub-heading">Description</h3>
 
-  <div class="item__description"><p>Generates a random color. By default, it is unbiased, and the colors will almost certainly be translucent. Optionally, you can pass a list of multipliers to weigh the output. For instance, if you pass a red modifier of 2, the function will multiply the maximum red value, 255, by 2, getting 510, find a random number between 1 and 510, and, finally, return that number as the R value, allowing any number over 255 to be clamped to 255. This means that a red multiplier of 2 means that there is a ~50% chance of the red value being 255; a ~67% chance that a red multiplier of 3 will result in a red value of 255; and so on.</p>
+  <div class="item__description"><p>Generates a random color. By default, it is unbiased, and the colors will almost certainly be translucent. Optionally, you can pass a list of multipliers to weigh the output. For instance, if you pass a red modifier of 2, the function will multiply the maximum red value, 255, by 2, getting 510, find a random number between 1 and 510, and, finally, return that number as the R value, while clamping any number over 255 to 255. This means that, with a $red multiplier of 2, there is a ~50% chance of the red value being 255; a ~67% chance that a $red value of 3 will result in a red value of 255; and so on.
+To generate a hex value instead of an RGBa value, pass an $opacity value of 1.</p>
 </div>
 
 
@@ -637,12 +481,12 @@ span {
 </td>
           <td data-label="type">
           
-            Boolean
+            Number
           
           </td>
           <td data-label="default">
           
-            <code>false</code>
+            <code>1</code>
           
           </td>
         </tr>
@@ -666,7 +510,7 @@ span {
     
     <pre class="example__code"><code class="language-scss">// SCSS
 span {
- color: random-rgba(3, 1, 1);
+ color: random-color(3, 1, 1);
 }</code></pre>
   </div>
   
@@ -2998,7 +2842,7 @@ div {
       <ul class="list-unstyled  list-inline">
     
 
-    <li><a href="#function-random-between"><code>random-between</code></a></li>
+    <li><a href="#mixin-random-animate"><code>random-animate</code></a></li>
   
 
 
@@ -3007,7 +2851,7 @@ div {
 
     
 
-    <li><a href="#mixin-random-animate"><code>random-animate</code></a></li>
+    <li><a href="#function-random-between"><code>random-between</code></a></li>
   
 
 
@@ -3524,8 +3368,10 @@ div {
   <pre class="item__code  item__code--togglable  language-scss"
     data-current-state="collapsed"
     data-expanded="@mixin keyframes($name) { 
-  @-webkit-keyframes #{$name} {
-    @content;
+  @if $_randomize-prefixes {
+    @-webkit-keyframes #{$name} {
+      @content;
+    }
   }
 
   @keyframes #{$name} {
@@ -3815,7 +3661,9 @@ div {
       }
 
       // Call the keyframes
-      -webkit-animation: $animation-name $animation-props;
+      @if $_randomize-prefixes {
+        -webkit-animation: $animation-name $animation-props;
+      }
       animation: $animation-name $animation-props;
     }
 
@@ -4431,7 +4279,7 @@ span:nth-child(1) {
           
 
           <!-- Version -->
-          <span class="project-info__version"> - v0.9.5</span>
+          <span class="project-info__version"> - v0.9.7</span>
 
           <!-- License -->
           
