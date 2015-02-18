@@ -119,7 +119,9 @@
       }
 
       // Call the keyframes
-      -webkit-animation: $animation-name $animation-props;
+      @if $_randomize-prefixes {
+        -webkit-animation: $animation-name $animation-props;
+      }
       animation: $animation-name $animation-props;
     }
 
