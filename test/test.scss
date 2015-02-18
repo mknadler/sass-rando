@@ -69,10 +69,21 @@
     }
   }
 
-  @include test('random-color() [function]') {
+  @include test('random-hex() [function]') {
     @include repeat {
 
-      $test: str-length(random-color((1, 1, 1), 1) + "") == 7;
+      $test: type-of(random-hex()) == 'string';
+      @include assert-true($test, 'Random-hex should return a string');
+
+      $test: str-length(random-hex()) == 7;
+      @include assert-true($test, 'Random-hex should have a length of 7');
+    }
+  }
+
+  @include test('random-rgba() [function]') {
+    @include repeat {
+
+      $test: str-length(random-rgba((1, 1, 1), 1) + "") == 7;
       @include assert-true($test, 'Random rgba with opacity 1 should return a hex code');
     }
   }
