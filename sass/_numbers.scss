@@ -18,11 +18,6 @@
 ///   width: 58px;
 /// }
 @function random-between($min, $max) {
-  @if ((not is-int($min)) or (not is-int($max))) or
-       $min < 0 or $max < 0 {
-        @error '$min and $max must both be positive integers.';
-  }
-
   @if $min > $max {
     $old_min: $min;
     $min: $max;
@@ -31,8 +26,6 @@
 
   @return ($min - 1) + random(($max - $min) + 1);
 }
-
-
 
 /// Generates a random decimal within a given range, inclusive of both the minimum and maximum values passed in (so, for example, a call of this function with a $min of 0.1 could potentially return 0.1)
 ///
@@ -69,6 +62,39 @@
 
   @return (($max - $min) * random()) + $min;
 }
+
+/// Given a list of $min and $max ranges, return a random number in between $min and $max for a random one of those ranges.
+///
+/// @access public
+/// @group random number functions
+///
+/// @param {List} $ranges... - The list of $min and $max pairs
+///
+/// @example scss
+/// // SCSS
+/// div {
+///  width: random-ranges(50px 53px, 80px 85px);
+/// }
+///
+/// @example css
+/// // CSS
+/// div.widget {
+///   width: 84px;
+/// }
+@function random-ranges($ranges...) {
+  $results: ();
+  $result: null;
+  @for $i from 1 through length($ranges) {
+    @if nth(nth($ranges, $i), 1) > nth(nth($ranges, $i), 2) {
+      @error "$min must be smaller than or equal to $max";
+    }
+    $result: random-between( nth(nth($ranges, $i), 1) ,
+                     nth(nth($ranges, $i), 2) );
+    $results: map-merge($results, (result-#{$i}: $result));
+  }
+  @return map-get($results, result-#{random(1, length($ranges))});;
+}
+
 
 /// Generates a value from a simulated dice roll. The input is in the form of, for instance, 2d6 to refer to rolling two six-sided dice; 5d8 to refer to rolling five eight-sided dice; and so on.
 ///
