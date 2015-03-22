@@ -1,3 +1,10 @@
+/// Preserves units passed into random()
+/// @param {Number} $min - The minimum number of the range
+/// @param {Number} $max - The maximum number of the range
+///
+/// @group utilities
+
+
 /// Determines if if a passed number is 1. a number and 2. an integer; if so, returns 'true'; if not, returns 'false'
 /// @param { Number | String | Boolean | List | Map } $value - The parameter to check the type / integerity of
 ///
@@ -32,8 +39,8 @@
 
 /// Clamps a generated number in between a minimum and maximum value
 /// @param {Number} $num - The number to check
-/// @param {Number} $min (0) - The maximum number of the range
-/// @param {Number} $max (1) - The minimum number of the range
+/// @param {Number} $min (0) - The minimum number of the range
+/// @param {Number} $max (1) - The maximum number of the range
 ///
 /// @group utilities
 ///

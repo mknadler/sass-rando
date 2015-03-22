@@ -76,7 +76,7 @@
     $opacity: 1;
   }
 
-  @return hsla($hue, random-between(20, 100), random-between(20, 80), $opacity);
+  @return hsla($hue, random(20, 100), random(20, 80), $opacity);
 }
 
 
@@ -106,7 +106,7 @@
   $lightness: limit($lightness, 0, 100);
   $opacity: limit($opacity);
 
-  @return hsla(random-between(0, 360), percentage($saturation/100), percentage($lightness/100), $opacity);
+  @return hsla(random(0, 360), percentage($saturation/100), percentage($lightness/100), $opacity);
 }
 
 
