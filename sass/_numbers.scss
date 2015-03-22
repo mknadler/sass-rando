@@ -18,16 +18,14 @@
 ///   width: 58px;
 /// }
 @function random-between($min, $max) {
-  @if not unitless($min) {
-    @if unit($min) != unit($max) {
-      @error "random-with-unit: $min and $max must be of the same unit type";
-    }
-    @return random($min, $max) * 1#{unit($min)};
+  @if $min > $max {
+    $old_min: $min;
+    $min: $max;
+    $max: $old_min;
   }
-  @return random($min, $max);
+
+  @return ($min - 1) + random(($max - $min) + 1);
 }
-
-
 
 /// Generates a random decimal within a given range, inclusive of both the minimum and maximum values passed in (so, for example, a call of this function with a $min of 0.1 could potentially return 0.1)
 ///
