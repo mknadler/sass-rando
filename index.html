@@ -8,7 +8,7 @@
   
   <meta charset="utf-8" />
 
-<title>Randomize.scss - v0.9.7</title>
+<title>Randomize.scss - v1.0.0</title>
 <link rel="stylesheet" href="assets/css/main.css" />
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700' rel='stylesheet' type='text/css'>
 <meta name="viewport" content="width=device-width">
@@ -26,7 +26,7 @@
   <div class="sidebar__header">
   <h1 class="sidebar__title">
     
-      <a href="https://github.com/mknadler/randomize.scss">Randomize.scss - v0.9.7</a>
+      <a href="https://github.com/mknadler/randomize.scss">Randomize.scss - v1.0.0</a>
     
   </h1>
 </div>
@@ -168,6 +168,15 @@
             
             <li class="sidebar__item  sassdoc__item" data-name="random-decimal-between" data-type="function">
               <a href="#function-random-decimal-between">random-decimal-between
+              
+              
+              </a>
+            </li>
+            
+          
+            
+            <li class="sidebar__item  sassdoc__item" data-name="random-ranges" data-type="function">
+              <a href="#function-random-ranges">random-ranges
               
               
               </a>
@@ -643,7 +652,7 @@ span {
     $opacity: 1;
   }
 
-  @return hsla($hue, random-between(20, 100), random-between(20, 80), $opacity);
+  @return hsla($hue, random(20, 100), random(20, 80), $opacity);
  }"
     data-collapsed="@function random-color-by-hue($hue, $opacity: 1) { ... }"><code>@function random-color-by-hue($hue, $opacity: 1) { ... }</code></pre>
 
@@ -755,25 +764,6 @@ span {
     
 
 
-  
-    
-      
-      <h3 class="item__sub-heading">Requires</h3>
-      <ul class="list-unstyled">
-    
-
-    
-      <li>
-        <a href="#function-random-between"><code>random-between</code></a>
-        
-      </li>
-    
-  
-
-
-
-
-</ul>
 
 
   
@@ -879,7 +869,7 @@ span {
   $lightness: limit($lightness, 0, 100);
   $opacity: limit($opacity);
 
-  @return hsla(random-between(0, 360), percentage($saturation/100), percentage($lightness/100), $opacity);
+  @return hsla(random(0, 360), percentage($saturation/100), percentage($lightness/100), $opacity);
  }"
     data-collapsed="@function color-with-random-hue($saturation: 100, $lightness: 50, $opacity: 1) { ... }"><code>@function color-with-random-hue($saturation: 100, $lightness: 50, $opacity: 1) { ... }</code></pre>
 
@@ -1017,19 +1007,6 @@ span {
     
       <li>
         <a href="#function-limit"><code>limit</code></a>
-        
-      </li>
-    
-  
-
-
-
-  
-    
-
-    
-      <li>
-        <a href="#function-random-between"><code>random-between</code></a>
         
       </li>
     
@@ -2020,11 +1997,6 @@ div: after {
   <pre class="item__code  item__code--togglable  language-scss"
     data-current-state="collapsed"
     data-expanded="@function random-between($min, $max) { 
-  @if ((not is-int($min)) or (not is-int($max))) or
-       $min &lt; 0 or $max &lt; 0 {
-        @error &#39;$min and $max must both be positive integers.&#39;;
-  }
-
   @if $min &gt; $max {
     $old_min: $min;
     $min: $max;
@@ -2137,40 +2109,12 @@ div.widget {
   
     
     
-  <h3 class="item__sub-heading">Throws</h3>
-
-  <ul class="list-unstyled">
-    
-      <li><p>$min and $max must both be positive integers.</p>
-</li>
-    
-  </ul>
-
 
   
     
     
 
 
-  
-    
-      
-      <h3 class="item__sub-heading">Requires</h3>
-      <ul class="list-unstyled">
-    
-
-    
-      <li>
-        <a href="#function-is-int"><code>is-int</code></a>
-        
-      </li>
-    
-  
-
-
-
-
-</ul>
 
 
   
@@ -2187,25 +2131,16 @@ div.widget {
       <ul class="list-unstyled  list-inline">
     
 
-    <li><a href="#function-random-color-by-hue"><code>random-color-by-hue</code></a></li>
-  
-
-
-
-  
-
-    
-
-    <li><a href="#function-color-with-random-hue"><code>color-with-random-hue</code></a></li>
-  
-
-
-
-  
-
-    
-
     <li><a href="#function-random-mix"><code>random-mix</code></a></li>
+  
+
+
+
+  
+
+    
+
+    <li><a href="#function-random-ranges"><code>random-ranges</code></a></li>
   
 
 
@@ -2423,6 +2358,215 @@ div.widget {
     
 
 
+
+
+  
+    
+    
+
+
+
+
+
+  
+    
+    
+
+  
+    
+    
+
+
+
+
+  
+    
+    
+
+  
+    
+    
+  
+    
+    
+
+  
+
+
+
+</section>
+              
+                <section class="main__item  item" id="function-random-ranges">
+
+<h3 class="item__heading">
+  
+
+  <a class="item__name" href="#function-random-ranges">random-ranges</a>
+
+  
+
+  
+</h3>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+<div class="relative  clear  code--collapsed">
+  <pre class="item__code  item__code--togglable  language-scss"
+    data-current-state="collapsed"
+    data-expanded="@function random-ranges($ranges...) { 
+  $results: ();
+  $result: null;
+  @for $i from 1 through length($ranges) {
+    @if nth(nth($ranges, $i), 1) &gt; nth(nth($ranges, $i), 2) {
+      @error &quot;$min must be smaller than or equal to $max&quot;;
+    }
+    $result: random-between( nth(nth($ranges, $i), 1) ,
+                     nth(nth($ranges, $i), 2) );
+    $results: map-merge($results, (result-#{$i}: $result));
+  }
+  @return map-get($results, result-#{random(1, length($ranges))});;
+ }"
+    data-collapsed="@function random-ranges($ranges...) { ... }"><code>@function random-ranges($ranges...) { ... }</code></pre>
+
+  
+</div>
+
+
+
+
+
+
+  
+    
+    
+  <h3 class="item__sub-heading">Description</h3>
+
+  <div class="item__description"><p>Given a list of $min and $max ranges, return a random number in between $min and $max for a random one of those ranges.</p>
+</div>
+
+
+  
+    
+    <h3 class="item__sub-heading">Parameters</h3>
+
+
+
+  <table class="item__parameters">
+    <thead>
+      <tr>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Name</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Description</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Type</th>
+        <th scope="col"><span class="visually-hidden"> parameter </span>Default value</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr class="item__parameter">
+          <th scope="row" data-label="name"><code>$ranges...</code></th>
+          <td data-label="desc"><p>The list of $min and $max pairs</p>
+</td>
+          <td data-label="type">
+          
+            List
+          
+          </td>
+          <td data-label="default">
+          
+            &mdash;<span class="visually-hidden"> none</span>
+          
+          </td>
+        </tr>
+      
+    </tbody>
+  </table>
+
+
+
+  
+    
+    
+
+  
+    
+    
+  <h3 class="item__sub-heading">Example</h3>
+
+  
+  <div class="item__example  example">
+    
+    <pre class="example__code"><code class="language-scss">// SCSS
+div {
+ width: random-ranges(50px 53px, 80px 85px);
+}</code></pre>
+  </div>
+  
+  <div class="item__example  example">
+    
+    <pre class="example__code"><code class="language-css">// CSS
+div.widget {
+  width: 84px;
+}</code></pre>
+  </div>
+  
+
+
+  
+    
+    
+  <h3 class="item__sub-heading">Throws</h3>
+
+  <ul class="list-unstyled">
+    
+      <li><p>$min must be smaller than or equal to $max</p>
+</li>
+    
+  </ul>
+
+
+  
+    
+    
+
+
+  
+    
+      
+      <h3 class="item__sub-heading">Requires</h3>
+      <ul class="list-unstyled">
+    
+
+    
+      <li>
+        <a href="#function-random-between"><code>random-between</code></a>
+        
+      </li>
+    
+  
+
+
+
+
+</ul>
 
 
   
@@ -2847,15 +2991,6 @@ div {
 
 
 
-  
-
-    
-
-    <li><a href="#function-random-between"><code>random-between</code></a></li>
-  
-
-
-
 
 </ul>
 
@@ -3012,7 +3147,7 @@ div {
       
         <tr class="item__parameter">
           <th scope="row" data-label="name"><code>$min</code></th>
-          <td data-label="desc"><p>The maximum number of the range</p>
+          <td data-label="desc"><p>The minimum number of the range</p>
 </td>
           <td data-label="type">
           
@@ -3028,7 +3163,7 @@ div {
       
         <tr class="item__parameter">
           <th scope="row" data-label="name"><code>$max</code></th>
-          <td data-label="desc"><p>The minimum number of the range</p>
+          <td data-label="desc"><p>The maximum number of the range</p>
 </td>
           <td data-label="type">
           
@@ -4279,7 +4414,7 @@ span:nth-child(1) {
           
 
           <!-- Version -->
-          <span class="project-info__version"> - v0.9.7</span>
+          <span class="project-info__version"> - v1.0.0</span>
 
           <!-- License -->
           
