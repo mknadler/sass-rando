@@ -51,7 +51,7 @@
       type-of($max) != 'number' or
       $min < 0 or
       $max < 0 {
-        @if alert('@function random-decimal-between: $min and $max must both be positive numbers.') {};
+        @if _alert('@function random-decimal-between: $min and $max must both be positive numbers.') {};
   }
 
   @if $min > $max {
