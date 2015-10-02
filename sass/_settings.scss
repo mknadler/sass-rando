@@ -1,4 +1,3 @@
 // By default, output prefixed code.
 // If you are using Autoprefixer or similar, set this flag to false.
-$_randomize-prefixes: true;
-
+$_randomize-prefixes: true !default;

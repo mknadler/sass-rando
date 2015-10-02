@@ -1,3 +1,25 @@
+/// Provides `@warn` fallback for `@error` so as to not, ironically, throw errors on older versions of Sass. http://www.sitepoint.com/using-error-responsibly-in-sass/
+/// @param { String } $message - The message to be logged
+///
+/// @access private
+/// @group utilities
+@function _alert($message) {
+  @if feature-exists('at-error') != true {
+    @warn $message;
+  } @else {
+    @error $message;
+  }
+}
+
+/// Provides a mixin for access to the alert @function
+/// @param { String } $message - The message to be logged
+///
+/// @access private
+/// @group utilities
+@mixin _alert($message) {
+  @if _alert($message) {}
+}
+
 /// Determines if if a passed number is 1. a number and 2. an integer; if so, returns 'true'; if not, returns 'false'
 /// @param { Number | String | Boolean | List | Map } $value - The parameter to check the type / integerity of
 ///
@@ -9,7 +31,6 @@
     @return false;
   }
 }
-
 
 
 /// Applies vendor prefixes to @keyframes
@@ -43,9 +64,9 @@
     $min: $max;
     $max: $temp;
   }
-  @if $num <= $max and $num >= $min { @return $num };
-  @if $num < $min { @return $min };
-  @if $num > $max { @return $max };
+  @if $num <= $max and $num >= $min { @return $num; }
+  @if $num < $min { @return $min; }
+  @if $num > $max { @return $max; }
 }
 
 

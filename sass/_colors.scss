@@ -20,7 +20,7 @@
 @function random-color($multiplier: (1, 1, 1), $opacity: '') {
   @each $val in $multiplier {
     @if $val < 0 or $val == 0 {
-      @error 'RGBa multipliers must be positive.';
+      @if _alert('@function random-color: RGBa multipliers must be positive.') {};
     }
   }
 
@@ -30,7 +30,7 @@
 
   @if type-of($opacity) == 'number' {
     @if $opacity < 0 or $opacity > 1 {
-      @warn 'opacity should be a number between 0 and 1: `#{$opacity}` given. As a result, the color will be fully opaque.';
+      @warn '@function random-color: opacity should be a number between 0 and 1: `#{$opacity}` given. As a result, the color will be fully opaque.';
       $opacity: 1;
     }
 

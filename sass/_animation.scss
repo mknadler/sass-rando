@@ -73,15 +73,15 @@
 ///  }
 @mixin random-animate($num-elements, $prop-to-animate, $animation-props, $steps, $function-name, $args...) {
   @if (not is-int($steps)) or ($steps < 2) {
-    @error '$steps must be an integer with a value of at least 1.';
+    @include _alert('@mixin random-animate: $steps must be an integer with a value of at least 1.');
   }
 
   @if (not is-int($num-elements)) or ($num-elements < 1) {
-    @error '$num-elements must be a positive integer.';
+    @include _alert('@mixin random-animate: $num-elements must be a positive integer.');
   }
 
   @if not function-exists($function-name) {
-    @error 'The given function name, `#{$function-name}`, does not exist';
+    @include _alert('@mixin random-animate: The given function name, `#{$function-name}`, does not exist');
   }
 
   $counter: 1;

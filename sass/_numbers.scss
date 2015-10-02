@@ -27,7 +27,7 @@
   @return ($min - 1) + random(($max - $min) + 1);
 }
 
-/// Generates a random decimal within a given range, inclusive of both the minimum and maximum values passed in (so, for example, a call of this function with a $min of 0.1 could potentially return 0.1)
+/// Generates a random decimalized number within a given range, inclusive of both the minimum and maximum values passed in (so, for example, a call of this function with a $min of 0.1 could potentially return 0.1)
 ///
 /// @access public
 /// @group random number functions
@@ -51,7 +51,7 @@
       type-of($max) != 'number' or
       $min < 0 or
       $max < 0 {
-        @error '$min and $max must both be positive numbers.';
+        @if alert('@function random-decimal-between: $min and $max must both be positive numbers.') {};
   }
 
   @if $min > $max {
@@ -86,9 +86,9 @@
   $result: null;
   @for $i from 1 through length($ranges) {
     @if nth(nth($ranges, $i), 1) > nth(nth($ranges, $i), 2) {
-      @error "$min must be smaller than or equal to $max";
+      @if _alert("@function random-ranges: $min must be smaller than or equal to $max") {};
     }
-    $result: random-between( nth(nth($ranges, $i), 1) ,
+    $result: random-between( nth(nth($ranges, $i), 1),
                      nth(nth($ranges, $i), 2) );
     $results: map-merge($results, (result-#{$i}: $result));
   }
@@ -119,11 +119,11 @@
 
   // Account for a few potential mistakes in input
   @if type-of($die) != 'number' {
-    @error '$die, "#{$die}", was not a number; was expecting input in the format of, e.g., 2d6';
+    @if _alert('@function roll: $die, "#{$die}", was not a number; was expecting input in the format of, e.g., 2d6') {};
   }
 
   @if unitless($die) {
-    @error '$die, "#{$die}", was unitless; was expecting input in the format of, e.g., 2d6';
+    @if _alert('@function roll: $die, "#{$die}", was unitless; was expecting input in the format of, e.g., 2d6') {};
   }
 
   // Parse the input into two strings
