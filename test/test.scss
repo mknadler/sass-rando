@@ -1,5 +1,5 @@
-@import '../sass/randomize';
-@import '../sass/utilities';
+@import '../sass/__randomize';
+//@import '../sass/utilities';
 @import '../sass/true';
 
 @mixin repeat($iterations: 100) {

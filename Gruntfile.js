@@ -42,6 +42,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['sassdoc', 'shell:greet', 'shell:test']);
   grunt.registerTask('push-docs', 'shell:pushdocs');
+   grunt.registerTask('test', 'shell:test');
+
 
   grunt.event.on('sassdoc.start', function (target, src, dest) {
      grunt.log.writeln('SassDoc: compiling documentation from ' + src + ' to ' + dest + '!!!!');
