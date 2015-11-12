@@ -1,98 +1,189 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'publish' ]
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'eyeglass',
+1 verbose cli   '-g' ]
 2 info using npm@2.14.2
 3 info using node@v4.0.0
-4 verbose publish [ '.' ]
-5 silly cache add args [ '.', null ]
-6 verbose cache add spec .
-7 silly cache add parsed spec Result {
-7 silly cache add   raw: '.',
-7 silly cache add   scope: null,
-7 silly cache add   name: null,
-7 silly cache add   rawSpec: '.',
-7 silly cache add   spec: '/Users/miriam/Documents/Web/Sites/sass-rando',
-7 silly cache add   type: 'directory' }
-8 verbose addLocalDirectory /Users/miriam/.npm/sass-rando/2.0.0/package.tgz not in flight; packing
-9 verbose tar pack [ '/Users/miriam/.npm/sass-rando/2.0.0/package.tgz',
-9 verbose tar pack   '/Users/miriam/Documents/Web/Sites/sass-rando' ]
-10 verbose tarball /Users/miriam/.npm/sass-rando/2.0.0/package.tgz
-11 verbose folder /Users/miriam/Documents/Web/Sites/sass-rando
-12 info prepublish sass-rando@2.0.0
-13 verbose addLocalTarball adding from inside cache /Users/miriam/.npm/sass-rando/2.0.0/package.tgz
-14 silly cache afterAdd sass-rando@2.0.0
-15 verbose afterAdd /Users/miriam/.npm/sass-rando/2.0.0/package/package.json not in flight; writing
-16 verbose afterAdd /Users/miriam/.npm/sass-rando/2.0.0/package/package.json written
-17 silly publish { name: 'sass-rando',
-17 silly publish   version: '2.0.0',
-17 silly publish   description: 'A small collection of functions and mixins to help you make the most out of Sass\'s built-in `random()` function.',
-17 silly publish   main: 'sass/index.scss',
-17 silly publish   directories: { doc: 'docs', test: 'test' },
-17 silly publish   repository:
-17 silly publish    { type: 'git',
-17 silly publish      url: 'git+https://github.com/mknadler/sass-rando.git' },
-17 silly publish   author: { name: 'Miriam Nadler' },
-17 silly publish   license: 'MIT',
-17 silly publish   bugs: { url: 'https://github.com/mknadler/sass-rando/issues' },
-17 silly publish   homepage: 'https://github.com/mknadler/sass-rando',
-17 silly publish   devDependencies:
-17 silly publish    { grunt: '^0.4.5',
-17 silly publish      'grunt-sassdoc': '^1.2.1',
-17 silly publish      'grunt-shell': '^1.1.1',
-17 silly publish      'load-grunt-tasks': '^3.1.0' },
-17 silly publish   readme: '# Rando\n\nA small collection of functions and mixins to help you make the most out of Sass\'s built-in `random()` function.\n\nWant to not think about preserving units when you\'re randomizing? Need to shuffle to a list? Want to roll 2d6 in Sass? Rando might be useful for you; it aims to make otherwise-complicated randomization-related tasks simple to implement.\n\nStuck? [Check out the docs](http://mknadler.github.io/sass-rando).\n\n## How To Install\n\n`npm install sass-rando`, `git clone`, or simply copy-and-paste the contents of the `sass/` folder.\n\n## Questions?\n\nMore will be added soon; in the meantime, please feel free to request specific features, make a PR, or [get in touch](https://twitter.com/antimytheme).\n\nThanks to [@jshawl](http://github.com/jshawl), [@hugogiraudel](http://github.com/hugogiraudel), and [@nickmasso](http://github.com/nickmasso) for contributing!\n',
-17 silly publish   readmeFilename: 'README.md',
-17 silly publish   gitHead: 'a5f993c463f0c91641acd1c8dacae9dde2c49216',
-17 silly publish   _id: 'sass-rando@2.0.0',
-17 silly publish   scripts: {},
-17 silly publish   _shasum: 'ed77824af96dd0a066e7e5aafad7423662a62b4c',
-17 silly publish   _from: '.' }
-18 verbose getPublishConfig undefined
-19 silly mapToRegistry name sass-rando
-20 silly mapToRegistry using default registry
-21 silly mapToRegistry registry https://registry.npmjs.org/
-22 silly mapToRegistry uri https://registry.npmjs.org/sass-rando
-23 verbose publish registryBase https://registry.npmjs.org/
-24 silly publish uploading /Users/miriam/.npm/sass-rando/2.0.0/package.tgz
-25 verbose request uri https://registry.npmjs.org/sass-rando
-26 verbose request sending authorization for write operation
-27 info attempt registry request try #1 at 4:35:51 PM
-28 verbose request using bearer token for auth
-29 verbose request id 7e490682646a5f7e
-30 http request PUT https://registry.npmjs.org/sass-rando
-31 http 403 https://registry.npmjs.org/sass-rando
-32 verbose headers { 'content-type': 'application/json',
-32 verbose headers   'cache-control': 'max-age=60',
-32 verbose headers   'content-length': '95',
-32 verbose headers   'accept-ranges': 'bytes',
-32 verbose headers   date: 'Thu, 12 Nov 2015 22:35:53 GMT',
-32 verbose headers   via: '1.1 varnish',
-32 verbose headers   connection: 'keep-alive',
-32 verbose headers   'x-served-by': 'cache-dfw1828-DFW',
-32 verbose headers   'x-cache': 'MISS',
-32 verbose headers   'x-cache-hits': '0',
-32 verbose headers   'x-timer': 'S1447367753.072269,VS0,VE832' }
-33 verbose request invalidating /Users/miriam/.npm/registry.npmjs.org/sass-rando on PUT
-34 error publish Failed PUT 403
-35 verbose stack Error: "You cannot publish over the previously published version 2.0.0." : sass-rando
-35 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:263:12)
-35 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:251:14)
-35 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:171:14)
-35 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:198:22)
-35 verbose stack     at emitTwo (events.js:87:13)
-35 verbose stack     at Request.emit (events.js:172:7)
-35 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1073:14)
-35 verbose stack     at emitOne (events.js:82:20)
-35 verbose stack     at Request.emit (events.js:169:7)
-35 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1019:12)
-36 verbose statusCode 403
-37 verbose pkgid sass-rando
-38 verbose cwd /Users/miriam/Documents/Web/Sites/sass-rando
-39 error Darwin 15.0.0
-40 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "publish"
-41 error node v4.0.0
-42 error npm  v2.14.2
-43 error code E403
-44 error "You cannot publish over the previously published version 2.0.0." : sass-rando
-45 error If you need help, you may report this error at:
-45 error     <https://github.com/npm/npm/issues>
-46 verbose exit [ 1, true ]
+4 verbose install initial load of /usr/local/lib/package.json
+5 verbose readDependencies loading dependencies from /usr/local/lib/package.json
+6 silly cache add args [ 'eyeglass', null ]
+7 verbose cache add spec eyeglass
+8 silly cache add parsed spec Result {
+8 silly cache add   raw: 'eyeglass',
+8 silly cache add   scope: null,
+8 silly cache add   name: 'eyeglass',
+8 silly cache add   rawSpec: '',
+8 silly cache add   spec: '*',
+8 silly cache add   type: 'range' }
+9 silly addNamed eyeglass@*
+10 verbose addNamed "*" is a valid semver range for eyeglass
+11 silly addNameRange { name: 'eyeglass', range: '*', hasData: false }
+12 silly mapToRegistry name eyeglass
+13 silly mapToRegistry using default registry
+14 silly mapToRegistry registry https://registry.npmjs.org/
+15 silly mapToRegistry uri https://registry.npmjs.org/eyeglass
+16 verbose addNameRange registry:https://registry.npmjs.org/eyeglass not in flight; fetching
+17 verbose request uri https://registry.npmjs.org/eyeglass
+18 verbose request no auth needed
+19 info attempt registry request try #1 at 4:48:21 PM
+20 verbose request using bearer token for auth
+21 verbose request id 7c7a8895ddbb5709
+22 http request GET https://registry.npmjs.org/eyeglass
+23 http 200 https://registry.npmjs.org/eyeglass
+24 silly get cb [ 200,
+24 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+24 silly get     etag: '"ADSET122S89MDYR9HG1M8LD9P"',
+24 silly get     'content-type': 'application/json',
+24 silly get     'cache-control': 'max-age=60',
+24 silly get     'content-length': '35804',
+24 silly get     'accept-ranges': 'bytes',
+24 silly get     date: 'Thu, 12 Nov 2015 22:48:21 GMT',
+24 silly get     via: '1.1 varnish',
+24 silly get     connection: 'keep-alive',
+24 silly get     'x-served-by': 'cache-dfw1828-DFW',
+24 silly get     'x-cache': 'MISS',
+24 silly get     'x-cache-hits': '0',
+24 silly get     'x-timer': 'S1447368501.610659,VS0,VE129',
+24 silly get     vary: 'Accept' } ]
+25 verbose get saving eyeglass to /Users/miriam/.npm/registry.npmjs.org/eyeglass/.cache.json
+26 silly addNameRange number 2 { name: 'eyeglass', range: '*', hasData: true }
+27 silly addNameRange versions [ 'eyeglass',
+27 silly addNameRange   [ '0.0.1',
+27 silly addNameRange     '0.1.1',
+27 silly addNameRange     '0.1.2',
+27 silly addNameRange     '0.1.3',
+27 silly addNameRange     '0.1.4',
+27 silly addNameRange     '0.1.5',
+27 silly addNameRange     '0.2.0',
+27 silly addNameRange     '0.3.0',
+27 silly addNameRange     '0.4.0',
+27 silly addNameRange     '0.5.0',
+27 silly addNameRange     '0.6.0',
+27 silly addNameRange     '0.6.1',
+27 silly addNameRange     '0.6.2',
+27 silly addNameRange     '0.6.3',
+27 silly addNameRange     '0.6.4' ] ]
+28 silly addNamed eyeglass@0.6.4
+29 verbose addNamed "0.6.4" is a plain semver version for eyeglass
+30 silly mapToRegistry name eyeglass
+31 silly mapToRegistry using default registry
+32 silly mapToRegistry registry https://registry.npmjs.org/
+33 silly mapToRegistry uri https://registry.npmjs.org/eyeglass
+34 verbose addRemoteTarball https://registry.npmjs.org/eyeglass/-/eyeglass-0.6.4.tgz not in flight; adding
+35 verbose addRemoteTarball [ 'https://registry.npmjs.org/eyeglass/-/eyeglass-0.6.4.tgz',
+35 verbose addRemoteTarball   'ec5666b6aae484f32cd2455d69fa8a629efe3f5c' ]
+36 info retry fetch attempt 1 at 4:48:22 PM
+37 info attempt registry request try #1 at 4:48:22 PM
+38 http fetch GET https://registry.npmjs.org/eyeglass/-/eyeglass-0.6.4.tgz
+39 verbose request using bearer token for auth
+40 http fetch 200 https://registry.npmjs.org/eyeglass/-/eyeglass-0.6.4.tgz
+41 silly fetchAndShaCheck shasum ec5666b6aae484f32cd2455d69fa8a629efe3f5c
+42 verbose addTmpTarball /var/folders/vc/bzg9cpv531xd5l0slm74kqww0000gn/T/npm-5223-36c3e65b/registry.npmjs.org/eyeglass/-/eyeglass-0.6.4.tgz not in flight; adding
+43 verbose addTmpTarball already have metadata; skipping unpack for eyeglass@0.6.4
+44 silly cache afterAdd eyeglass@0.6.4
+45 verbose afterAdd /Users/miriam/.npm/eyeglass/0.6.4/package/package.json not in flight; writing
+46 verbose afterAdd /Users/miriam/.npm/eyeglass/0.6.4/package/package.json written
+47 silly install resolved [ { name: 'eyeglass',
+47 silly install resolved     description: 'Sass modules for npm.',
+47 silly install resolved     version: '0.6.4',
+47 silly install resolved     author:
+47 silly install resolved      { name: 'The eyeglass team and contributors',
+47 silly install resolved        url: 'https://github.com/sass-eyeglass/eyeglass/graphs/contributors' },
+47 silly install resolved     engines: { node: '>=0.12' },
+47 silly install resolved     license: 'Apache-2.0',
+47 silly install resolved     main: 'lib/index.js',
+47 silly install resolved     README: 'README.md',
+47 silly install resolved     scripts: { test: './test.sh' },
+47 silly install resolved     repository:
+47 silly install resolved      { type: 'git',
+47 silly install resolved        url: 'https://github.com/sass-eyeglass/eyeglass.git' },
+47 silly install resolved     keywords: [ 'sass', 'eyeglass-module' ],
+47 silly install resolved     eyeglass: { exports: 'lib/eyeglass-exports', needs: '*' },
+47 silly install resolved     dependencies:
+47 silly install resolved      { deasync: '^0.1.3',
+47 silly install resolved        'fs-extra': '^0.23.1',
+47 silly install resolved        glob: '^5.0.14',
+47 silly install resolved        lodash: '^3.10.1',
+47 silly install resolved        'node-sass': '3.3.3',
+47 silly install resolved        'node-sass-utils': '^1.1.2',
+47 silly install resolved        semver: '^4.2.0',
+47 silly install resolved        tmp: '0.0.27' },
+47 silly install resolved     devDependencies:
+47 silly install resolved      { eslint: '^1.2.1',
+47 silly install resolved        'eyeglass-dev-eslint': '^2.0.0',
+47 silly install resolved        grunt: '^0.4.5',
+47 silly install resolved        'grunt-release': '^0.13.0',
+47 silly install resolved        gulp: '^3.9.0',
+47 silly install resolved        'gulp-eslint': '^1.0.0',
+47 silly install resolved        'gulp-istanbul': '^0.10.0',
+47 silly install resolved        'gulp-mocha': '^2.1.3',
+47 silly install resolved        mocha: '^2.2.5',
+47 silly install resolved        should: '>= 0.0.1' },
+47 silly install resolved     gitHead: '3ad6578873623ac54fae5be77780d257bf1d4942',
+47 silly install resolved     bugs: { url: 'https://github.com/sass-eyeglass/eyeglass/issues' },
+47 silly install resolved     homepage: 'https://github.com/sass-eyeglass/eyeglass',
+47 silly install resolved     _id: 'eyeglass@0.6.4',
+47 silly install resolved     _shasum: 'ec5666b6aae484f32cd2455d69fa8a629efe3f5c',
+47 silly install resolved     _from: 'eyeglass@*',
+47 silly install resolved     _npmVersion: '2.7.5',
+47 silly install resolved     _nodeVersion: '0.12.2',
+47 silly install resolved     _npmUser: { name: 'chriseppstein', email: 'chris@eppsteins.net' },
+47 silly install resolved     maintainers: [ [Object] ],
+47 silly install resolved     dist:
+47 silly install resolved      { shasum: 'ec5666b6aae484f32cd2455d69fa8a629efe3f5c',
+47 silly install resolved        tarball: 'http://registry.npmjs.org/eyeglass/-/eyeglass-0.6.4.tgz' },
+47 silly install resolved     directories: {},
+47 silly install resolved     _resolved: 'https://registry.npmjs.org/eyeglass/-/eyeglass-0.6.4.tgz' } ]
+48 info install eyeglass@0.6.4 into /usr/local/lib
+49 info installOne eyeglass@0.6.4
+50 verbose installOne of eyeglass to /usr/local/lib not in flight; installing
+51 verbose lock using /Users/miriam/.npm/_locks/eyeglass-df6dbc36416e1e9d.lock for /usr/local/lib/node_modules/eyeglass
+52 silly install write writing eyeglass 0.6.4 to /usr/local/lib/node_modules/eyeglass
+53 verbose unbuild lib/node_modules/eyeglass
+54 silly gentlyRm /usr/local/lib/node_modules/eyeglass is being purged from base /usr/local
+55 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/eyeglass
+56 verbose tar unpack /Users/miriam/.npm/eyeglass/0.6.4/package.tgz
+57 verbose tar unpacking to /usr/local/lib/node_modules/eyeglass
+58 silly gentlyRm /usr/local/lib/node_modules/eyeglass is being purged
+59 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/eyeglass
+60 silly gunzTarPerm modes [ '755', '644' ]
+61 error tar.unpack untar error /Users/miriam/.npm/eyeglass/0.6.4/package.tgz
+62 verbose unlock done using /Users/miriam/.npm/_locks/eyeglass-df6dbc36416e1e9d.lock for /usr/local/lib/node_modules/eyeglass
+63 verbose fstream_path /usr/local/lib/node_modules/eyeglass
+64 verbose fstream_type Directory
+65 verbose fstream_class DirWriter
+66 verbose stack Error: EACCES: permission denied, mkdir '/usr/local/lib/node_modules/eyeglass'
+66 verbose stack     at Error (native)
+67 verbose fstream_stack /usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:35:25
+67 verbose fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:47:53
+67 verbose fstream_stack FSReqWrap.oncomplete (fs.js:82:15)
+68 verbose cwd /Users/miriam/Documents/Web/Sites/sass-rando
+69 error Darwin 15.0.0
+70 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "eyeglass" "-g"
+71 error node v4.0.0
+72 error npm  v2.14.2
+73 error path /usr/local/lib/node_modules/eyeglass
+74 error code EACCES
+75 error errno -13
+76 error syscall mkdir
+77 error Error: EACCES: permission denied, mkdir '/usr/local/lib/node_modules/eyeglass'
+77 error     at Error (native)
+77 error  { [Error: EACCES: permission denied, mkdir '/usr/local/lib/node_modules/eyeglass']
+77 error   errno: -13,
+77 error   code: 'EACCES',
+77 error   syscall: 'mkdir',
+77 error   path: '/usr/local/lib/node_modules/eyeglass',
+77 error   fstream_type: 'Directory',
+77 error   fstream_path: '/usr/local/lib/node_modules/eyeglass',
+77 error   fstream_class: 'DirWriter',
+77 error   fstream_stack:
+77 error    [ '/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:35:25',
+77 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:47:53',
+77 error      'FSReqWrap.oncomplete (fs.js:82:15)' ] }
+78 error Please try running this command again as root/Administrator.
+79 verbose exit [ -13, true ]
+80 verbose unbuild lib/node_modules/eyeglass
+81 silly gentlyRm /usr/local/lib/node_modules/eyeglass is being purged from base /usr/local
+82 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/eyeglass
