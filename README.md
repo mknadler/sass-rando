@@ -8,7 +8,7 @@ Stuck? [Check out the docs](http://mknadler.github.io/sass-rando).
 
 ## How To Install
 
-`npm install rando`, `git clone`, or simply copy-and-paste the contents of the `sass/` folder.
+`npm install sass-rando`, `git clone`, or simply copy-and-paste the contents of the `sass/` folder.
 
 ## Questions?
 
