@@ -4,7 +4,7 @@ A small collection of functions and mixins to help you make the most out of Sass
 
 Want to not think about preserving units when you're randomizing? Need to shuffle to a list? Want to roll 2d6 in Sass? Rando might be useful for you; it aims to make otherwise-complicated randomization-related tasks simple to implement.
 
-Stuck? [Check out the docs](http://mknadler.github.io/rando).
+Stuck? [Check out the docs](http://mknadler.github.io/sass-rando).
 
 ## How To Install
 
