@@ -3,7 +3,7 @@
   "title": "Rando",
   "version": "2.0.0",
   "description": "A small collection of functions and mixins to help you make the most out of Sass's built-in `random()` function.",
-  "main": "sass/_rando.scss",
+  "main": "sass/index.scss",
   "directories": {
     "doc": "docs",
     "test": "test"

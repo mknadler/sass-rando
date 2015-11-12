@@ -8,7 +8,7 @@ Stuck? [Check out the docs](http://mknadler.github.io/rando).
 
 ## How To Install
 
-`bower install randomize.scss`, `git clone`, or simply copy-and-paste the contents of the `sass/` folder.
+`npm install rando`, `git clone`, or simply copy-and-paste the contents of the `sass/` folder.
 
 ## Questions?
 
