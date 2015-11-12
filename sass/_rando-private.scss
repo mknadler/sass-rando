@@ -5,7 +5,7 @@
 ///
 /// @group utilities
 ///
-@function clamp($num, $min: 0, $max: 1) {
+@function _r-clamp($num, $min: 0, $max: 1) {
   @if $max < $min {
     $temp: $min;
     $min: $max;
@@ -16,18 +16,12 @@
   @if $num > $max { @return $max; }
 }
 
-@function limit($num, $min: 0, $max: 1) {
-  @warn '\a\a\a\aWARNING:\athe function "limit" has been renamed to "clamp". \aLimit will be removed in the next version.\a\a\a\a';
-  @return clamp($num, $min, $max);
-}
-
-
 /// When passed a map, returns a list of every value in that map, no matter how deeply nested that map is.
 /// @param {String} $map - The map to convert into a list
 ///
 /// @group utilities
 ///
-@function map-to-list($map){
+@function _r-map-to-list($map){
   $carbon: $map;
   $keys: map-keys($carbon);
   $mapvals: ();

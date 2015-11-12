@@ -3,7 +3,7 @@
   "title": "Randomize.scss",
   "version": "1.0.0",
   "description": "A small collection of functions and mixins to help you make the most out of Sass's built-in `random()` function.",
-  "main": "index.js",
+  "main": "sass/_rando.scss",
   "directories": {
     "doc": "docs",
     "test": "test"

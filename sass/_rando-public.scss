@@ -9,7 +9,7 @@
 /// @example scss
 /// // SCSS
 /// div.widget {
-///  width: random-between(30px, 100px);
+///  width: rando-between(30px, 100px);
 /// }
 ///
 /// @example css
@@ -17,7 +17,7 @@
 /// div.widget {
 ///   width: 58px;
 /// }
-@function random-between($min, $max) {
+@function rando-between($min, $max) {
   @if $min > $max {
     $old_min: $min;
     $min: $max;
@@ -38,7 +38,7 @@
 /// @example scss
 /// // SCSS
 /// div.widget {
-///  width: random-decimal-between(30.5px, 30.9px);
+///  width: rando-decimal-between(30.5px, 30.9px);
 /// }
 ///
 /// @example css
@@ -46,13 +46,7 @@
 /// div.widget {
 ///   width: 30.79564px;
 /// }
-@function random-decimal-between($min, $max) {
-  @if type-of($min) != 'number' or
-      type-of($max) != 'number' or
-      $min < 0 or
-      $max < 0 {
-        @error '@function random-decimal-between: $min and $max must both be positive numbers.';
-  }
+@function rando-decimal-between($min, $max) {
 
   @if $min > $max {
     $old_min: $min;
@@ -63,37 +57,6 @@
   @return (($max - $min) * random()) + $min;
 }
 
-/// Given a list of $min and $max ranges, return a random number in between $min and $max for a random one of those ranges.
-///
-/// @access public
-/// @group random number functions
-///
-/// @param {List} $ranges... - The list of $min and $max pairs
-///
-/// @example scss
-/// // SCSS
-/// div {
-///  width: random-ranges(50px 53px, 80px 85px);
-/// }
-///
-/// @example css
-/// // CSS
-/// div.widget {
-///   width: 84px;
-/// }
-@function random-ranges($ranges...) {
-  $results: ();
-  $result: null;
-  @for $i from 1 through length($ranges) {
-    @if nth(nth($ranges, $i), 1) > nth(nth($ranges, $i), 2) {
-      @error '@function random-ranges: $min must be smaller than or equal to $max';
-    }
-    $result: random-between( nth(nth($ranges, $i), 1),
-                     nth(nth($ranges, $i), 2) );
-    $results: map-merge($results, (result-#{$i}: $result));
-  }
-  @return map-get($results, result-#{random(1, length($ranges))});;
-}
 
 
 /// Generates a value from a simulated dice roll. The input is in the form of, for instance, 2d6 to refer to rolling two six-sided dice; 5d8 to refer to rolling five eight-sided dice; and so on.
@@ -114,7 +77,7 @@
 /// div {
 ///   height: 80px;
 /// }
-@function roll($die) {
+@function rando-die($die) {
   // method to typecast strings to numbers adapted from http://hugogiraudel.com/2014/01/15/sass-string-to-number/
 
   // Account for a few potential mistakes in input
@@ -159,4 +122,114 @@
   }
 
   @return $result;
+}
+
+
+/// Generates a random RGB value.
+///
+/// @access public
+///
+/// @example scss
+/// // SCSS
+/// span {
+///   color: rando-color();
+///   background: rgba(rando-color(), .8);
+/// }
+///
+/// @example css
+/// // CSS
+/// span {
+///   color: #4c3b2e;
+///   background: rgba(169, 93, 82, 0.8);
+/// }
+@function rando-color () {
+  @return rgb(random(255), random(255), random(255));
+}
+
+
+
+/// Given a list, returns a random item from that list.
+/// @param {List} $value-list - The list of values to randomly select from
+///
+/// @access public
+/// @group random list/map functions
+///
+/// @example scss
+/// // SCSS
+/// div {
+///   animation: 2s ease random-value(ease ease-in-out linear);
+///   border-radius: random-value((2rem, 5px, 10%));
+/// }
+///
+/// @example css
+/// // CSS
+/// div {
+///   animation: 2s ease linear;
+///   border-radius: 5px;
+/// }
+@function rando-from($value-list...) {
+  @if type-of(nth($value-list, 1)) == 'list' and length($value-list) == 1 {
+    $value-list: nth($value-list, 1);
+  }
+
+  @return nth($value-list, random(length($value-list)));
+}
+
+
+/// Given a map, including maps that have maps inside of maps inside of maps inside of them (and so on), returns a random value from that map.
+///
+/// @access public
+/// @group random list/map functions
+///
+/// @param {Map} $map - The map to be parsed
+///
+/// @example scss
+/// // SCSS
+/// div {
+///   animation: 2s ease random-value(ease ease-in-out linear);
+///   border-radius: random-value((2rem, 5px, 10%));
+/// }
+///
+/// @example css
+/// // CSS
+/// div {
+///   animation: 2s ease linear;
+///   border-radius: 5px;
+/// }
+@function rando-from-map($map){
+  @return rando-from(_r-map-to-list($map));
+}
+
+
+/// Given a list, applies a Fisher-Yates shuffle to that list.
+/// @param {list} $list - The list to shuffle
+///
+/// @access public
+/// @group random list/map functions
+///
+/// @example scss
+/// // SCSS
+/// $colors: red, orange, yellow, blue, green;
+/// $colors: shuffle($colors);
+/// div:after {
+///   content: $colors;
+/// }
+///
+/// @example css
+/// // CSS
+/// div: after {
+///   content: blue, yellow, red, orange, green;
+/// }
+@function rando-shuffle($list) {
+  $list-length: length($list);
+
+  @while($list-length > 0) {
+    $rand: random($list-length);
+    $temp: nth($list, $rand);
+    $list: set-nth($list, $rand, nth($list, $list-length));
+    $list: set-nth($list, $list-length, $temp);
+    $list-length: $list-length - 1;
+  }
+
+  @return $list;
 }
