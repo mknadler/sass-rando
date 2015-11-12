@@ -1,0 +1,256 @@
+/// Just like Sass' built-in random(), except that it will preserve length units.
+///
+/// @access public
+///
+/// @param {Number} $limit - the maximum value to be randomized
+///
+/// @example scss
+/// // SCSS
+/// div.widget {
+///  height: rando(10px);
+/// }
+///
+/// @example css
+/// // CSS
+/// div.widget {
+///   height: 7px;
+/// }
+@function rando($limit: null) {
+  @if $limit {
+    @if unitless($limit) {
+      @return random($limit);
+    }
+    @return random($limit) + _rando-unstring-unit(unit($limit));
+  }
+  @else {
+    @return random();
+  }
+}
+
+
+/// Generates a random integer within a range, inclusive of both the minimum and maximum values passed in (so, for example, a call of this function with a $min of 5 could potentially return 5). Preserves length units.
+///
+/// @access public
+///
+/// @param {Number} $min - The lowest integer
+/// @param {Number} $max - The highest integer
+///
+/// @example scss
+/// // SCSS
+/// div.widget {
+///  width: rando-between(30px, 100px);
+/// }
+///
+/// @example css
+/// // CSS
+/// div.widget {
+///   width: 58px;
+/// }
+@function rando-between($min, $max) {
+  @if $min > $max {
+    $old_min: $min;
+    $min: $max;
+    $max: $old_min;
+  }
+
+  @return ($min - 1) + rando(($max - $min) + 1);
+}
+
+/// Generates a random decimalized number within a given range, inclusive of both the minimum and maximum values passed in (so, for example, a call of this function with a $min of 0.1 could potentially return 0.1). Preserves length units.
+///
+/// @access public
+///
+/// @param {Number} $min - The lowest number
+/// @param {Number} $max - The highest number
+///
+/// @example scss
+/// // SCSS
+/// div.widget {
+///  width: rando-decimal-between(30.5px, 30.9px);
+/// }
+///
+/// @example css
+/// // CSS
+/// div.widget {
+///   width: 30.79564px;
+/// }
+@function rando-decimal-between($min, $max) {
+
+  @if $min > $max {
+    $old_min: $min;
+    $min: $max;
+    $max: $old_min;
+  }
+
+  @return (($max - $min) * random()) + $min;
+}
+
+
+
+/// Generates a value from a simulated dice roll. The input is in the form of, for instance, 2d6 to refer to rolling two six-sided dice; 5d8 to refer to rolling five eight-sided dice; and so on.
+///
+/// @access public
+///
+/// @param {number} $die - The number and type of dice to roll
+///
+/// @example scss
+/// // SCSS
+/// div {
+///   height: 2d6 * 10px;
+/// }
+///
+/// @example css
+/// // CSS
+/// div {
+///   height: 80px;
+/// }
+@function rando-roll($die) {
+  // method to typecast strings to numbers adapted from http://hugogiraudel.com/2014/01/15/sass-string-to-number/
+
+  // Account for a few potential mistakes in input
+
+  // Parse the input into two strings
+  $num-of-dice: str-slice($die + '', 1, str-index($die + '', d) - 1);
+  $die-max: str-slice($die + '', str-index($die + '', d) + 1);
+
+  @if str-slice($die-max, 0, 1) == ' ' {
+    $die-max: str-slice($die-max, 2);
+  }
+
+  // Define some variables at a scope outside the loops below
+  $result: 0;
+  $number-storage: 0;
+
+  @each $target in $num-of-dice, $die-max {
+    $strings: '0' '1' '2' '3' '4' '5' '6' '7' '8' '9';
+
+    // For each digit in each number-string, convert it from a string to a number
+    @for $i from 1 through str-length(#{$target}) {
+      $char: str-slice($target, $i, $i);
+      $index: index($strings, $char);
+      $number-storage: $number-storage * 10 +  $index - 1;
+    }
+
+    // Assign the results of the above conversion to their proper vars
+    @if $target == $num-of-dice {
+      $num-of-dice: $number-storage;
+      $number-storage: 0;
+    } @else if $target == $die-max {
+      $die-max: $number-storage;
+    }
+  }
+
+  // Finally, roll the dice!
+  @for $i from 1 through $num-of-dice {
+    $result: $result + random($die-max);
+  }
+
+  @return $result;
+}
+
+
+/// Generates a random RGB value.
+///
+/// @access public
+///
+/// @example scss
+/// // SCSS
+/// span {
+///   color: rando-color();
+///   background: rgba(rando-color(), .8);
+/// }
+///
+/// @example css
+/// // CSS
+/// span {
+///   color: #4c3b2e;
+///   background: rgba(169, 93, 82, 0.8);
+/// }
+@function rando-color () {
+  @return rgb(random(255), random(255), random(255));
+}
+
+
+
+/// Given a list, returns a random item from that list.
+/// @param {List} $value-list - The list of values to randomly select from
+///
+/// @access public
+///
+/// @example scss
+/// // SCSS
+/// div {
+///   animation: 2s ease random-value(ease ease-in-out linear);
+///   border-radius: random-value((2rem, 5px, 10%));
+/// }
+///
+/// @example css
+/// // CSS
+/// div {
+///   animation: 2s ease linear;
+///   border-radius: 5px;
+/// }
+@function rando-from-list($value-list...) {
+  @if type-of(nth($value-list, 1)) == 'list' and length($value-list) == 1 {
+    $value-list: nth($value-list, 1);
+  }
+
+  @return nth($value-list, random(length($value-list)));
+}
+
+
+/// Given a map, including maps that have maps inside of maps inside of maps inside of them (and so on), returns a random value from that map.
+///
+/// @access public
+///
+/// @param {Map} $map - The map to be parsed
+///
+/// @example scss
+/// // SCSS
+/// div {
+///   animation: 2s ease random-value(ease ease-in-out linear);
+///   border-radius: random-value((2rem, 5px, 10%));
+/// }
+///
+/// @example css
+/// // CSS
+/// div {
+///   animation: 2s ease linear;
+///   border-radius: 5px;
+/// }
+@function rando-from-map($map){
+  @return rando-from-list(_rando-map-to-list($map));
+}
+
+
+/// Given a list, applies a Fisher-Yates shuffle to that list.
+/// @param {list} $list - The list to shuffle
+///
+/// @access public
+///
+/// @example scss
+/// // SCSS
+/// $colors: red, orange, yellow, blue, green;
+/// $colors: shuffle($colors);
+/// div:after {
+///   content: $colors;
+/// }
+///
+/// @example css
+/// // CSS
+/// div: after {
+///   content: blue, yellow, red, orange, green;
+/// }
+@function rando-shuffle($list) {
+  $list-length: length($list);
+
+  @while($list-length > 0) {
+    $rand: random($list-length);
+    $temp: nth($list, $rand);
+    $list: set-nth($list, $rand, nth($list, $list-length));
+    $list: set-nth($list, $list-length, $temp);
+    $list-length: $list-length - 1;
+  }
+
+  @return $list;
+}

@@ -1,9 +1,9 @@
 {
   "package": {
-      "title": "Randomize.scss",
-      "version": "1.0.0",
+      "title": "Rando",
+      "version": "2.0.1",
       "license": "MIT",
-      "homepage": "https://github.com/mknadler/randomize.scss",
+      "homepage": "https://github.com/mknadler/sass-rando",
       "description": "A Sass randomization library"
   }
 }

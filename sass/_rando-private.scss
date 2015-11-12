@@ -1,0 +1,70 @@
+/// Converts the return of unit() into a 0-value version of that length; e.g., 'px' becomes 0px.
+/// @param {String} $unit - The string representation of the unit to be converted to a length value
+///
+/// @access private
+///
+@function _rando-unstring-unit($unit) {
+  $lengths: (
+    'em': 0em,
+    'rem': 0rem,
+    '%': 0%,
+    'px': 0px,
+    'ex': 0ex,
+    'cm': 0cm,
+    'mm': 0mm,
+    'in': 0in,
+    'pt': 0pt,
+    'pc': 0pc,
+    'ch': 0ch,
+    'vh': 0vh,
+    'vw': 0vw,
+    'vmin': 0vmin,
+    'vm': 0vm,
+    'vmax': 0vmax
+  );
+  @return map-get($lengths, $unit);
+}
+
+
+/// When passed a map, returns a list of every value in that map, no matter how deeply nested that map is.
+/// @param {String} $map - The map to convert into a list
+///
+/// @access private
+///
+@function _rando-map-to-list($map){
+  $carbon: $map;
+  $keys: map-keys($carbon);
+  $mapvals: ();
+  $plainvals: ();
+  $restart: true;
+
+  @while $restart == true {
+
+    @each $key in $keys {
+      @if type-of(map-get($carbon, $key)) == 'map'{
+        $mapvals: map-merge($mapvals, map-get($carbon, $key));
+        $mapvals: map-remove($mapvals, $key);
+        $carbon: map-remove($carbon, $key);
+      }
+
+      @else {
+        $plainvals: append($plainvals, map-get($carbon, $key));
+        @if map-has-key($mapvals, $key){
+          $mapvals: map-remove($mapvals, $key);
+        }
+
+        $carbon: map-remove($carbon, $key);
+      }
+    }
+
+    $carbon: map-remove($carbon, map-keys($carbon));
+    $carbon: map-merge($mapvals, $carbon);
+    $keys: map-keys($carbon);
+
+    @if length($mapvals) == 0 {
+      $restart: false;
+    }
+  }
+
+  @return $plainvals;
+}
