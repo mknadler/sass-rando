@@ -17,10 +17,10 @@
 /// span {
 ///   color: rgba(229, 240, 108);
 /// }
-@function random-color($multiplier: (1, 1, 1), $opacity: '') {
+@function random-color($multiplier: (1, 1, 1), $opacity: 1) {
   @each $val in $multiplier {
-    @if $val < 0 or $val == 0 {
-      @if _alert('@function random-color: RGBa multipliers must be positive.') {};
+    @if $val <= 0 or $val == 0 {
+      @error '@function random-color: RGBa multipliers must be positive.';
     }
   }
 
@@ -38,99 +38,4 @@
   }
 
   @return rgba(random($r), random($g), random($b), random());
-}
-
-
-
-/// Given a hue value, generates a color with random saturation and lightness, and, if the opacity parameter default of 1 is overriden, random opacity. To increase the chances of a somewhat-expected color being output, saturation is clamped between 20 and 100, and lightness between 20 and 80.
-///
-/// @access public
-/// @group random color functions
-///
-/// @param {Number} $hue - A hue value between 0 and 360
-/// @param {Number} $opacity (1) - The opacity of the generated color
-///
-/// @example scss
-/// // SCSS
-/// span {
-///  color: random-color-by-hue(230);
-/// }
-///
-/// @example css
-/// // CSS
-/// span {
-///   color: #1d35af;
-/// }
-@function random-color-by-hue($hue, $opacity: 1) {
-  @if $hue < 0 {
-    @warn 'hue must be greater than 0, but `#{$hue}` given. Clamping to 0';
-    $hue: 0;
-  }
-
-  @if $hue > 360 {
-    $hue: $hue % 360;
-  }
-
-  @if $opacity < 0 or $opacity > 1 {
-    @warn 'opacity should be a number between 0 and 1: `#{$opacity}` given. As a result, the color will be fully opaque.';
-    $opacity: 1;
-  }
-
-  @return hsla($hue, random(20, 100), random(20, 80), $opacity);
-}
-
-
-
-/// Given saturation and lightness values, generates a color with random hue, and, if the opacity parameter default of 1 is overriden, random opacity.
-///
-/// @access public
-/// @group random color functions
-///
-/// @param {Number} $saturation (100) - A saturation value between 0 and 100
-/// @param {Number} $lightness (50) - A lightness value between 0 and 100
-/// @param {Number} $opacity (1) - The opacity of the generated color
-///
-/// @example scss
-/// // SCSS
-/// span {
-///  color: color-with-random-hue();
-/// }
-///
-/// @example css
-/// // CSS
-/// span {
-///   color: #00fff7;
-/// }
-@function color-with-random-hue($saturation: 100, $lightness: 50, $opacity: 1) {
-  $saturation: limit($saturation, 0, 100);
-  $lightness: limit($lightness, 0, 100);
-  $opacity: limit($opacity);
-
-  @return hsla(random(0, 360), percentage($saturation/100), percentage($lightness/100), $opacity);
-}
-
-
-/// Given two colors, mix them, randomizing how much of each color to use in so doing. Optionally, pass in the lowest and highest amount of the first color that will be used in generating the mixture.
-///
-/// @access public
-/// @group random color functions
-///
-/// @param {Color} $color-1 - The first color to be used in generating a mixed color
-/// @param {Color} $color-2 - The second color to be used in generating a mixed color
-/// @param {Number} $min-1 (10%) - The lowest amount of the first color that will be used in mixing
-/// @param {Number} $max-1 (90%) - The highest amount of the first color that will be used in mixing
-///
-/// @example scss
-/// // SCSS
-/// body {
-///  background: random-mix(red, blue);
-/// }
-///
-/// @example css
-/// // CSS
-/// body {
-///   background: #c1003d;
-/// }
-@function random-mix($color-1, $color-2, $min-1: 10%, $max-1: 90%){
-  @return mix($color-1, $color-2, random-between($min-1, $max-1));
 }

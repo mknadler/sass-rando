@@ -1,9 +1,9 @@
 // Randomize.scss
 // https://github.com/mknadler/randomize.scss
 
-@import 'settings';
 @import 'utilities';
 @import 'numbers';
 @import 'colors';
 @import 'data';
-@import 'animation';
+
+@import 'deprecate';

@@ -1,56 +1,3 @@
-/// Provides `@warn` fallback for `@error` so as to not, ironically, throw errors on older versions of Sass. http://www.sitepoint.com/using-error-responsibly-in-sass/
-/// @param { String } $message - The message to be logged
-///
-/// @access private
-/// @group utilities
-@function _alert($message) {
-  @if feature-exists('at-error') != true {
-    @warn $message;
-  } @else {
-    @error $message;
-  }
-}
-
-/// Provides a mixin for access to the alert @function
-/// @param { String } $message - The message to be logged
-///
-/// @access private
-/// @group utilities
-@mixin _alert($message) {
-  @if _alert($message) {}
-}
-
-/// Determines if if a passed number is 1. a number and 2. an integer; if so, returns 'true'; if not, returns 'false'
-/// @param { Number | String | Boolean | List | Map } $value - The parameter to check the type / integerity of
-///
-/// @group utilities
-@function is-int($value){
-  @if (type-of($value) == 'number') and ($value % 1 == 0) {
-    @return true;
-  } @else {
-    @return false;
-  }
-}
-
-
-/// Applies vendor prefixes to @keyframes
-/// @param {String} $name - The name of the animation
-///
-/// @group utilities
-///
-@mixin keyframes($name) {
-  @if $_randomize-prefixes {
-    @-webkit-keyframes #{$name} {
-      @content;
-    }
-  }
-
-  @keyframes #{$name} {
-    @content;
-  }
-}
-
-
 /// Clamps a generated number in between a minimum and maximum value
 /// @param {Number} $num - The number to check
 /// @param {Number} $min (0) - The minimum number of the range
@@ -58,7 +5,7 @@
 ///
 /// @group utilities
 ///
-@function limit($num, $min: 0, $max: 1) {
+@function clamp($num, $min: 0, $max: 1) {
   @if $max < $min {
     $temp: $min;
     $min: $max;
@@ -67,6 +14,11 @@
   @if $num <= $max and $num >= $min { @return $num; }
   @if $num < $min { @return $min; }
   @if $num > $max { @return $max; }
+}
+
+@function limit($num, $min: 0, $max: 1) {
+  @warn '\a\a\a\aWARNING:\athe function "limit" has been renamed to "clamp". \aLimit will be removed in the next version.\a\a\a\a';
+  @return clamp($num, $min, $max);
 }
 
 

@@ -51,7 +51,7 @@
       type-of($max) != 'number' or
       $min < 0 or
       $max < 0 {
-        @if _alert('@function random-decimal-between: $min and $max must both be positive numbers.') {};
+        @error '@function random-decimal-between: $min and $max must both be positive numbers.';
   }
 
   @if $min > $max {
@@ -86,7 +86,7 @@
   $result: null;
   @for $i from 1 through length($ranges) {
     @if nth(nth($ranges, $i), 1) > nth(nth($ranges, $i), 2) {
-      @if _alert("@function random-ranges: $min must be smaller than or equal to $max") {};
+      @error '@function random-ranges: $min must be smaller than or equal to $max';
     }
     $result: random-between( nth(nth($ranges, $i), 1),
                      nth(nth($ranges, $i), 2) );
@@ -119,11 +119,11 @@
 
   // Account for a few potential mistakes in input
   @if type-of($die) != 'number' {
-    @if _alert('@function roll: $die, "#{$die}", was not a number; was expecting input in the format of, e.g., 2d6') {};
+    @error '@function roll: $die, "#{$die}", was not a number; was expecting input in the format of, e.g., 2d6';
   }
 
   @if unitless($die) {
-    @if _alert('@function roll: $die, "#{$die}", was unitless; was expecting input in the format of, e.g., 2d6') {};
+    @error '@function roll: $die, "#{$die}", was unitless; was expecting input in the format of, e.g., 2d6';
   }
 
   // Parse the input into two strings

@@ -26,7 +26,6 @@
 }
 
 
-
 /// Given a map, including maps that have maps inside of maps inside of maps inside of them (and so on), returns a random value from that map.
 ///
 /// @access public
@@ -50,7 +49,6 @@
 @function random-value-from-map($map){
   @return random-value(map-to-list($map));
 }
-
 
 
 /// Given a list, applies a Fisher-Yates shuffle to that list.
@@ -84,48 +82,4 @@
   }
 
   @return $list;
-}
-
-
-/// Given a number of elements, a property, and a function to call upon those elements, call the function separateley on each property of each element; like random-animate, but without the whole 'animation' part.
-///
-/// @access public
-/// @group mixins
-///
-/// @param {Number} $number-of-items - The number of elements to be iterated over
-/// @param {String} $property - The property of those elements which will call the function
-/// @param {String} $function - The function to be called on each element
-/// @param {List} $args... - Parameters, if any, to be passed to that function
-///
-/// @example scss
-/// // SCSS
-/// span {
-///   color: random-iterate(3, color, random-hex);
-/// }
-///
-/// @example css
-/// // CSS
-/// span:nth-child(3) {
-///   color: #488176;
-/// }
-/// span:nth-child(2) {
-///   color: #0C0FC3;
-/// }
-/// span:nth-child(1) {
-///   color: #DB47C4;
-/// }
-@mixin random-iterate($number-of-items, $property, $function, $args...) {
-  $counter: 1;
-
-  @if ($number-of-items < 1) or (type-of($number-of-items) != 'number') {
-    @include _alert('$number-of-items in random-iterate must be an integer greater than or equal to 1');
-  }
-
-  @while $number-of-items >= $counter {
-    &:nth-child(#{$counter}) {
-      #{$property}: call($function, $args...);
-    }
-
-    $counter: $counter + 1;
-  }
 }
