@@ -2,5 +2,5 @@
   "name": "rando",
   "description": "Sass randomization functions and mixins; for those who want an easier time of generating random values, or are simply indecisive.",
   "tags": ["randomization", "random"],
-  "website": "https://github.com/mknadler/rando"
+  "website": "https://github.com/mknadler/sass-rando"
 }

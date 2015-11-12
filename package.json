@@ -1,6 +1,5 @@
 {
-  "name": "Rando",
-  "title": "Rando",
+  "name": "sass-rando",
   "version": "2.0.0",
   "description": "A small collection of functions and mixins to help you make the most out of Sass's built-in `random()` function.",
   "main": "sass/index.scss",
@@ -10,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mknadler/rando.git"
+    "url": "https://github.com/mknadler/sass-rando.git"
   },
   "author": "Miriam Nadler",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mknadler/rando/issues"
   },
-  "homepage": "https://github.com/mknadler/rando",
+  "homepage": "https://github.com/mknadler/sass-rando",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-sassdoc": "^1.2.1",
