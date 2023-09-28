@@ -25,6 +25,8 @@
     "grunt": "^0.4.5",
     "grunt-sassdoc": "^1.2.1",
     "grunt-shell": "^1.1.1",
-    "load-grunt-tasks": "^3.1.0"
+    "load-grunt-tasks": "^3.1.0",
+    "sass": "^1.68.0",
+    "sass-true": "^7.0.0"
   }
 }
