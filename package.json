@@ -2,6 +2,9 @@
   "name": "sass-rando",
   "version": "2.0.2",
   "description": "A small collection of functions and mixins to help you make the most out of Sass's built-in `random()` function.",
+  "scripts": {
+    "test": "jest"
+  },
   "directories": {
     "doc": "docs",
     "test": "test"
@@ -22,9 +25,12 @@
   },
   "homepage": "https://github.com/mknadler/sass-rando",
   "devDependencies": {
+    "glob": "^10.3.10",
     "grunt": "^0.4.5",
     "grunt-sassdoc": "^1.2.1",
     "grunt-shell": "^1.1.1",
+    "jest": "^29.7.0",
+    "jest-environment-node-single-context": "^29.1.0",
     "load-grunt-tasks": "^3.1.0",
     "sass": "^1.68.0",
     "sass-true": "^7.0.0"
