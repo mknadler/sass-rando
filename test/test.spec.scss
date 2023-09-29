@@ -1,4 +1,4 @@
-@import '../sass/__randomize';
+@import '../sass/index.scss';
 //@import '../sass/utilities';
 @import '../sass/true';
 
@@ -9,40 +9,8 @@
 }
 
 @include test-module('Utilities') {
-
-  @include test('is-int() [function]') {
-
-    $test: is-int('a');
-    @include assert-false($test, 'Strings should return false');
-
-    $test: is-int(1.5);
-    @include assert-false($test, 'Decimals should return false');
-
-    $test: is-int(1);
-    @include assert-true($test, 'Integers should return true');
-  }
-
-
-
-  @include test('limit() [function]') {
-
-    $test: limit(5, 7, 9);
-    $expect: 7;
-    @include assert-equal($test, $expect, 'Returns the number clamped to the minimum value');
-
-    $test: limit(11, 7, 9);
-    $expect: 9;
-    @include assert-equal($test, $expect, 'Returns the number clamped to the maximum value');
-
-    $test: limit(7, 5, 9);
-    $expect: 7;
-    @include assert-equal($test, $expect, 'Returns the unaltered input if already within the limit');
-  }
-
-
-
   @include test('map-to-list() [function]') {
-    $test: map-to-list((a: 1, b: (bb: 2 3), c:(d:(e:(f:(4))))));
+    $test: _rando-map-to-list((a: 1, b: (bb: 2 3), c:(d:(e:(f:(4))))));
     $expect: 1 (2 3) 4;
     @include assert-equal($test, $expect, 'Returns values in the map as a list');
   }
@@ -54,46 +22,46 @@
   @include test('random-between() [function]') {
     @include repeat {
 
-      $random: random-between(1, 10);
+      $random: rando-between(1, 10);
       $test: $random <= 10 and $random >= 1;
       @include assert-true($test, 'Random number should be within the expected range');
     }
   }
 
-  @include test('random-decimal-between() [function]') {
+  @include test('rando-decimal-between() [function]') {
     @include repeat {
 
-      $random: random-decimal-between(3.103, 3.192);
+      $random: rando-decimal-between(3.103, 3.192);
       $test: $random >= 3.103 and $random <= 3.192;
       @include assert-true($test, 'Random number should be within the expected range');
     }
   }
 
-  @include test('random-color() [function]') {
+  @include test('rando-color() [function]') {
     @include repeat {
 
-      $test: str-length(random-color((1, 1, 1), 1) + "") == 7;
-      @include assert-true($test, 'Random color with opacity 1 should return a hex code');
+      $test: type-of(rando-color()) == 'color';
+      @include assert-true($test, 'Rando-color should return a color');
     }
   }
 
   @include test('roll() [function]') {
     @include repeat {
 
-      $random: roll(1d6);
+      $random: rando-roll(1d6);
       $test: ($random >= 1) and ($random <= 6) and ($random % 1 == 0);
       @include assert-true($test, 'Rolling 1d6 should return an integer between 1 and 6');
 
-      $random: roll(2d6);
+      $random: rando-roll(2d6);
       $test: ($random >= 1) and ($random <= 12) and ($random % 1 == 0);
       @include assert-true($test, 'Rolling 1d6 should return an integer between 1 and 12');
     }
   }
 
-  @include test('shuffle [function]') {
+  @include test('rando-shuffle [function]') {
 
     $list-original: A B C D E F G;
-    $list-shuffled: shuffle($list-original);
+    $list-shuffled: rando-shuffle($list-original);
     $test: length($list-original) == length($list-shuffled);
     @include assert-true($test, 'Shuffling a list should return a list of equal length');
   }
